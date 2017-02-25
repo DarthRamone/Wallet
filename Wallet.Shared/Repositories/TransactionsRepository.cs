@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Realms;
+
 namespace Wallet.Shared
 {
-  public class TransactionsRepository
+  public class TransactionsRepository : BaseRepository<WalletTransaction>
   {
-    public TransactionsRepository()
-    {
-    }
   }
 }

@@ -1,10 +1,6 @@
-﻿using System;
-namespace Wallet.Shared
+﻿namespace Wallet.Shared
 {
-  public class CategoriesRepository
+  public class CategoriesRepository : BaseRepository<Category>
   {
-    public CategoriesRepository()
-    {
-    }
   }
 }
