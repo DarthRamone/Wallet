@@ -8,7 +8,7 @@ namespace Wallet.Shared
     [PrimaryKey]
     public string Id { get; set; }
 
-    public float Amount { get; set; }
+    public double Amount { get; set; }
 
     public Category Category { get; set; }
 

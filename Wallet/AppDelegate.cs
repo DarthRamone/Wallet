@@ -26,6 +26,11 @@ namespace Wallet
       Xamarin.Calabash.Start();
 #endif
 
+      var vc = new OverviewViewController();
+      var nav = new UINavigationController(vc);
+      Window.RootViewController = nav;
+      Window.MakeKeyAndVisible();
+
       return true;
     }
 
