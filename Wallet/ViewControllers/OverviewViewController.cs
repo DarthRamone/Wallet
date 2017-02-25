@@ -7,6 +7,7 @@ namespace Wallet
 {
   public partial class OverviewViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
   {
+    const string cellId = "cellId";
     const string catName = "test category";
     const string accName = "test account";
 
@@ -25,6 +26,8 @@ namespace Wallet
     {
       base.ViewDidLoad();
       // Perform any additional setup after loading the view, typically from a nib.
+
+      TransactionsTableView.RegisterNibForCellReuse(RecordTableViewCell.Nib, cellId);
 
       _accountsRepository.OnItemsInserted += (object sender, int[] e) =>
       {
@@ -70,8 +73,13 @@ namespace Wallet
 
     public UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
     {
-      var cell = new UITableViewCell();
-      cell.TextLabel.Text = _transactionsRepository.Items[indexPath.Row].Category.Name;
+      var transaction = _transactionsRepository.Items[indexPath.Row];
+
+      var cell = tableView.DequeueReusableCell(cellId, indexPath) as RecordTableViewCell;
+      cell.CategoryNameLabel.Text = transaction.Category.Name;
+      cell.AmountLabel.Text = transaction.Amount.ToString();
+      cell.DateLabel.Text = DateTime.Now.ToString("d");
+      cell.AccountNameLabel.Text = transaction.Account.Name;
       return cell;
     }
   }

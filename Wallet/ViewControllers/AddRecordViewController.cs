@@ -1,6 +1,4 @@
-﻿using System;
-
-using UIKit;
+﻿using UIKit;
 using Wallet.Shared;
 
 namespace Wallet
