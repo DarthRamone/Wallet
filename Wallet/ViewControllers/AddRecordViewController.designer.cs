@@ -11,12 +11,9 @@ using UIKit;
 
 namespace Wallet
 {
-  [Register("OverviewViewController")]
-  partial class OverviewViewController
+  [Register("AddRecordViewController")]
+  partial class AddRecordViewController
   {
-    [Outlet]
-    UITableView TransactionsTableView { get; set; }
-
     [Outlet]
     UIButton AddRecordButton { get; set; }
 

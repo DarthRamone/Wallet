@@ -7,6 +7,9 @@ namespace Wallet
 {
   public partial class OverviewViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
   {
+    const string catName = "test category";
+    const string accName = "test account";
+
     private AccountsRepository _accountsRepository;
     private CategoriesRepository _categoriesRepository;
     private TransactionsRepository _transactionsRepository;
@@ -33,9 +36,6 @@ namespace Wallet
         TransactionsTableView.ReloadData();
       };
 
-      var catName = "test category";
-      var accName = "test account";
-
       var account = new Account();
       account.Name = accName;
       await _accountsRepository.Add(account);
@@ -46,6 +46,10 @@ namespace Wallet
 
       //var transaction = new WalletTransaction();
       await _transactionsRepository.AddTransaction(1000, catName, accName);
+
+      AddRecordButton.TouchUpInside += (sender, e) => {
+        NavigationController.PushViewController(new AddRecordViewController(), true);
+      };
     }
 
     public override void DidReceiveMemoryWarning()

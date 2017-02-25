@@ -121,6 +121,7 @@
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="ViewControllers\OverviewViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\AddRecordViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -134,6 +135,10 @@
     <Compile Include="ViewControllers\OverviewViewController.cs" />
     <Compile Include="ViewControllers\OverviewViewController.designer.cs">
       <DependentUpon>OverviewViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\AddRecordViewController.cs" />
+    <Compile Include="ViewControllers\AddRecordViewController.designer.cs">
+      <DependentUpon>AddRecordViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

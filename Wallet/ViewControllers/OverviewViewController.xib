@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OverviewViewController">
             <connections>
+                <outlet property="AddRecordButton" destination="aLB-4c-FgJ" id="Pb2-W0-zl9"/>
                 <outlet property="TransactionsTableView" destination="APF-dS-hoo" id="raJ-RN-2rv"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
@@ -20,20 +21,37 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="APF-dS-hoo">
-                    <rect key="frame" x="0.0" y="193" width="375" height="474"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="APF-dS-hoo">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="m2W-jy-QWQ"/>
                         <outlet property="delegate" destination="-1" id="hxx-oK-X1K"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLB-4c-FgJ">
+                    <rect key="frame" x="305" y="597" width="50" height="50"/>
+                    <color key="backgroundColor" red="0.90116985103626945" green="0.90116985103626945" blue="0.90116985103626945" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="6Qn-G9-kzU"/>
+                        <constraint firstAttribute="width" constant="50" id="yvQ-vb-KAz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <state key="normal" title="+"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="aLB-4c-FgJ" secondAttribute="bottom" constant="20" id="Cbl-Gm-KjS"/>
                 <constraint firstAttribute="bottom" secondItem="APF-dS-hoo" secondAttribute="bottom" id="ILV-cZ-Q7D"/>
                 <constraint firstItem="APF-dS-hoo" firstAttribute="top" secondItem="2" secondAttribute="top" id="OvF-hL-J86"/>
                 <constraint firstAttribute="trailing" secondItem="APF-dS-hoo" secondAttribute="trailing" id="ZmJ-wX-SMP"/>
+                <constraint firstAttribute="trailing" secondItem="aLB-4c-FgJ" secondAttribute="trailing" constant="20" id="pK2-Vs-mqW"/>
                 <constraint firstItem="APF-dS-hoo" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="u58-zV-1ya"/>
             </constraints>
             <point key="canvasLocation" x="34.5" y="54.5"/>
