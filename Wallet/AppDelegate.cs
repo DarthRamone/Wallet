@@ -35,13 +35,11 @@ namespace Wallet
 
       var nav = new NavigationService();
       var appvm = new ApplicationViewModel();
-      var svm = new SummaryViewModel(nav, appvm);
+      var transactionsRepo = new TransactionsRepository();
+      var svm = new SummaryViewModel(nav, appvm, transactionsRepo);
 
       var navController = new UINavigationController(new SummaryViewController(svm));
       Window.RootViewController = navController;
-
-
-
 
       nav.Initialize(navController);
       nav.Configure(appvm.SummaryViewControllerKey, typeof(SummaryViewController));
