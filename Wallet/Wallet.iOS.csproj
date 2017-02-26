@@ -116,6 +116,7 @@
     <Folder Include="ViewControllers\" />
     <Folder Include="Views\" />
     <Folder Include="Views\Cells\" />
+    <Folder Include="Dependency\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -145,6 +146,7 @@
     <Compile Include="Views\Cells\RecordTableViewCell.designer.cs">
       <DependentUpon>RecordTableViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dependency\iOSLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wallet.Shared\Wallet.Shared.csproj">

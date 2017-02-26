@@ -2,7 +2,7 @@
 
 namespace Wallet.Shared
 {
-  public class TransactionsRepository : BaseRepository<WalletTransaction>
+  public class TransactionsRepository : BaseRepository<WalletTransaction>, ITransactionsRepository
   {
     public async Task AddTransaction(double amount, string categoryId, string accountId)
     {

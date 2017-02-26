@@ -38,19 +38,6 @@ namespace Wallet.Shared
       });
     }
 
-    public async Task Add(T item)
-    {
-      try
-      {
-        await _realm.WriteAsync(r => r.Add(item));
-      }
-      catch (Realms.Exceptions.RealmDuplicatePrimaryKeyValueException e)
-      {
-        Debug.WriteLine(e.Message);
-        //TODO: Handle duplicates
-      }
-    }
-
     public void Delete(T item)
     {
       throw new NotImplementedException();

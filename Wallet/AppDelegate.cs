@@ -26,6 +26,8 @@ namespace Wallet
       Xamarin.Calabash.Start();
 #endif
 
+      var locator = new iOSLocator();
+
       var vc = new OverviewViewController();
       var nav = new UINavigationController(vc);
       Window.RootViewController = nav;

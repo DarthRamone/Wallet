@@ -32,11 +32,15 @@
     <Compile Include="Models\WalletTransaction.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Repositories\AccountsRepository.cs" />
-    <Compile Include="Repositories\CategoriesRepository.cs" />
-    <Compile Include="Repositories\TransactionsRepository.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\Accounts\AccountsRepository.cs" />
+    <Compile Include="Repositories\Categories\CategoriesRepository.cs" />
+    <Compile Include="Repositories\Transactions\TransactionsRepository.cs" />
+    <Compile Include="Repositories\Base\BaseRepository.cs" />
+    <Compile Include="Repositories\Base\IRepository.cs" />
+    <Compile Include="Repositories\Transactions\ITransactionsRepository.cs" />
+    <Compile Include="Repositories\Categories\ICategoriesRepository.cs" />
+    <Compile Include="Repositories\Accounts\IAccountsRepository.cs" />
+    <Compile Include="Dependency\CoreLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe">
@@ -59,6 +63,11 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Repositories\" />
+    <Folder Include="Repositories\Accounts\" />
+    <Folder Include="Repositories\Categories\" />
+    <Folder Include="Repositories\Transactions\" />
+    <Folder Include="Repositories\Base\" />
+    <Folder Include="Dependency\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
