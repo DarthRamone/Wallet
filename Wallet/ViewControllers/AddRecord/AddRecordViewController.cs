@@ -8,11 +8,15 @@ namespace Wallet
     const string catName = "test category";
     const string accName = "test account";
 
-    TransactionsRepository _transactionsRepo;
+    ITransactionsRepository _transactionsRepo;
 
-    public AddRecordViewController() : base("AddRecordViewController")
+    IAddRecordViewModel _viewModel;
+
+    public AddRecordViewController(ITransactionsRepository transactionsRepo,
+                                   IAddRecordViewModel viewModel) : base("AddRecordViewController")
     {
-      _transactionsRepo = new TransactionsRepository();
+      _transactionsRepo = transactionsRepo;
+      _viewModel = viewModel;
     }
 
     public override void ViewDidLoad()

@@ -47,6 +47,8 @@
     <Compile Include="ViewModels\Application\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\Base\IWalletBaseViewModel.cs" />
     <Compile Include="ViewModels\Base\WalletBaseViewModel.cs" />
+    <Compile Include="ViewModels\AddRecord\IAddRecordViewModel.cs" />
+    <Compile Include="ViewModels\AddRecord\AddRecordViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe">
@@ -87,6 +89,7 @@
     <Folder Include="ViewModels\Summary\" />
     <Folder Include="ViewModels\Application\" />
     <Folder Include="ViewModels\Base\" />
+    <Folder Include="ViewModels\AddRecord\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />

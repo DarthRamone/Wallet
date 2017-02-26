@@ -10,6 +10,7 @@ namespace Wallet.Shared
       SimpleIoc.Default.Register<ICategoriesRepository, CategoriesRepository>();
       SimpleIoc.Default.Register<ITransactionsRepository, TransactionsRepository>();
       SimpleIoc.Default.Register<ISummaryViewModel, SummaryViewModel>();
+      SimpleIoc.Default.Register<IAddRecordViewModel, AddRecordViewModel>();
     }
   }
 }

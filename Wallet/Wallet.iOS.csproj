@@ -130,13 +130,15 @@
     <Folder Include="Views\Cells\" />
     <Folder Include="Dependency\" />
     <Folder Include="ViewControllers\Base\" />
+    <Folder Include="ViewControllers\Summary\" />
+    <Folder Include="ViewControllers\AddRecord\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="ViewControllers\OverviewViewController.xib" />
-    <InterfaceDefinition Include="ViewControllers\AddRecordViewController.xib" />
     <InterfaceDefinition Include="Views\Cells\RecordTableViewCell.xib" />
+    <InterfaceDefinition Include="ViewControllers\AddRecord\AddRecordViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\Summary\OverviewViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -147,20 +149,20 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewControllers\SummaryViewController.cs" />
-    <Compile Include="ViewControllers\SummaryViewController.designer.cs">
-      <DependentUpon>SummaryViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewControllers\AddRecordViewController.cs" />
-    <Compile Include="ViewControllers\AddRecordViewController.designer.cs">
-      <DependentUpon>AddRecordViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Cells\RecordTableViewCell.cs" />
     <Compile Include="Views\Cells\RecordTableViewCell.designer.cs">
       <DependentUpon>RecordTableViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Dependency\iOSLocator.cs" />
     <Compile Include="ViewControllers\Base\WalletBaseViewController.cs" />
+    <Compile Include="ViewControllers\AddRecord\AddRecordViewController.cs" />
+    <Compile Include="ViewControllers\AddRecord\AddRecordViewController.designer.cs">
+      <DependentUpon>AddRecordViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Summary\SummaryViewController.cs" />
+    <Compile Include="ViewControllers\Summary\SummaryViewController.designer.cs">
+      <DependentUpon>SummaryViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wallet.Shared\Wallet.Shared.csproj">
