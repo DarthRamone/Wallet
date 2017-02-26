@@ -1,5 +1,4 @@
 ﻿using Foundation;
-using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
@@ -14,12 +13,9 @@ namespace Wallet
   public class AppDelegate : UIApplicationDelegate
   {
     // class-level declarations
+    public iOSLocator Locator { get; private set; }
 
-    public override UIWindow Window
-    {
-      get;
-      set;
-    }
+    public override UIWindow Window { get; set; }
 
     public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
     {
@@ -32,24 +28,23 @@ namespace Wallet
 #endif
 
       var unityContainer = new UnityContainer();
-      var locator = new UnityServiceLocator(unityContainer);
-      ServiceLocator.SetLocatorProvider(() => locator);
+      ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(unityContainer));
 
-      var l = new iOSLocator(unityContainer);
+      var navigationService = new NavigationService();
+      unityContainer.RegisterInstance<INavigationService>(navigationService);
 
-      var nav = new NavigationService();
-      var appvm = unityContainer.Resolve<IApplicationViewModel>();
+      Locator = new iOSLocator(unityContainer);
 
-      unityContainer.RegisterInstance<INavigationService>(nav);
-      var svm = unityContainer.Resolve<ISummaryViewModel>();
-      var summaryViewController = new SummaryViewController(svm);
+      var applicationViewModel = ServiceLocator.Current.GetInstance<IApplicationViewModel>();
+      var summaryViewController = ServiceLocator.Current.GetInstance<SummaryViewController>();
 
       var navController = new UINavigationController(summaryViewController);
+
       Window.RootViewController = navController;
 
-      nav.Initialize(navController);
-      nav.Configure(appvm.SummaryViewControllerKey, typeof(SummaryViewController));
-      nav.Configure(appvm.AddRecordViewControllerKey, typeof(AddRecordViewController));
+      navigationService.Initialize(navController);
+      navigationService.Configure(applicationViewModel.SummaryViewControllerKey, typeof(SummaryViewController));
+      navigationService.Configure(applicationViewModel.AddRecordViewControllerKey, typeof(AddRecordViewController));
 
       Window.MakeKeyAndVisible();
 

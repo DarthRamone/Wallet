@@ -1,12 +1,11 @@
-﻿using System;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 
 namespace Wallet.Shared
 {
   public class ApplicationViewModel : ViewModelBase, IApplicationViewModel
   {
-    public string AddRecordViewControllerKey => nameof(AddRecordViewControllerKey);
+    public string AddRecordViewControllerKey => "AddRecordViewControllerKey";
 
-    public string SummaryViewControllerKey => nameof(SummaryViewControllerKey);
+    public string SummaryViewControllerKey => "SummaryViewControllerKey";
   }
 }
