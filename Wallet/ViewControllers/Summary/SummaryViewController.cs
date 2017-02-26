@@ -1,6 +1,7 @@
 ﻿using System;
 using Foundation;
 using GalaSoft.MvvmLight.Helpers;
+using Microsoft.Practices.ServiceLocation;
 using UIKit;
 using Wallet.Shared;
 
@@ -9,14 +10,12 @@ namespace Wallet
   public partial class SummaryViewController : WalletBaseViewController, IUITableViewDataSource, IUITableViewDelegate
   {
     const string cellId = "cellId";
-    const string catName = "test category";
-    const string accName = "test account";
 
     private ISummaryViewModel _viewModel;
 
-    public SummaryViewController(ISummaryViewModel summaryViewModel) : base("OverviewViewController")
+    public SummaryViewController() : base("OverviewViewController")
     {
-      _viewModel = summaryViewModel;
+      _viewModel = ServiceLocator.Current.GetInstance<ISummaryViewModel>();
     }
 
     public override void ViewDidLoad()

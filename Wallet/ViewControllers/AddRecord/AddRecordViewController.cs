@@ -1,4 +1,6 @@
-﻿using UIKit;
+﻿using GalaSoft.MvvmLight.Helpers;
+using Microsoft.Practices.ServiceLocation;
+using UIKit;
 using Wallet.Shared;
 
 namespace Wallet
@@ -8,25 +10,17 @@ namespace Wallet
     const string catName = "test category";
     const string accName = "test account";
 
-    ITransactionsRepository _transactionsRepo;
-
     IAddRecordViewModel _viewModel;
 
-    public AddRecordViewController(ITransactionsRepository transactionsRepo,
-                                   IAddRecordViewModel viewModel) : base("AddRecordViewController")
+    public AddRecordViewController() : base("AddRecordViewController")
     {
-      _transactionsRepo = transactionsRepo;
-      _viewModel = viewModel;
+      _viewModel = ServiceLocator.Current.GetInstance<IAddRecordViewModel>();
     }
 
     public override void ViewDidLoad()
     {
       base.ViewDidLoad();
-      AddRecordButton.TouchUpInside += async (sender, e) => {
-        await _transactionsRepo.AddTransaction(500, catName, accName);
-        NavigationController.PopViewController(true);
-      };
-      // Perform any additional setup after loading the view, typically from a nib.
+      AddRecordButton.SetCommand(_viewModel.AddRecordAction);
     }
 
     public override void DidReceiveMemoryWarning()

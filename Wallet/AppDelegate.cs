@@ -45,7 +45,6 @@ namespace Wallet
       navigationService.Initialize(navController);
       navigationService.Configure(applicationViewModel.SummaryViewControllerKey, typeof(SummaryViewController));
       navigationService.Configure(applicationViewModel.AddRecordViewControllerKey, typeof(AddRecordViewController));
-
       Window.MakeKeyAndVisible();
 
       return true;
