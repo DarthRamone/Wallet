@@ -31,7 +31,6 @@ namespace Wallet
       Xamarin.Calabash.Start();
 #endif
 
-
       var unityContainer = new UnityContainer();
       var locator = new UnityServiceLocator(unityContainer);
       ServiceLocator.SetLocatorProvider(() => locator);
@@ -51,7 +50,6 @@ namespace Wallet
       nav.Initialize(navController);
       nav.Configure(appvm.SummaryViewControllerKey, typeof(SummaryViewController));
       nav.Configure(appvm.AddRecordViewControllerKey, typeof(AddRecordViewController));
-
 
       Window.MakeKeyAndVisible();
 

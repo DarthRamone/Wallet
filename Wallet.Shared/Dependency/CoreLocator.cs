@@ -6,12 +6,13 @@ namespace Wallet.Shared
   {
     public CoreLocator(IUnityContainer container)
     {
+      container.RegisterType<IAccountsRepository, AccountsRepository>(new ContainerControlledLifetimeManager());
+      container.RegisterType<ICategoriesRepository, CategoriesRepository>(new ContainerControlledLifetimeManager());
+      container.RegisterType<ITransactionsRepository, TransactionsRepository>(new ContainerControlledLifetimeManager());
+
       container.RegisterType<ISummaryViewModel, SummaryViewModel>();
-      container.RegisterType<IAccountsRepository, AccountsRepository>();
       container.RegisterType<IAddRecordViewModel, AddRecordViewModel>();
-      container.RegisterType<ICategoriesRepository, CategoriesRepository>();
       container.RegisterType<IApplicationViewModel, ApplicationViewModel>();
-      container.RegisterType<ITransactionsRepository, TransactionsRepository>();
     }
   }
 }
