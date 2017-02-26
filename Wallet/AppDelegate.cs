@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Unity;
 using UIKit;
 using Wallet.Shared;
 
@@ -30,22 +31,28 @@ namespace Wallet
       Xamarin.Calabash.Start();
 #endif
 
-      var locator = new iOSLocator();
-      ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
+      var unityContainer = new UnityContainer();
+      var locator = new UnityServiceLocator(unityContainer);
+      ServiceLocator.SetLocatorProvider(() => locator);
+
+      var l = new iOSLocator(unityContainer);
 
       var nav = new NavigationService();
-      var appvm = new ApplicationViewModel();
-      var transactionsRepo = new TransactionsRepository();
-      var svm = new SummaryViewModel(nav, appvm, transactionsRepo);
+      var appvm = unityContainer.Resolve<IApplicationViewModel>();
 
-      var navController = new UINavigationController(new SummaryViewController(svm));
+      unityContainer.RegisterInstance<INavigationService>(nav);
+      var svm = unityContainer.Resolve<ISummaryViewModel>();
+      var summaryViewController = new SummaryViewController(svm);
+
+      var navController = new UINavigationController(summaryViewController);
       Window.RootViewController = navController;
 
       nav.Initialize(navController);
       nav.Configure(appvm.SummaryViewControllerKey, typeof(SummaryViewController));
       nav.Configure(appvm.AddRecordViewControllerKey, typeof(AddRecordViewController));
 
-      SimpleIoc.Default.Register<INavigationService>(() => nav);
+
       Window.MakeKeyAndVisible();
 
       return true;

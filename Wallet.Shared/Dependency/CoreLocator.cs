@@ -1,16 +1,17 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using Microsoft.Practices.Unity;
 
 namespace Wallet.Shared
 {
   public class CoreLocator
   {
-    public CoreLocator()
+    public CoreLocator(IUnityContainer container)
     {
-      SimpleIoc.Default.Register<IAccountsRepository, AccountsRepository>();
-      SimpleIoc.Default.Register<ICategoriesRepository, CategoriesRepository>();
-      SimpleIoc.Default.Register<ITransactionsRepository, TransactionsRepository>();
-      SimpleIoc.Default.Register<ISummaryViewModel, SummaryViewModel>();
-      SimpleIoc.Default.Register<IAddRecordViewModel, AddRecordViewModel>();
+      container.RegisterType<ISummaryViewModel, SummaryViewModel>();
+      container.RegisterType<IAccountsRepository, AccountsRepository>();
+      container.RegisterType<IAddRecordViewModel, AddRecordViewModel>();
+      container.RegisterType<ICategoriesRepository, CategoriesRepository>();
+      container.RegisterType<IApplicationViewModel, ApplicationViewModel>();
+      container.RegisterType<ITransactionsRepository, TransactionsRepository>();
     }
   }
 }
