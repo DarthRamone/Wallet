@@ -12,7 +12,7 @@ using UIKit;
 namespace Wallet
 {
   [Register("OverviewViewController")]
-  partial class OverviewViewController
+  partial class SummaryViewController
   {
     [Outlet]
     UITableView TransactionsTableView { get; set; }

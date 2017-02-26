@@ -1,5 +1,9 @@
 ﻿using Foundation;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
+using Microsoft.Practices.ServiceLocation;
 using UIKit;
+using Wallet.Shared;
 
 namespace Wallet
 {
@@ -27,10 +31,23 @@ namespace Wallet
 #endif
 
       var locator = new iOSLocator();
+      ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-      var vc = new OverviewViewController();
-      var nav = new UINavigationController(vc);
-      Window.RootViewController = nav;
+      var nav = new NavigationService();
+      var appvm = new ApplicationViewModel();
+      var svm = new SummaryViewModel(nav, appvm);
+
+      var navController = new UINavigationController(new SummaryViewController(svm));
+      Window.RootViewController = navController;
+
+
+
+
+      nav.Initialize(navController);
+      nav.Configure(appvm.SummaryViewControllerKey, typeof(SummaryViewController));
+      nav.Configure(appvm.AddRecordViewControllerKey, typeof(AddRecordViewController));
+
+      SimpleIoc.Default.Register<INavigationService>(() => nav);
       Window.MakeKeyAndVisible();
 
       return true;

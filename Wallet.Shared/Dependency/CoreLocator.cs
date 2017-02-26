@@ -1,4 +1,6 @@
 ﻿using System;
+using GalaSoft.MvvmLight.Ioc;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Wallet.Shared
 {
@@ -6,7 +8,7 @@ namespace Wallet.Shared
   {
     public CoreLocator()
     {
-      
+      SimpleIoc.Default.Register<ISummaryViewModel, SummaryViewModel>();
     }
   }
 }

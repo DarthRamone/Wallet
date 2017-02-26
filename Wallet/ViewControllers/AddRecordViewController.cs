@@ -3,14 +3,14 @@ using Wallet.Shared;
 
 namespace Wallet
 {
-  public partial class AddRecordViewController : UIViewController
+  public partial class AddRecordViewController : WalletBaseViewController
   {
     const string catName = "test category";
     const string accName = "test account";
 
     TransactionsRepository _transactionsRepo;
 
-    public AddRecordViewController() : base("AddRecordViewController", null)
+    public AddRecordViewController() : base("AddRecordViewController")
     {
       _transactionsRepo = new TransactionsRepository();
     }

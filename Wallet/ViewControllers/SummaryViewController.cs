@@ -1,22 +1,29 @@
 ﻿using System;
 using Foundation;
+using GalaSoft.MvvmLight.Helpers;
 using UIKit;
 using Wallet.Shared;
 
 namespace Wallet
 {
-  public partial class OverviewViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
+  public partial class SummaryViewController : WalletBaseViewController, IUITableViewDataSource, IUITableViewDelegate
   {
     const string cellId = "cellId";
     const string catName = "test category";
     const string accName = "test account";
 
+    //will be removed ofc
     private AccountsRepository _accountsRepository;
     private CategoriesRepository _categoriesRepository;
     private TransactionsRepository _transactionsRepository;
 
-    public OverviewViewController() : base("OverviewViewController", null)
+    private ISummaryViewModel _viewModel;
+
+
+    public SummaryViewController(ISummaryViewModel summaryViewModel) : base("OverviewViewController")
     {
+      _viewModel = summaryViewModel;
+
       _accountsRepository = new AccountsRepository();
       _categoriesRepository = new CategoriesRepository();
       _transactionsRepository = new TransactionsRepository();
@@ -26,6 +33,7 @@ namespace Wallet
     {
       base.ViewDidLoad();
       // Perform any additional setup after loading the view, typically from a nib.
+      AddRecordButton.SetCommand(_viewModel.AddRecordButtonAction);
 
       TransactionsTableView.RegisterNibForCellReuse(RecordTableViewCell.Nib, cellId);
 
@@ -49,10 +57,6 @@ namespace Wallet
 
       //var transaction = new WalletTransaction();
       await _transactionsRepository.AddTransaction(1000, catName, accName);
-
-      AddRecordButton.TouchUpInside += (sender, e) => {
-        NavigationController.PushViewController(new AddRecordViewController(), true);
-      };
     }
 
     public override void DidReceiveMemoryWarning()
