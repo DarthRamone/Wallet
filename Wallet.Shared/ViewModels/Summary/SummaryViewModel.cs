@@ -13,6 +13,7 @@ namespace Wallet.Shared
     public ObservableCollection<object> Accounts { get; private set; }
     public ObservableCollection<object> Transactions { get; private set; }
 
+    public RelayCommand<Account> AccountSelected { get; private set; }
     public RelayCommand AddRecordButtonAction { get; private set; }
 
     public SummaryViewModel(INavigationService navigationService,
@@ -28,15 +29,24 @@ namespace Wallet.Shared
 
       Initialize(categoriesRepository, accountsRepository);//HACK
 
-      AddRecordButtonAction = new RelayCommand(() => {
-        _navigationService.NavigateTo(_applicationViewModel.AddRecordViewControllerKey);
-      }, () => true);
+      SetupCommands();
 
       Accounts = new ObservableCollection<object>(_accountsRepository.Items);
       Transactions = new ObservableCollection<object>(_transactionsRepository.Items);
 
       _accountsRepository.OnItemsInserted += AccountItemsInserted;
       _transactionsRepository.OnItemsInserted += TransactionItemsInserted;
+    }
+
+    void SetupCommands() {
+      
+      AddRecordButtonAction = new RelayCommand(() => {
+        _navigationService.NavigateTo(_applicationViewModel.AddRecordViewControllerKey);
+      }, () => true);
+
+      AccountSelected = new RelayCommand<Account>(account => {
+        _navigationService.NavigateTo(_applicationViewModel.AccountTransactionsViewControllerKey, account);
+      }, account => true);
     }
 
     async void Initialize(ICategoriesRepository catsRepo, IAccountsRepository accsRepo) {

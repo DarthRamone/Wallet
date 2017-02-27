@@ -65,6 +65,7 @@ namespace Wallet {
     }
 
     void AccountSelected(object account) {
+      _viewModel.AccountSelected.Execute(account);
     }
 
     void CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {

@@ -11,6 +11,7 @@ namespace Wallet.Shared {
 
     RelayCommand AddRecordButtonAction { get; }
 
+    RelayCommand<Account> AccountSelected { get; }
   }
 
 }

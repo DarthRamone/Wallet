@@ -53,6 +53,8 @@
     <Compile Include="ViewModels\Accounts\AccountsSelectionViewModel.cs" />
     <Compile Include="ViewModels\Categories\ICategorySelectionViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategorySelectionViewModel.cs" />
+    <Compile Include="ViewModels\AccountTransactions\AccountTransactionsViewModel.cs" />
+    <Compile Include="ViewModels\AccountTransactions\IAccountTransactionsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe">
@@ -99,6 +101,7 @@
     <Folder Include="ViewModels\AddRecord\" />
     <Folder Include="ViewModels\Accounts\" />
     <Folder Include="ViewModels\Categories\" />
+    <Folder Include="ViewModels\AccountTransactions\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />

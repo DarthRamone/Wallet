@@ -11,5 +11,7 @@ namespace Wallet.Shared
     public string AccountSelectionViewControllerKey => "AccountSelectinViewControllerKey";
 
     public string CategorySelectionViewControllerKey => "CategorySelectionViewControllerKey";
+
+    public string AccountTransactionsViewControllerKey => "AccountTransactionsViewControllerKey";
   }
 }

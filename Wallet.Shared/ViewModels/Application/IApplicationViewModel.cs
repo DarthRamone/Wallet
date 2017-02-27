@@ -9,5 +9,7 @@
     string AccountSelectionViewControllerKey { get; }
 
     string CategorySelectionViewControllerKey { get; }
+
+    string AccountTransactionsViewControllerKey { get; }
   }
 }

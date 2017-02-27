@@ -143,6 +143,7 @@
     <Folder Include="Views\Cells\AccountTableViewCell\" />
     <Folder Include="Views\Cells\CategoryCell\" />
     <Folder Include="Views\Cells\AccountCollectionViewCell\" />
+    <Folder Include="ViewControllers\Transactions\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -155,6 +156,7 @@
     <InterfaceDefinition Include="Views\Cells\AccountTableViewCell\AccountTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\CategoryCell\CategoryTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\AccountCollectionViewCell\AccountCollectionViewCell.xib" />
+    <InterfaceDefinition Include="ViewControllers\Transactions\AccountTransactionsViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -200,6 +202,10 @@
     <Compile Include="Views\Cells\AccountCollectionViewCell\AccountCollectionViewCell.cs" />
     <Compile Include="Views\Cells\AccountCollectionViewCell\AccountCollectionViewCell.designer.cs">
       <DependentUpon>AccountCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Transactions\AccountTransactionsViewController.cs" />
+    <Compile Include="ViewControllers\Transactions\AccountTransactionsViewController.designer.cs">
+      <DependentUpon>AccountTransactionsViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
