@@ -62,6 +62,27 @@ namespace Wallet
     [Outlet]
     UIButton CategorySelectionButton { get; set; }
 
+    [Outlet]
+    UIButton ExpensesButton { get; set; }
+
+    [Outlet]
+    UIButton IncomeButton { get; set; }
+
+    [Outlet]
+    UIButton TransferButton { get; set; }
+
+    [Outlet]
+    UILabel SignLabel { get; set; }
+
+    [Outlet]
+    UIImageView MiddleImageView { get; set; }
+
+    [Outlet]
+    UIView HolderView { get; set; }
+
+    [Outlet]
+    UIButton TemplatesButton { get; set; }
+
     void ReleaseDesignerOutlets()
     {
     }

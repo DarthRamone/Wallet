@@ -4,8 +4,6 @@ using GalaSoft.MvvmLight.Views;
 
 namespace Wallet.Shared {
   public class AddRecordViewModel : WalletBaseViewModel, IAddRecordViewModel {
-    
-    private ITransactionsRepository _transactionsRepository;
 
     const string ZERO = "0";
     const string ONE = "1";
@@ -17,6 +15,13 @@ namespace Wallet.Shared {
     const string SEVEN = "7";
     const string EIGHT = "8";
     const string NINE = "9";
+
+    private CrossPlatformColor _defaultColor;
+    private CrossPlatformColor _selectedColor;
+
+    private TransactionType _transactionType = TransactionType.EXPENSES;
+
+    private ITransactionsRepository _transactionsRepository;
 
     private string _amountLabelText = ZERO;
     public string AmountLabelText {
@@ -49,35 +54,63 @@ namespace Wallet.Shared {
       }
     }
 
+    string _signText = "-";
+    public string SignText {
+      get { return _signText; }
+      set {
+        _signText = value;
+        RaisePropertyChanged(() => SignText);
+      }
+    }
+
     public RelayCommand AddRecordAction { get; private set; }
-
     public RelayCommand Button0Action { get; private set; }
-
     public RelayCommand Button1Action { get; private set; }
-
     public RelayCommand Button2Action { get; private set; }
-
     public RelayCommand Button3Action { get; private set; }
-
     public RelayCommand Button4Action { get; private set; }
-
     public RelayCommand Button5Action { get; private set; }
-
     public RelayCommand Button6Action { get; private set; }
-
     public RelayCommand Button7Action { get; private set; }
-
     public RelayCommand Button8Action { get; private set; }
-
     public RelayCommand Button9Action { get; private set; }
-
     public RelayCommand CommaButtonAction { get; private set; }
-
     public RelayCommand DeleteButtonAction { get; private set; }
-
     public RelayCommand AccountSelectionAction { get; private set; }
-
     public RelayCommand CategorySelectionAction { get; private set; }
+
+    public RelayCommand IncomeButtonAction { get; private set; }
+    public RelayCommand ExpensesButtonAction { get; private set; }
+    public RelayCommand TransferButtonAction { get; private set; }
+
+    public CrossPlatformColor _incomeButtonColor;
+    public CrossPlatformColor IncomeButtonColor { 
+      get { return _incomeButtonColor; }
+      set {
+        _incomeButtonColor = value;
+        RaisePropertyChanged(() => IncomeButtonColor);
+      }
+    }
+
+    public CrossPlatformColor _expensesButtonColor;
+    public CrossPlatformColor ExpensesButtonColor { 
+      get { return _expensesButtonColor; }
+      set {
+        _expensesButtonColor = value;
+        RaisePropertyChanged(() => ExpensesButtonColor);
+      }
+    }
+
+    public CrossPlatformColor _transButtonColor;
+    public CrossPlatformColor TransButtonColor { 
+      get { return _transButtonColor; }
+      set {
+        _transButtonColor = value;
+        RaisePropertyChanged(() => TransButtonColor);
+      }
+    }
+
+    public IUIStylingsModel MainStyling { get; private set; }
 
     public AddRecordViewModel(INavigationService navService,
                               IApplicationViewModel appViewModel,
@@ -91,6 +124,18 @@ namespace Wallet.Shared {
       SelectedAccount = accountsRepository.Items[0];
       SelectedCategory = categoriesRepository.Items[0];
       SetActions();
+      SetStylings();
+    }
+
+    void SetStylings() {
+      _defaultColor = new CrossPlatformColor(237, 107, 149);
+      _selectedColor = new CrossPlatformColor(237, 107, 149, 200);
+
+      MainStyling = new UIStylingsModel { BackgroundColor = _defaultColor };
+
+      _incomeButtonColor = _defaultColor;
+      _expensesButtonColor = _selectedColor;
+      _transButtonColor = _defaultColor;
     }
 
     void SetActions() {
@@ -99,7 +144,13 @@ namespace Wallet.Shared {
         var transaction = new WalletTransaction();
         double amount;
         if (double.TryParse(AmountLabelText, out amount)) {
-          transaction.Amount = amount;
+          
+          if (_transactionType == TransactionType.EXPENSES) {
+            transaction.Amount = -amount;
+          } else {
+            transaction.Amount = amount;
+          }
+
           transaction.Date = new DateTimeOffset(DateTime.Now);
           await _transactionsRepository.AddTransaction(transaction, SelectedCategory.Name, SelectedAccount.Name);
         }
@@ -198,6 +249,30 @@ namespace Wallet.Shared {
 
       CategorySelectionAction = new RelayCommand(() => {
         _navigationService.NavigateTo(_applicationViewModel.CategorySelectionViewControllerKey, this);
+      }, () => true);
+
+      ExpensesButtonAction = new RelayCommand(() => {
+        IncomeButtonColor = _defaultColor;
+        TransButtonColor = _defaultColor;
+        ExpensesButtonColor = _selectedColor;
+        _transactionType = TransactionType.EXPENSES;
+        SignText = "-";
+      }, () => true);
+
+      IncomeButtonAction = new RelayCommand(() => {
+        IncomeButtonColor = _selectedColor;
+        TransButtonColor = _defaultColor;
+        ExpensesButtonColor = _defaultColor;
+        _transactionType = TransactionType.INCOME;
+        SignText = "+";
+      }, () => true);
+
+      TransferButtonAction = new RelayCommand(() => {
+        IncomeButtonColor = _defaultColor;
+        TransButtonColor = _selectedColor;
+        ExpensesButtonColor = _defaultColor;
+        _transactionType = TransactionType.TRANSFER;
+        SignText = string.Empty;
       }, () => true);
     }
   }

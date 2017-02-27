@@ -55,6 +55,12 @@
     <Compile Include="ViewModels\Categories\CategorySelectionViewModel.cs" />
     <Compile Include="ViewModels\AccountTransactions\AccountTransactionsViewModel.cs" />
     <Compile Include="ViewModels\AccountTransactions\IAccountTransactionsViewModel.cs" />
+    <Compile Include="Enums\TransactionType.cs" />
+    <Compile Include="Stylings\IUIStylingsModel.cs" />
+    <Compile Include="Stylings\CrossPlatformColor.cs" />
+    <Compile Include="Stylings\CrossPlatformFont.cs" />
+    <Compile Include="Enums\UICorners.cs" />
+    <Compile Include="Stylings\UIStylingsModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe">
@@ -102,6 +108,8 @@
     <Folder Include="ViewModels\Accounts\" />
     <Folder Include="ViewModels\Categories\" />
     <Folder Include="ViewModels\AccountTransactions\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Stylings\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />

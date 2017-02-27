@@ -52,10 +52,23 @@ namespace Wallet
       DeleteButton.SetCommand(_viewModel.DeleteButtonAction);
       AccountSelectionButton.SetCommand(_viewModel.AccountSelectionAction);
       CategorySelectionButton.SetCommand(_viewModel.CategorySelectionAction);
+      IncomeButton.SetCommand(_viewModel.IncomeButtonAction);
+      ExpensesButton.SetCommand(_viewModel.ExpensesButtonAction);
+      TransferButton.SetCommand(_viewModel.TransferButtonAction);
 
       _bindings.Add(this.SetBinding(() => _viewModel.AmountLabelText, () => AmountLabel.Text));
       _bindings.Add(this.SetBinding(() => _viewModel.SelectedAccount, () => SelectedAccount));
       _bindings.Add(this.SetBinding(() => _viewModel.SelectedCategory, () => SelectedCategory));
+      _bindings.Add(this.SetBinding(() => _viewModel.ExpensesButtonColor, () => ExpensesButton.BackgroundColor).ConvertSourceToTarget(x => x.ToNative()));  
+      _bindings.Add(this.SetBinding(() => _viewModel.IncomeButtonColor, () => IncomeButton.BackgroundColor).ConvertSourceToTarget(x => x.ToNative()));
+      _bindings.Add(this.SetBinding(() => _viewModel.TransButtonColor, () => TransferButton.BackgroundColor).ConvertSourceToTarget(x => x.ToNative()));
+      _bindings.Add(this.SetBinding(() => _viewModel.SignText, () => SignLabel.Text));
+
+      HolderView.ApplyStyle(_viewModel.MainStyling);
+      TemplatesButton.ApplyStyle(_viewModel.MainStyling);
+      CategorySelectionButton.ApplyStyle(_viewModel.MainStyling);
+      AccountSelectionButton.ApplyStyle(_viewModel.MainStyling);
+      MiddleImageView.ApplyStyle(_viewModel.MainStyling);
     }
   }
 }

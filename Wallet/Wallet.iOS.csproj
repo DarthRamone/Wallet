@@ -207,6 +207,8 @@
     <Compile Include="ViewControllers\Transactions\AccountTransactionsViewController.designer.cs">
       <DependentUpon>AccountTransactionsViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\UIColorExtensions.cs" />
+    <Compile Include="Extensions\UIViewExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wallet.Shared\Wallet.Shared.csproj">

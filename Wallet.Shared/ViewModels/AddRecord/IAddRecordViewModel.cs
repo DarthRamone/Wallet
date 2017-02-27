@@ -10,6 +10,8 @@ namespace Wallet.Shared
 
     string AmountLabelText { get; }
 
+    string SignText { get; }
+
     RelayCommand AddRecordAction { get; }
     RelayCommand Button0Action { get; }
     RelayCommand Button1Action { get; }
@@ -25,5 +27,14 @@ namespace Wallet.Shared
     RelayCommand DeleteButtonAction { get; }
     RelayCommand AccountSelectionAction { get; }
     RelayCommand CategorySelectionAction { get; }
+    RelayCommand IncomeButtonAction { get; }
+    RelayCommand ExpensesButtonAction { get; }
+    RelayCommand TransferButtonAction { get; }
+
+    CrossPlatformColor IncomeButtonColor { get; }
+    CrossPlatformColor ExpensesButtonColor { get; }
+    CrossPlatformColor TransButtonColor { get; }
+
+    IUIStylingsModel MainStyling { get; }
   }
 }

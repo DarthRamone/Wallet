@@ -1,4 +1,5 @@
-﻿using CoreGraphics;
+﻿using System.Linq;
+using CoreGraphics;
 using Foundation;
 using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
@@ -30,10 +31,13 @@ namespace Wallet {
 
       // TableView
       TransactionsTableView.RegisterNibForCellReuse(RecordTableViewCell.Nib, RecordTableViewCell.Key);
-      TransactionsTableView.Source = _viewModel.Transactions.GetTableViewSource(BindTransactionCell, RecordTableViewCell.Key, () => new TableViewSourceExtension<object>(null));
+      TransactionsTableView.Source = _viewModel.Transactions.GetTableViewSource(BindTransactionCell, RecordTableViewCell.Key, () => new TableViewSourceExtension<object>(TransactionSelected));
 
       AccountCollectionViewHeightConstraint = NSLayoutConstraint.Create(AccountsCollectionView, NSLayoutAttribute.Height, NSLayoutRelation.Equal, 1, 70);
       View.AddConstraint(AccountCollectionViewHeightConstraint);
+
+      var color = UIColor.Red;
+      System.Console.WriteLine(color);
     }
 
     public override void ViewWillAppear(bool animated) {
@@ -49,10 +53,15 @@ namespace Wallet {
     void BindTransactionCell(UITableViewCell cell, object model, NSIndexPath indexPath) {
       var transactionCell = cell as RecordTableViewCell;
       var transaction = model as WalletTransaction;
-      transactionCell.CategoryNameLabel.Text = transaction.Category.Name;
-      transactionCell.AmountLabel.Text = transaction.Amount.ToString();
-      transactionCell.DateLabel.Text = transaction.Date.Date.ToString("d");
-      transactionCell.AccountNameLabel.Text = transaction.Account.Name;
+      transactionCell.ConfigureFor(transaction);
+    }
+
+    void TransactionSelected(object item) {
+      var transactions = _viewModel.Transactions.OfType<WalletTransaction>().ToList();
+      var transaction = transactions.First(t => t.Id.Equals((item as WalletTransaction).Id));
+      var index = transactions.IndexOf(transaction);
+      var indexPath = NSIndexPath.FromRowSection(index, 0);
+      TransactionsTableView.DeselectRow(indexPath, true);
     }
 
     #endregion
