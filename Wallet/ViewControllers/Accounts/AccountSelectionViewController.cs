@@ -19,8 +19,8 @@ namespace Wallet {
     public override void ViewDidLoad() {
       base.ViewDidLoad();
 
-      AccountsTableView.RegisterNibForCellReuse(AccountCell.Nib, AccountCell.Key);
-      AccountsTableView.Source = _viewModel.Accounts.GetTableViewSource(BindCell, AccountCell.Key, () => new TableViewSourceExtension<object>(AccountSelected));
+      AccountsTableView.RegisterNibForCellReuse(AccountTableViewCell.Nib, AccountTableViewCell.Key);
+      AccountsTableView.Source = _viewModel.Accounts.GetTableViewSource(BindCell, AccountTableViewCell.Key, () => new TableViewSourceExtension<object>(AccountSelected));
 
       //TODO: move to viewmodel
       AddAccountButton.TouchUpInside += (sender, e) => { 
@@ -36,7 +36,7 @@ namespace Wallet {
     }
 
     void BindCell(UITableViewCell cell, object model, NSIndexPath indexPath) {
-      var accountCell = cell as AccountCell;
+      var accountCell = cell as AccountTableViewCell;
       var account = model as Account;
       accountCell.TextLabel.Text = account.Name;
     }

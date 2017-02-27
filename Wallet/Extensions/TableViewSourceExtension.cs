@@ -27,4 +27,37 @@ namespace Wallet {
 
   }
 
+  public class CollectionViewSourceExtension<TVIewModel, TCell> : ObservableCollectionViewSource<TVIewModel, TCell> where TCell : UICollectionViewCell
+                                                                                                                      where TVIewModel : class {
+    string reuseId;
+    Action<TVIewModel> onCellSelected;
+    Action<TVIewModel> onCellDeselected;
+
+    public CollectionViewSourceExtension(string reuseId,
+                                         Action<TVIewModel> onCellSelected = null,
+                                         Action<TVIewModel> onCellDeselected = null) {
+      this.reuseId = reuseId;
+      this.onCellSelected = onCellSelected;
+      this.onCellDeselected = onCellDeselected;
+    }
+
+    public override UICollectionViewCell GetCell(UICollectionView view, NSIndexPath indexPath) {
+      var cell = view.DequeueReusableCell(reuseId, indexPath);
+      var item = GetItem(indexPath);
+      BindCellDelegate?.Invoke(cell as TCell, item, indexPath);
+
+      return cell as UICollectionViewCell;
+    }
+
+    public override void ItemDeselected(UICollectionView collectionView, NSIndexPath indexPath) {
+      var vm = GetItem(indexPath);
+      onCellDeselected?.Invoke(vm);
+    }
+
+    public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath) {
+      var vm = GetItem(indexPath);
+      onCellSelected?.Invoke(vm);
+    }
+  }
+
 }

@@ -4,15 +4,15 @@ using Foundation;
 using UIKit;
 
 namespace Wallet {
-  public partial class AccountCell : UITableViewCell {
+  public partial class AccountTableViewCell : UITableViewCell {
     public static readonly NSString Key = new NSString("AccountCell");
     public static readonly UINib Nib;
 
-    static AccountCell() {
+    static AccountTableViewCell() {
       Nib = UINib.FromName("AccountCell", NSBundle.MainBundle);
     }
 
-    protected AccountCell(IntPtr handle) : base(handle) {
+    protected AccountTableViewCell(IntPtr handle) : base(handle) {
       // Note: this .ctor should not contain any initialization logic.
     }
   }

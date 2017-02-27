@@ -34,7 +34,6 @@ namespace Wallet {
         popup.AddAction(button);
         PresentViewController(popup, true, () => { });
       };
-      // Perform any additional setup after loading the view, typically from a nib.
     }
 
     void BindCell(UITableViewCell cell, object model, NSIndexPath indexPath) {

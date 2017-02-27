@@ -140,19 +140,21 @@
     <Folder Include="Services\" />
     <Folder Include="Extensions\" />
     <Folder Include="Views\Cells\RecordCell\" />
-    <Folder Include="Views\Cells\AccountCell\" />
+    <Folder Include="Views\Cells\AccountTableViewCell\" />
     <Folder Include="Views\Cells\CategoryCell\" />
+    <Folder Include="Views\Cells\AccountCollectionViewCell\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="ViewControllers\AddRecord\AddRecordViewController.xib" />
-    <InterfaceDefinition Include="ViewControllers\Summary\OverviewViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\Summary\SummaryViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Accounts\AccountSelectionViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Categories\CategoriesSelectionViewController.xib" />
     <InterfaceDefinition Include="Views\Cells\RecordCell\RecordTableViewCell.xib" />
-    <InterfaceDefinition Include="Views\Cells\AccountCell\AccountCell.xib" />
+    <InterfaceDefinition Include="Views\Cells\AccountTableViewCell\AccountTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\CategoryCell\CategoryTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\Cells\AccountCollectionViewCell\AccountCollectionViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -187,13 +189,17 @@
     <Compile Include="Views\Cells\RecordCell\RecordTableViewCell.designer.cs">
       <DependentUpon>RecordTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Cells\AccountCell\AccountCell.cs" />
-    <Compile Include="Views\Cells\AccountCell\AccountCell.designer.cs">
-      <DependentUpon>AccountCell.cs</DependentUpon>
+    <Compile Include="Views\Cells\AccountTableViewCell\AccountTableViewCell.cs" />
+    <Compile Include="Views\Cells\AccountTableViewCell\AccountTableViewCell.designer.cs">
+      <DependentUpon>AccountTableViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Cells\CategoryCell\CategoryTableViewCell.cs" />
     <Compile Include="Views\Cells\CategoryCell\CategoryTableViewCell.designer.cs">
       <DependentUpon>CategoryTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cells\AccountCollectionViewCell\AccountCollectionViewCell.cs" />
+    <Compile Include="Views\Cells\AccountCollectionViewCell\AccountCollectionViewCell.designer.cs">
+      <DependentUpon>AccountCollectionViewCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

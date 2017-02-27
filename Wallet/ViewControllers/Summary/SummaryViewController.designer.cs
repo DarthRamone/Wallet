@@ -12,8 +12,17 @@ using UIKit;
 namespace Wallet
 {
   [Register("OverviewViewController")]
-  partial class SummaryViewController
-  {
+  partial class SummaryViewController {
+    
+    [Outlet]
+    UICollectionView AccountsCollectionView { get; set; }
+
+    [Outlet]
+    NSLayoutConstraint AccountCollectionViewHeightConstraint { get; set; }
+
+    [Outlet]
+    UICollectionViewFlowLayout AccountsCollectionViewFlowLayout{ get; set; }
+
     [Outlet]
     UITableView TransactionsTableView { get; set; }
 
