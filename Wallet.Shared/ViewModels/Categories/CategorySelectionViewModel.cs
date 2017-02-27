@@ -18,8 +18,6 @@ namespace Wallet.Shared {
       }
     }
 
-    public event EventHandler<Category> OnCategoryCreated = delegate { };
-
     public List<Category> Categories => _categoriesRepository.Items;
 
     public event EventHandler<int[]> OnItemsDeleted {

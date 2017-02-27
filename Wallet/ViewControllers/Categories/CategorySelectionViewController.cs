@@ -27,9 +27,9 @@ namespace Wallet {
       AddCategoriesButton.TouchUpInside += (sender, e) => {
         var popup = UIAlertController.Create("Category creation", "Enter category name", UIAlertControllerStyle.Alert);
         popup.AddTextField((UITextField obj) => { });
-        var button = UIAlertAction.Create("Create", UIAlertActionStyle.Cancel, alertAction => {
+        var button = UIAlertAction.Create("Create", UIAlertActionStyle.Cancel, async alertAction => {
           var category = new Category { Name = popup.TextFields[0].Text };
-          _viewModel.AddCategory(category);
+          await _viewModel.AddCategory(category);
         });
         popup.AddAction(button);
         PresentViewController(popup, true, () => { });
