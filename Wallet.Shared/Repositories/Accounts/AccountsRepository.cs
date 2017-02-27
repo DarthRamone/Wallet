@@ -1,6 +1,4 @@
-﻿namespace Wallet.Shared
-{
-  public class AccountsRepository : BaseRepository<Account>, IAccountsRepository
-  {
+﻿namespace Wallet.Shared {
+  public class AccountsRepository : BaseRepository<Account>, IAccountsRepository {
   }
 }

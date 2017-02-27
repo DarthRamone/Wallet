@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using System;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 
 namespace Wallet.Shared {
@@ -56,11 +57,18 @@ namespace Wallet.Shared {
 
     public AddRecordViewModel(INavigationService navService,
                               IApplicationViewModel appViewModel,
+                              IAccountsRepository accountsRepository,
+                              ICategoriesRepository categoriesRepository,
                               ITransactionsRepository transactionsRepository)
       : base(navService, appViewModel) {
       _transactionsRepository = transactionsRepository;
-
+      Initialize(categoriesRepository, accountsRepository);
       SetActions();
+    }
+
+    async void Initialize(ICategoriesRepository catsRepo, IAccountsRepository accsRepo) {
+      await catsRepo.Add(new Category { Name = "test category" });
+      await accsRepo.Add(new Account { Name = "test account" });
     }
 
     void SetActions() {
@@ -70,6 +78,7 @@ namespace Wallet.Shared {
         double amount;
         if (double.TryParse(AmountLabelText, out amount)) {
           transaction.Amount = amount;
+          transaction.Date = new DateTimeOffset(DateTime.Now);
           await _transactionsRepository.AddTransaction(transaction, "test category", "test account");
         }
         _navigationService.GoBack();

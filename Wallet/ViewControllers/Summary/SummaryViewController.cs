@@ -33,12 +33,6 @@ namespace Wallet
       };
     }
 
-    public override void DidReceiveMemoryWarning()
-    {
-      base.DidReceiveMemoryWarning();
-      // Release any cached data, images, etc that aren't in use.
-    }
-
     public nint RowsInSection(UITableView tableView, nint section) => _viewModel.Transactions.Count;
 
     public nint NumberOfSections(UITableView tableView) => 1;
@@ -50,7 +44,7 @@ namespace Wallet
       var cell = tableView.DequeueReusableCell(cellId, indexPath) as RecordTableViewCell;
       cell.CategoryNameLabel.Text = transaction.Category.Name;
       cell.AmountLabel.Text = transaction.Amount.ToString();
-      cell.DateLabel.Text = DateTime.Now.ToString("d");
+      cell.DateLabel.Text = transaction.Date.Date.ToString("d");
       cell.AccountNameLabel.Text = transaction.Account.Name;
       return cell;
     }

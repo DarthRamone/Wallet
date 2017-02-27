@@ -14,6 +14,8 @@ namespace Wallet.Shared
 
     public Account Account { get; set; }
 
+    public DateTimeOffset Date { get; set; }
+
     public WalletTransaction()
     {
       Id = Guid.NewGuid().ToString();
