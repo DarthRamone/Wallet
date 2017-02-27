@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 
 namespace Wallet.Shared {
-  public class CategorySelectionViewModel : WalletBaseViewModel, ICategorySelectionViewModel {
+  public class CategorySelectionViewModel : WalletBaseViewModel, ICategorySelectionViewModel, IDisposable {
 
     private ICategoriesRepository _categoriesRepository;
 
@@ -18,32 +18,27 @@ namespace Wallet.Shared {
       }
     }
 
-    public List<Category> Categories => _categoriesRepository.Items;
-
-    public event EventHandler<int[]> OnItemsDeleted {
-      add { _categoriesRepository.OnItemsDeleted += value; }
-      remove { _categoriesRepository.OnItemsDeleted -= value; }
-    }
-
-    public event EventHandler<int[]> OnItemsInserted {
-      add { _categoriesRepository.OnItemsInserted += value; }
-      remove { _categoriesRepository.OnItemsInserted -= value; }
-    }
-
-    public event EventHandler<int[]> OnItemsModified {
-      add { _categoriesRepository.OnItemsModified += value; }
-      remove { _categoriesRepository.OnItemsModified -= value; }
-    }
+    public ObservableCollection<object> Categories { get; private set; }
 
     public CategorySelectionViewModel(INavigationService navigationService,
                                       IApplicationViewModel applicationViewModel,
                                       ICategoriesRepository categoriesRepository) 
       : base(navigationService, applicationViewModel) {
       _categoriesRepository = categoriesRepository;
+      Categories = new ObservableCollection<object>(_categoriesRepository.Items);
+      _categoriesRepository.OnItemsInserted += ItemsInserted;
+    }
+
+    void ItemsInserted(object sender, int[] e) {
+      Categories.Add(_categoriesRepository.Items[e[0]]);
     }
 
     public async Task AddCategory(Category category) {
       await _categoriesRepository.Add(category);
+    }
+
+    public void Dispose() {
+      _categoriesRepository.OnItemsInserted -= ItemsInserted;
     }
   }
 }

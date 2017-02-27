@@ -1,11 +1,11 @@
-﻿using System;
-using Foundation;
+﻿using Foundation;
+using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using UIKit;
 using Wallet.Shared;
 
 namespace Wallet {
-  public partial class CategorySelectionViewController : WalletBaseViewController, IUITableViewDelegate, IUITableViewDataSource {
+  public partial class CategorySelectionViewController : WalletBaseViewController {
     
     private IAddRecordViewModel _addRecordViewModel;
     private ICategorySelectionViewModel _viewModel;
@@ -18,10 +18,10 @@ namespace Wallet {
     public override void ViewDidLoad() {
       base.ViewDidLoad();
 
-      _viewModel.OnItemsInserted += (sender, e) => {
-        //TODO: Reload rows instead of whole data
-        CategoriesTableView.ReloadData();
-      };
+      CategoriesTableView.RegisterNibForCellReuse(CategoryTableViewCell.Nib, CategoryTableViewCell.Key);
+      CategoriesTableView.Source = _viewModel.Categories.GetTableViewSource(BindCell, 
+                                                                            CategoryTableViewCell.Key, 
+                                                                            () => new TableViewSourceExtension<object>(CategorySelected));
 
       //TODO: move to viewModel
       AddCategoriesButton.TouchUpInside += (sender, e) => {
@@ -37,31 +37,16 @@ namespace Wallet {
       // Perform any additional setup after loading the view, typically from a nib.
     }
 
-    public override void DidReceiveMemoryWarning() {
-      base.DidReceiveMemoryWarning();
-      // Release any cached data, images, etc that aren't in use.
+    void BindCell(UITableViewCell cell, object model, NSIndexPath indexPath) {
+      var categoryCell = cell as CategoryTableViewCell;
+      var category = model as Category;
+      categoryCell.TextLabel.Text = category.Name;
     }
 
-    #region TableView
-
-    public nint RowsInSection(UITableView tableView, nint section) => _viewModel.Categories.Count;
-
-    public nint NumberOfSections(UITableView tableView) => 1;
-
-    public UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath) {
-      var account = _viewModel.Categories[indexPath.Row];
-      var cell = new UITableViewCell(); //TODO
-      cell.TextLabel.Text = account.Name;
-      return cell;
+    void CategorySelected(object item) {
+      _viewModel.SelectedCategory = item as Category;
+      _addRecordViewModel.SelectedCategory = item as Category;
     }
-
-    [Export("tableView:didSelectRowAtIndexPath:")]
-    public void RowSelected(UITableView tableView, NSIndexPath indexPath) {
-      _viewModel.SelectedCategory = _viewModel.Categories[indexPath.Row];
-      _addRecordViewModel.SelectedCategory = _viewModel.Categories[indexPath.Row];
-    }
-
-    #endregion
   }
 }
 

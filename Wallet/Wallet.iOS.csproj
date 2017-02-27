@@ -141,6 +141,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="Views\Cells\RecordCell\" />
     <Folder Include="Views\Cells\AccountCell\" />
+    <Folder Include="Views\Cells\CategoryCell\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -151,6 +152,7 @@
     <InterfaceDefinition Include="ViewControllers\Categories\CategoriesSelectionViewController.xib" />
     <InterfaceDefinition Include="Views\Cells\RecordCell\RecordTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\AccountCell\AccountCell.xib" />
+    <InterfaceDefinition Include="Views\Cells\CategoryCell\CategoryTableViewCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -188,6 +190,10 @@
     <Compile Include="Views\Cells\AccountCell\AccountCell.cs" />
     <Compile Include="Views\Cells\AccountCell\AccountCell.designer.cs">
       <DependentUpon>AccountCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cells\CategoryCell\CategoryTableViewCell.cs" />
+    <Compile Include="Views\Cells\CategoryCell\CategoryTableViewCell.designer.cs">
+      <DependentUpon>CategoryTableViewCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,7 @@ namespace Wallet {
       base.ViewDidLoad();
 
       AccountsTableView.RegisterNibForCellReuse(AccountCell.Nib, AccountCell.Key);
-      AccountsTableView.Source = _viewModel.Accounts.GetTableViewSource(BindCell, AccountCell.Key, () => new TableViewSourceExtension<object>(null));
+      AccountsTableView.Source = _viewModel.Accounts.GetTableViewSource(BindCell, AccountCell.Key, () => new TableViewSourceExtension<object>(AccountSelected));
 
       //TODO: move to viewmodel
       AddAccountButton.TouchUpInside += (sender, e) => { 
@@ -39,6 +39,11 @@ namespace Wallet {
       var accountCell = cell as AccountCell;
       var account = model as Account;
       accountCell.TextLabel.Text = account.Name;
+    }
+
+    void AccountSelected(object item) {
+      _viewModel.SelectedAccount = item as Account;
+      _addRecordViewModel.SelectedAccount = item as Account;
     }
   }
 }

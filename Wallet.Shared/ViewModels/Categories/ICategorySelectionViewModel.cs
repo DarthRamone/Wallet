@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Wallet.Shared {
-  
+
   public interface ICategorySelectionViewModel {
 
     Category SelectedCategory { get; set; }
 
-    List<Category> Categories { get; }
+    ObservableCollection<object> Categories { get; }
 
     Task AddCategory(Category category);
-
-    event EventHandler<int[]> OnItemsDeleted;
-    event EventHandler<int[]> OnItemsInserted;
-    event EventHandler<int[]> OnItemsModified;
   }
 }

@@ -30,8 +30,6 @@ namespace Wallet.Shared {
       Accounts = new ObservableCollection<object>(_accountsRepository.Items);
 
       _accountsRepository.OnItemsInserted += ItemsInserted;
-
-      _selectedAccount = Accounts[0] as Account;
     }
 
     void ItemsInserted(object sender, int[] e) {
