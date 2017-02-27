@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddRecordViewController">
             <connections>
+                <outlet property="AccountSelectionButton" destination="wmm-0f-liC" id="q2e-fw-bRH"/>
                 <outlet property="AddRecordButton" destination="AhF-vk-gpd" id="bFs-Dx-u0s"/>
                 <outlet property="AmountLabel" destination="bHJ-7A-0jA" id="M8h-TZ-4cP"/>
                 <outlet property="Button0" destination="BTD-h3-sAQ" id="oXZ-r2-LZu"/>

@@ -135,6 +135,7 @@
     <Folder Include="ViewControllers\Base\" />
     <Folder Include="ViewControllers\Summary\" />
     <Folder Include="ViewControllers\AddRecord\" />
+    <Folder Include="ViewControllers\Accounts\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -142,6 +143,7 @@
     <InterfaceDefinition Include="Views\Cells\RecordTableViewCell.xib" />
     <InterfaceDefinition Include="ViewControllers\AddRecord\AddRecordViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Summary\OverviewViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\Accounts\AccountSelectionViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -165,6 +167,10 @@
     <Compile Include="ViewControllers\Summary\SummaryViewController.cs" />
     <Compile Include="ViewControllers\Summary\SummaryViewController.designer.cs">
       <DependentUpon>SummaryViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Accounts\AccountSelectionViewController.cs" />
+    <Compile Include="ViewControllers\Accounts\AccountSelectionViewController.designer.cs">
+      <DependentUpon>AccountSelectionViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

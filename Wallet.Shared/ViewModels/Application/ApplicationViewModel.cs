@@ -7,5 +7,7 @@ namespace Wallet.Shared
     public string AddRecordViewControllerKey => "AddRecordViewControllerKey";
 
     public string SummaryViewControllerKey => "SummaryViewControllerKey";
+
+    public string AccountSelectionViewControllerKey => "AccountSelectinViewControllerKey";
   }
 }

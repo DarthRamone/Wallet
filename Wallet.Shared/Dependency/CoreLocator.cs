@@ -13,6 +13,7 @@ namespace Wallet.Shared
       container.RegisterType<ISummaryViewModel, SummaryViewModel>();
       container.RegisterType<IAddRecordViewModel, AddRecordViewModel>();
       container.RegisterType<IApplicationViewModel, ApplicationViewModel>();
+      container.RegisterType<IAccountsSelectionViewModel, AccountsSelectionViewModel>();
     }
   }
 }

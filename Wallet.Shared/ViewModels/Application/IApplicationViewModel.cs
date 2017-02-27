@@ -5,5 +5,7 @@
     string SummaryViewControllerKey { get; }
 
     string AddRecordViewControllerKey { get; }
+
+    string AccountSelectionViewControllerKey { get; }
   }
 }

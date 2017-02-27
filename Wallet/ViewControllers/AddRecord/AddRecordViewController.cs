@@ -30,6 +30,7 @@ namespace Wallet
       Button9.SetCommand(_viewModel.Button9Action);
       //CommaButton.SetCommand(_viewModel.CommaButtonAction);
       DeleteButton.SetCommand(_viewModel.DeleteButtonAction);
+      AccountSelectionButton.SetCommand(_viewModel.AccountSelectionAction);
 
       _bindings.Add(this.SetBinding(() => _viewModel.AmountLabelText, () => AmountLabel.Text));
     }

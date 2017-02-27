@@ -20,5 +20,6 @@ namespace Wallet.Shared
     RelayCommand Button9Action { get; }
     RelayCommand CommaButtonAction { get; }
     RelayCommand DeleteButtonAction { get; }
+    RelayCommand AccountSelectionAction { get; }
   }
 }

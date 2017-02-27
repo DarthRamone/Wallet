@@ -56,6 +56,9 @@ namespace Wallet
     [Outlet]
     UIButton DeleteButton { get; set; }
 
+    [Outlet]
+    UIButton AccountSelectionButton { get; set; }
+
     void ReleaseDesignerOutlets()
     {
     }

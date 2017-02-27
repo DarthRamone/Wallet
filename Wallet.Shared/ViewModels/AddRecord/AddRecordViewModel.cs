@@ -55,6 +55,8 @@ namespace Wallet.Shared {
 
     public RelayCommand DeleteButtonAction { get; private set; }
 
+    public RelayCommand AccountSelectionAction { get; private set; }
+
     public AddRecordViewModel(INavigationService navService,
                               IApplicationViewModel appViewModel,
                               IAccountsRepository accountsRepository,
@@ -168,6 +170,10 @@ namespace Wallet.Shared {
           return;
         }
         AmountLabelText = AmountLabelText.Remove(AmountLabelText.Length - 1);
+      }, () => true);
+
+      AccountSelectionAction = new RelayCommand(() => {
+        _navigationService.NavigateTo(_applicationViewModel.AccountSelectionViewControllerKey);
       }, () => true);
     }
   }

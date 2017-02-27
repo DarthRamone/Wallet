@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AccountSelectionViewController">
+            <connections>
+                <outlet property="AccountsTableView" destination="Eh0-Ms-VAT" id="A1L-Qx-SbP"/>
+                <outlet property="AddAccountButton" destination="BJf-fJ-Ehg" id="sLM-aI-jWs"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Eh0-Ms-VAT">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="FkM-CR-5jn"/>
+                        <outlet property="delegate" destination="-1" id="9fV-88-i9G"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJf-fJ-Ehg">
+                    <rect key="frame" x="305" y="597" width="50" height="50"/>
+                    <color key="backgroundColor" red="0.23620428606710236" green="0.45961269774285968" blue="0.96621346473693848" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="3jh-D2-q0c"/>
+                        <constraint firstAttribute="width" constant="50" id="gc5-eH-Ula"/>
+                    </constraints>
+                    <state key="normal" title="+">
+                        <color key="titleColor" red="0.95877330449999998" green="0.95385651829999996" blue="0.9636900907" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Eh0-Ms-VAT" firstAttribute="top" secondItem="2" secondAttribute="top" id="1IJ-5E-K2s"/>
+                <constraint firstAttribute="bottom" secondItem="BJf-fJ-Ehg" secondAttribute="bottom" constant="20" id="V9y-Pi-2LP"/>
+                <constraint firstAttribute="trailing" secondItem="Eh0-Ms-VAT" secondAttribute="trailing" id="bq5-t3-Fek"/>
+                <constraint firstAttribute="bottom" secondItem="Eh0-Ms-VAT" secondAttribute="bottom" id="gyq-sc-cl5"/>
+                <constraint firstAttribute="trailing" secondItem="BJf-fJ-Ehg" secondAttribute="trailing" constant="20" id="m5F-XT-QDk"/>
+                <constraint firstItem="Eh0-Ms-VAT" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="ueb-Mt-oaG"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
