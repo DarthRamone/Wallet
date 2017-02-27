@@ -1,11 +1,12 @@
 ﻿using System;
 using Foundation;
+using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using UIKit;
 using Wallet.Shared;
 
 namespace Wallet {
-  public partial class AccountSelectionViewController : WalletBaseViewController, IUITableViewDelegate, IUITableViewDataSource {
+  public partial class AccountSelectionViewController : WalletBaseViewController {
 
     private IAddRecordViewModel _addRecordViewModel;
     private IAccountsSelectionViewModel _viewModel;
@@ -18,10 +19,8 @@ namespace Wallet {
     public override void ViewDidLoad() {
       base.ViewDidLoad();
 
-      _viewModel.OnItemsInserted += (sender, e) => {
-        //TODO: reload rows instead of whole data
-        AccountsTableView.ReloadData();
-      };
+      AccountsTableView.RegisterNibForCellReuse(AccountCell.Nib, AccountCell.Key);
+      AccountsTableView.Source = _viewModel.Accounts.GetTableViewSource(BindCell, AccountCell.Key, () => new TableViewSourceExtension<object>(null));
 
       //TODO: move to viewmodel
       AddAccountButton.TouchUpInside += (sender, e) => { 
@@ -36,31 +35,11 @@ namespace Wallet {
       };
     }
 
-    public override void DidReceiveMemoryWarning() {
-      base.DidReceiveMemoryWarning();
-      // Release any cached data, images, etc that aren't in use.
+    void BindCell(UITableViewCell cell, object model, NSIndexPath indexPath) {
+      var accountCell = cell as AccountCell;
+      var account = model as Account;
+      accountCell.TextLabel.Text = account.Name;
     }
-
-    #region TableView
-
-    public nint RowsInSection(UITableView tableView, nint section) => _viewModel.Accounts.Count;
-
-    public nint NumberOfSections(UITableView tableView) => 1;
-
-    public UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath) {
-      var account = _viewModel.Accounts[indexPath.Row];
-      var cell = new UITableViewCell(); //TODO
-      cell.TextLabel.Text = account.Name;
-      return cell;
-    }
-
-    [Export("tableView:didSelectRowAtIndexPath:")]
-    public void RowSelected(UITableView tableView, NSIndexPath indexPath) {
-      _viewModel.SelectedAccount = _viewModel.Accounts[indexPath.Row];
-      _addRecordViewModel.SelectedAccount = _viewModel.Accounts[indexPath.Row];
-    }
-
-    #endregion
   }
 }
 

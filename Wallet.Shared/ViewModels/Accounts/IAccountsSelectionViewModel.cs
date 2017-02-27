@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Wallet.Shared {
@@ -8,11 +7,7 @@ namespace Wallet.Shared {
 
     Account SelectedAccount { get; set; }
 
-    List<Account> Accounts { get; }
-
-    event EventHandler<int[]> OnItemsDeleted;
-    event EventHandler<int[]> OnItemsInserted;
-    event EventHandler<int[]> OnItemsModified;
+    ObservableCollection<object> Accounts { get; }
 
     Task AddAccount(Account account);
   }

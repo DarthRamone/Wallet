@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 
 namespace Wallet.Shared {
   
-  public class AccountsSelectionViewModel : WalletBaseViewModel, IAccountsSelectionViewModel {
+  public class AccountsSelectionViewModel : WalletBaseViewModel, IAccountsSelectionViewModel, IDisposable {
 
     private IAccountsRepository _accountsRepository;
 
@@ -19,22 +19,7 @@ namespace Wallet.Shared {
       }
     }
 
-    public List<Account> Accounts => _accountsRepository.Items;
-
-    public event EventHandler<int[]> OnItemsDeleted {
-      add { _accountsRepository.OnItemsDeleted += value; }
-      remove { _accountsRepository.OnItemsDeleted -= value; }
-    }
-
-    public event EventHandler<int[]> OnItemsInserted {
-      add { _accountsRepository.OnItemsInserted += value; }
-      remove { _accountsRepository.OnItemsInserted -= value; }
-    }
-
-    public event EventHandler<int[]> OnItemsModified {
-      add { _accountsRepository.OnItemsModified += value; }
-      remove { _accountsRepository.OnItemsModified -= value; }
-    }
+    public ObservableCollection<object> Accounts { get; private set; }
 
     public AccountsSelectionViewModel(INavigationService navigationService,
                                       IAccountsRepository accountsRepository,
@@ -42,11 +27,23 @@ namespace Wallet.Shared {
       : base(navigationService, 
              applicationViewModel) {
       _accountsRepository = accountsRepository;
-      _selectedAccount = Accounts[0];
+      Accounts = new ObservableCollection<object>(_accountsRepository.Items);
+
+      _accountsRepository.OnItemsInserted += ItemsInserted;
+
+      _selectedAccount = Accounts[0] as Account;
+    }
+
+    void ItemsInserted(object sender, int[] e) {
+      Accounts.Add(_accountsRepository.Items[e[0]]);
     }
 
     public async Task AddAccount(Account account) {
       await _accountsRepository.Add(account);
+    }
+
+    public void Dispose() {
+      _accountsRepository.OnItemsInserted -= ItemsInserted;
     }
   }
 }

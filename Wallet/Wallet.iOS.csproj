@@ -139,15 +139,18 @@
     <Folder Include="ViewControllers\Categories\" />
     <Folder Include="Services\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Views\Cells\RecordCell\" />
+    <Folder Include="Views\Cells\AccountCell\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="Views\Cells\RecordTableViewCell.xib" />
     <InterfaceDefinition Include="ViewControllers\AddRecord\AddRecordViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Summary\OverviewViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Accounts\AccountSelectionViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Categories\CategoriesSelectionViewController.xib" />
+    <InterfaceDefinition Include="Views\Cells\RecordCell\RecordTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\Cells\AccountCell\AccountCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -158,10 +161,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Views\Cells\RecordTableViewCell.cs" />
-    <Compile Include="Views\Cells\RecordTableViewCell.designer.cs">
-      <DependentUpon>RecordTableViewCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dependency\iOSLocator.cs" />
     <Compile Include="ViewControllers\Base\WalletBaseViewController.cs" />
     <Compile Include="ViewControllers\AddRecord\AddRecordViewController.cs" />
@@ -182,6 +181,14 @@
     </Compile>
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Extensions\TableViewSourceExtension.cs" />
+    <Compile Include="Views\Cells\RecordCell\RecordTableViewCell.cs" />
+    <Compile Include="Views\Cells\RecordCell\RecordTableViewCell.designer.cs">
+      <DependentUpon>RecordTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cells\AccountCell\AccountCell.cs" />
+    <Compile Include="Views\Cells\AccountCell\AccountCell.designer.cs">
+      <DependentUpon>AccountCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wallet.Shared\Wallet.Shared.csproj">
