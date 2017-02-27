@@ -29,6 +29,15 @@ namespace Wallet.Shared {
       }
     }
 
+    private Account _selectedAccount;
+    public Account SelectedAccount { 
+      get { return _selectedAccount; } 
+      set {
+        _selectedAccount = value;
+        RaisePropertyChanged(() => SelectedAccount);
+      }
+    }
+
     public RelayCommand AddRecordAction { get; private set; }
 
     public RelayCommand Button0Action { get; private set; }
@@ -65,12 +74,14 @@ namespace Wallet.Shared {
       : base(navService, appViewModel) {
       _transactionsRepository = transactionsRepository;
       Initialize(categoriesRepository, accountsRepository);
+      SelectedAccount = accountsRepository.Items[0];
       SetActions();
     }
 
     async void Initialize(ICategoriesRepository catsRepo, IAccountsRepository accsRepo) {
       await catsRepo.Add(new Category { Name = "test category" });
       await accsRepo.Add(new Account { Name = "test account" });
+      SelectedAccount = accsRepo.Items[0];//HACK
     }
 
     void SetActions() {
@@ -173,7 +184,7 @@ namespace Wallet.Shared {
       }, () => true);
 
       AccountSelectionAction = new RelayCommand(() => {
-        _navigationService.NavigateTo(_applicationViewModel.AccountSelectionViewControllerKey);
+        _navigationService.NavigateTo(_applicationViewModel.AccountSelectionViewControllerKey, this);
       }, () => true);
     }
   }

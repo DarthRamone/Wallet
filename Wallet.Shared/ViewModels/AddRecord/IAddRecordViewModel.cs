@@ -5,6 +5,8 @@ namespace Wallet.Shared
 {
   public interface IAddRecordViewModel
   {
+    Account SelectedAccount { get; set; }
+
     string AmountLabelText { get; }
 
     RelayCommand AddRecordAction { get; }

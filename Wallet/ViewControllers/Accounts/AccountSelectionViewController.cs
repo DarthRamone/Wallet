@@ -7,10 +7,12 @@ using Wallet.Shared;
 namespace Wallet {
   public partial class AccountSelectionViewController : WalletBaseViewController, IUITableViewDelegate, IUITableViewDataSource {
 
+    private IAddRecordViewModel _addRecordViewModel;
     private IAccountsSelectionViewModel _viewModel;
 
-    public AccountSelectionViewController() : base("AccountSelectionViewController") {
+    public AccountSelectionViewController(AddRecordViewModel addRecordViewModel) : base("AccountSelectionViewController") {
       _viewModel = ServiceLocator.Current.GetInstance<IAccountsSelectionViewModel>();
+      _addRecordViewModel = addRecordViewModel;
     }
 
     public override void ViewDidLoad() {
@@ -37,7 +39,8 @@ namespace Wallet {
 
     [Export("tableView:didSelectRowAtIndexPath:")]
     public void RowSelected(UITableView tableView, NSIndexPath indexPath) {
-      _viewModel.AccountSelected.Execute(_viewModel.Accounts[indexPath.Row]);
+      _viewModel.SelectedAccount = _viewModel.Accounts[indexPath.Row];
+      _addRecordViewModel.SelectedAccount = _viewModel.Accounts[indexPath.Row];
     }
 
     #endregion

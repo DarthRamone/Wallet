@@ -9,9 +9,21 @@ namespace Wallet
   {
     IAddRecordViewModel _viewModel;
 
+    private Account _selectedAccount;
+    public Account SelectedAccount {
+      get {
+        return _selectedAccount;
+      }
+      set {
+        _selectedAccount = value;
+        AccountSelectionButton.SetTitle(value.Name, UIControlState.Normal);
+      }
+    }
+
     public AddRecordViewController() : base("AddRecordViewController")
     {
       _viewModel = ServiceLocator.Current.GetInstance<IAddRecordViewModel>();
+      _selectedAccount = _viewModel.SelectedAccount;
     }
 
     public override void ViewDidLoad()
@@ -33,6 +45,7 @@ namespace Wallet
       AccountSelectionButton.SetCommand(_viewModel.AccountSelectionAction);
 
       _bindings.Add(this.SetBinding(() => _viewModel.AmountLabelText, () => AmountLabel.Text));
+      _bindings.Add(this.SetBinding(() => _viewModel.SelectedAccount, () => SelectedAccount));
     }
   }
 }
