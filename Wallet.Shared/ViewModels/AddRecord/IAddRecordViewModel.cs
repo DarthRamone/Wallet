@@ -7,6 +7,8 @@ namespace Wallet.Shared
   {
     Account SelectedAccount { get; set; }
 
+    Category SelectedCategory { get; set; }
+
     string AmountLabelText { get; }
 
     RelayCommand AddRecordAction { get; }
@@ -23,5 +25,6 @@ namespace Wallet.Shared
     RelayCommand CommaButtonAction { get; }
     RelayCommand DeleteButtonAction { get; }
     RelayCommand AccountSelectionAction { get; }
+    RelayCommand CategorySelectionAction { get; }
   }
 }

@@ -11,12 +11,19 @@ namespace Wallet
 
     private Account _selectedAccount;
     public Account SelectedAccount {
-      get {
-        return _selectedAccount;
-      }
+      get { return _selectedAccount; }
       set {
         _selectedAccount = value;
         AccountSelectionButton.SetTitle(value.Name, UIControlState.Normal);
+      }
+    }
+
+    private Category _selectedCategory;
+    public Category SelectedCategory {
+      get { return _selectedCategory; }
+      set {
+        _selectedCategory = value;
+        CategorySelectionButton.SetTitle(value.Name, UIControlState.Normal);
       }
     }
 
@@ -24,6 +31,7 @@ namespace Wallet
     {
       _viewModel = ServiceLocator.Current.GetInstance<IAddRecordViewModel>();
       _selectedAccount = _viewModel.SelectedAccount;
+      _selectedCategory = _viewModel.SelectedCategory;
     }
 
     public override void ViewDidLoad()
@@ -43,9 +51,11 @@ namespace Wallet
       //CommaButton.SetCommand(_viewModel.CommaButtonAction);
       DeleteButton.SetCommand(_viewModel.DeleteButtonAction);
       AccountSelectionButton.SetCommand(_viewModel.AccountSelectionAction);
+      CategorySelectionButton.SetCommand(_viewModel.CategorySelectionAction);
 
       _bindings.Add(this.SetBinding(() => _viewModel.AmountLabelText, () => AmountLabel.Text));
       _bindings.Add(this.SetBinding(() => _viewModel.SelectedAccount, () => SelectedAccount));
+      _bindings.Add(this.SetBinding(() => _viewModel.SelectedCategory, () => SelectedCategory));
     }
   }
 }

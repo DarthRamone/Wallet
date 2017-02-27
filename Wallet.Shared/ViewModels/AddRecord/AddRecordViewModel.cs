@@ -38,6 +38,17 @@ namespace Wallet.Shared {
       }
     }
 
+    private Category _selectedCategory;
+    public Category SelectedCategory {
+      get {
+        return _selectedCategory;
+      }
+      set {
+        _selectedCategory = value;
+        RaisePropertyChanged(() => SelectedCategory);
+      }
+    }
+
     public RelayCommand AddRecordAction { get; private set; }
 
     public RelayCommand Button0Action { get; private set; }
@@ -66,6 +77,8 @@ namespace Wallet.Shared {
 
     public RelayCommand AccountSelectionAction { get; private set; }
 
+    public RelayCommand CategorySelectionAction { get; private set; }
+
     public AddRecordViewModel(INavigationService navService,
                               IApplicationViewModel appViewModel,
                               IAccountsRepository accountsRepository,
@@ -74,14 +87,16 @@ namespace Wallet.Shared {
       : base(navService, appViewModel) {
       _transactionsRepository = transactionsRepository;
       Initialize(categoriesRepository, accountsRepository);
+
+      //HACK
       SelectedAccount = accountsRepository.Items[0];
+      SelectedCategory = categoriesRepository.Items[0];
       SetActions();
     }
 
     async void Initialize(ICategoriesRepository catsRepo, IAccountsRepository accsRepo) {
       await catsRepo.Add(new Category { Name = "test category" });
       await accsRepo.Add(new Account { Name = "test account" });
-      SelectedAccount = accsRepo.Items[0];//HACK
     }
 
     void SetActions() {
@@ -185,6 +200,10 @@ namespace Wallet.Shared {
 
       AccountSelectionAction = new RelayCommand(() => {
         _navigationService.NavigateTo(_applicationViewModel.AccountSelectionViewControllerKey, this);
+      }, () => true);
+
+      CategorySelectionAction = new RelayCommand(() => {
+        _navigationService.NavigateTo(_applicationViewModel.CategorySelectionViewControllerKey, this);
       }, () => true);
     }
   }

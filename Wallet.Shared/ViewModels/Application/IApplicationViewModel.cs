@@ -7,5 +7,7 @@
     string AddRecordViewControllerKey { get; }
 
     string AccountSelectionViewControllerKey { get; }
+
+    string CategorySelectionViewControllerKey { get; }
   }
 }

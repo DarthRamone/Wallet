@@ -25,6 +25,7 @@
                 <outlet property="Button7" destination="a82-ZE-0US" id="UQH-uW-eHn"/>
                 <outlet property="Button8" destination="UIR-OC-RhW" id="dCh-gW-GZu"/>
                 <outlet property="Button9" destination="0fh-N6-N25" id="RjD-l8-mDZ"/>
+                <outlet property="CategorySelectionButton" destination="EYC-iz-leE" id="XLi-Rr-rLV"/>
                 <outlet property="CommaButton" destination="gKv-ub-Va1" id="pc6-mG-Mmy"/>
                 <outlet property="DeleteButton" destination="1pi-mr-UrN" id="Uzq-f2-WJs"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>

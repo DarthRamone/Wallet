@@ -136,6 +136,7 @@
     <Folder Include="ViewControllers\Summary\" />
     <Folder Include="ViewControllers\AddRecord\" />
     <Folder Include="ViewControllers\Accounts\" />
+    <Folder Include="ViewControllers\Categories\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -144,6 +145,7 @@
     <InterfaceDefinition Include="ViewControllers\AddRecord\AddRecordViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Summary\OverviewViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Accounts\AccountSelectionViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\Categories\CategoriesSelectionViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -171,6 +173,10 @@
     <Compile Include="ViewControllers\Accounts\AccountSelectionViewController.cs" />
     <Compile Include="ViewControllers\Accounts\AccountSelectionViewController.designer.cs">
       <DependentUpon>AccountSelectionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Categories\CategorySelectionViewController.cs" />
+    <Compile Include="ViewControllers\Categories\CategorySelectionViewController.designer.cs">
+      <DependentUpon>CategorySelectionViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
