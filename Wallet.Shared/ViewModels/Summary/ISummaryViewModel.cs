@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
 
-namespace Wallet.Shared
-{
-  public interface ISummaryViewModel
-  {
-    List<WalletTransaction> Transactions { get; }
-
-    event EventHandler<int[]> OnItemsDeleted;
-    event EventHandler<int[]> OnItemsInserted;
-    event EventHandler<int[]> OnItemsModified;
+namespace Wallet.Shared {
+  
+  public interface ISummaryViewModel {
+    
+    ObservableCollection<object> Transactions { get; }
 
     RelayCommand AddRecordButtonAction { get; }
+
   }
+
 }

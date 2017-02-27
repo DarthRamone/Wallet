@@ -86,17 +86,11 @@ namespace Wallet.Shared {
                               ITransactionsRepository transactionsRepository)
       : base(navService, appViewModel) {
       _transactionsRepository = transactionsRepository;
-      Initialize(categoriesRepository, accountsRepository);
 
       //HACK
       SelectedAccount = accountsRepository.Items[0];
       SelectedCategory = categoriesRepository.Items[0];
       SetActions();
-    }
-
-    async void Initialize(ICategoriesRepository catsRepo, IAccountsRepository accsRepo) {
-      await catsRepo.Add(new Category { Name = "test category" });
-      await accsRepo.Add(new Account { Name = "test account" });
     }
 
     void SetActions() {

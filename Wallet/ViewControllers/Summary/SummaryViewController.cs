@@ -1,5 +1,4 @@
-﻿using System;
-using Foundation;
+﻿using Foundation;
 using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using UIKit;
@@ -7,9 +6,8 @@ using Wallet.Shared;
 
 namespace Wallet
 {
-  public partial class SummaryViewController : WalletBaseViewController, IUITableViewDataSource, IUITableViewDelegate {
-    const string cellId = "cellId";
-
+  public partial class SummaryViewController : WalletBaseViewController {
+    
     private ISummaryViewModel _viewModel;
 
     public SummaryViewController() : base("OverviewViewController") {
@@ -18,35 +16,21 @@ namespace Wallet
 
     public override void ViewDidLoad() {
       base.ViewDidLoad();
-      // Perform any additional setup after loading the view, typically from a nib.
       AddRecordButton.SetCommand(_viewModel.AddRecordButtonAction);
 
-      TransactionsTableView.RegisterNibForCellReuse(RecordTableViewCell.Nib, cellId);
-
-      _viewModel.OnItemsInserted += (sender, e) => {
-        //TODO: reload rows instead of all the data
-        TransactionsTableView.ReloadData();
-      };
+      TransactionsTableView.RegisterNibForCellReuse(RecordTableViewCell.Nib, RecordTableViewCell.Key);
+      TransactionsTableView.Source = _viewModel.Transactions.GetTableViewSource(BindCell, RecordTableViewCell.Key, () => new TableViewSourceExtension<object>(null));
     }
 
-    #region TableView
-
-    public nint RowsInSection(UITableView tableView, nint section) => _viewModel.Transactions.Count;
-
-    public nint NumberOfSections(UITableView tableView) => 1;
-
-    public UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath) {
-      var transaction = _viewModel.Transactions[indexPath.Row];
-
-      var cell = tableView.DequeueReusableCell(cellId, indexPath) as RecordTableViewCell;
-      cell.CategoryNameLabel.Text = transaction.Category.Name;
-      cell.AmountLabel.Text = transaction.Amount.ToString();
-      cell.DateLabel.Text = transaction.Date.Date.ToString("d");
-      cell.AccountNameLabel.Text = transaction.Account.Name;
-      return cell;
+    void BindCell(UITableViewCell cell, object model, NSIndexPath indexPath) {
+      var transactionCell = cell as RecordTableViewCell;
+      var transaction = model as WalletTransaction;
+      transactionCell.CategoryNameLabel.Text = transaction.Category.Name;
+      transactionCell.AmountLabel.Text = transaction.Amount.ToString();
+      transactionCell.DateLabel.Text = transaction.Date.Date.ToString("d");
+      transactionCell.AccountNameLabel.Text = transaction.Account.Name;
     }
 
-    #endregion
   }
 }
 

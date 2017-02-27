@@ -138,6 +138,7 @@
     <Folder Include="ViewControllers\Accounts\" />
     <Folder Include="ViewControllers\Categories\" />
     <Folder Include="Services\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -180,6 +181,7 @@
       <DependentUpon>CategorySelectionViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Extensions\TableViewSourceExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wallet.Shared\Wallet.Shared.csproj">
