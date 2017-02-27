@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Wallet.Shared
 {
@@ -10,6 +11,8 @@ namespace Wallet.Shared
     event EventHandler<int[]> OnItemsModified;
 
     List<T> Items { get; }
+
+    Task Add(T item);
 
     void Delete(T item);
 

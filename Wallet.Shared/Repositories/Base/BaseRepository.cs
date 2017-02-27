@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using Realms;
 
 namespace Wallet.Shared
@@ -34,6 +36,19 @@ namespace Wallet.Shared
             OnItemsModified?.Invoke(this, changes.ModifiedIndices);
         }
       });
+    }
+
+    public async Task Add(T item)
+    {
+      try
+      {
+        await _realm.WriteAsync(r => r.Add(item));
+      }
+      catch (Realms.Exceptions.RealmDuplicatePrimaryKeyValueException e)
+      {
+        Debug.WriteLine(e.Message);
+        //TODO: Handle duplicates
+      }
     }
 
     public void Delete(T item)

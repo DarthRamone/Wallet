@@ -17,8 +17,10 @@ namespace Wallet.Shared
       _transactionsRepository = transactionsRepository;
 
       AddRecordAction = new RelayCommand(async () => {
-        await _transactionsRepository.AddTransaction(500, "test category", "test account");
-        _navigationService.GoBack();
+          var transaction = new WalletTransaction();
+          transaction.Amount = 700;
+          await _transactionsRepository.AddTransaction(transaction, "test category", "test account");
+          _navigationService.GoBack();
       }, () => true);
     }
   }
