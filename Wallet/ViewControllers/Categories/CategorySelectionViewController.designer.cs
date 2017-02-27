@@ -16,6 +16,9 @@ namespace Wallet {
     [Outlet]
     UITableView CategoriesTableView { get; set; }
 
+    [Outlet]
+    UIButton AddCategoriesButton { get; set; }
+
     void ReleaseDesignerOutlets() {
     }
   }

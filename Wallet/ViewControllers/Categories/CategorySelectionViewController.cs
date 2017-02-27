@@ -17,6 +17,23 @@ namespace Wallet {
 
     public override void ViewDidLoad() {
       base.ViewDidLoad();
+
+      _viewModel.OnItemsInserted += (sender, e) => {
+        //TODO: Reload rows instead of whole data
+        CategoriesTableView.ReloadData();
+      };
+
+      //TODO: move to viewModel
+      AddCategoriesButton.TouchUpInside += (sender, e) => {
+        var popup = UIAlertController.Create("Category creation", "Enter category name", UIAlertControllerStyle.Alert);
+        popup.AddTextField((UITextField obj) => { });
+        var button = UIAlertAction.Create("Create", UIAlertActionStyle.Cancel, alertAction => {
+          var category = new Category { Name = popup.TextFields[0].Text };
+          _viewModel.AddCategory(category);
+        });
+        popup.AddAction(button);
+        PresentViewController(popup, true, () => { });
+      };
       // Perform any additional setup after loading the view, typically from a nib.
     }
 

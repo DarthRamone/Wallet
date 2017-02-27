@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Wallet.Shared {
   
@@ -9,5 +10,10 @@ namespace Wallet.Shared {
 
     List<Category> Categories { get; }
 
+    Task AddCategory(Category category);
+
+    event EventHandler<int[]> OnItemsDeleted;
+    event EventHandler<int[]> OnItemsInserted;
+    event EventHandler<int[]> OnItemsModified;
   }
 }

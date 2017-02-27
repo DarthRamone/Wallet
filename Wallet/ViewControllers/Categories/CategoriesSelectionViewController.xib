@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoriesSelectionViewController">
             <connections>
+                <outlet property="AddCategoriesButton" destination="Wgq-K5-Y0v" id="tZW-zB-4OY"/>
+                <outlet property="CategoriesTableView" destination="UKT-8a-vfa" id="Avm-bY-t6k"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -27,11 +29,29 @@
                         <outlet property="delegate" destination="-1" id="3aD-66-P29"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wgq-K5-Y0v">
+                    <rect key="frame" x="305" y="597" width="50" height="50"/>
+                    <color key="backgroundColor" red="0.78986319939136596" green="0.41447796556257965" blue="0.96621346473693848" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="0I4-SB-Wcr"/>
+                        <constraint firstAttribute="width" constant="50" id="KEx-kh-Jbr"/>
+                    </constraints>
+                    <state key="normal" title="+">
+                        <color key="titleColor" red="0.95877330449999998" green="0.95385651829999996" blue="0.9636900907" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="UKT-8a-vfa" secondAttribute="bottom" id="BcL-sc-A2B"/>
                 <constraint firstAttribute="trailing" secondItem="UKT-8a-vfa" secondAttribute="trailing" id="M0n-sW-AZD"/>
+                <constraint firstAttribute="trailing" secondItem="Wgq-K5-Y0v" secondAttribute="trailing" constant="20" id="Otf-sF-5Dt"/>
+                <constraint firstAttribute="bottom" secondItem="Wgq-K5-Y0v" secondAttribute="bottom" constant="20" id="YR1-BH-EqX"/>
                 <constraint firstItem="UKT-8a-vfa" firstAttribute="top" secondItem="2" secondAttribute="top" id="Zv6-oL-qXN"/>
                 <constraint firstItem="UKT-8a-vfa" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="d3q-ZA-tOl"/>
             </constraints>

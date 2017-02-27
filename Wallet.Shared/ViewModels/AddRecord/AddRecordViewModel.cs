@@ -107,7 +107,7 @@ namespace Wallet.Shared {
         if (double.TryParse(AmountLabelText, out amount)) {
           transaction.Amount = amount;
           transaction.Date = new DateTimeOffset(DateTime.Now);
-          await _transactionsRepository.AddTransaction(transaction, "test category", "test account");
+          await _transactionsRepository.AddTransaction(transaction, SelectedCategory.Name, SelectedAccount.Name);
         }
         _navigationService.GoBack();
       }, () => true);

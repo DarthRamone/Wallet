@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 
 namespace Wallet.Shared {
@@ -17,13 +18,34 @@ namespace Wallet.Shared {
       }
     }
 
+    public event EventHandler<Category> OnCategoryCreated = delegate { };
+
     public List<Category> Categories => _categoriesRepository.Items;
+
+    public event EventHandler<int[]> OnItemsDeleted {
+      add { _categoriesRepository.OnItemsDeleted += value; }
+      remove { _categoriesRepository.OnItemsDeleted -= value; }
+    }
+
+    public event EventHandler<int[]> OnItemsInserted {
+      add { _categoriesRepository.OnItemsInserted += value; }
+      remove { _categoriesRepository.OnItemsInserted -= value; }
+    }
+
+    public event EventHandler<int[]> OnItemsModified {
+      add { _categoriesRepository.OnItemsModified += value; }
+      remove { _categoriesRepository.OnItemsModified -= value; }
+    }
 
     public CategorySelectionViewModel(INavigationService navigationService,
                                       IApplicationViewModel applicationViewModel,
                                       ICategoriesRepository categoriesRepository) 
       : base(navigationService, applicationViewModel) {
       _categoriesRepository = categoriesRepository;
+    }
+
+    public async Task AddCategory(Category category) {
+      await _categoriesRepository.Add(category);
     }
   }
 }
