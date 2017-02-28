@@ -28,10 +28,7 @@ namespace Wallet {
     void BindTransactionCell(UITableViewCell cell, object model, NSIndexPath indexPath) {
       var transactionCell = cell as RecordTableViewCell;
       var transaction = model as WalletTransaction;
-      transactionCell.CategoryNameLabel.Text = transaction.Category.Name;
-      transactionCell.AmountLabel.Text = transaction.Amount.ToString();
-      transactionCell.DateLabel.Text = transaction.Date.Date.ToString("d");
-      transactionCell.AccountNameLabel.Text = transaction.Account.Name;
+      transactionCell.ConfigureFor(transaction);
     }
 
     #endregion
