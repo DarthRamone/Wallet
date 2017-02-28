@@ -4,8 +4,8 @@ using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 
-namespace Wallet.Shared
-{
+namespace Wallet.Shared {
+  
   public class SummaryViewModel : WalletBaseViewModel, ISummaryViewModel, IDisposable {
 
     private IAccountsRepository _accountsRepository;
@@ -40,7 +40,7 @@ namespace Wallet.Shared
     }
 
     void SetupCommands() {
-      
+
       AddRecordButtonAction = new RelayCommand(() => {
         _navigationService.NavigateTo(_applicationViewModel.AddRecordViewControllerKey);
       }, () => true);
@@ -51,6 +51,7 @@ namespace Wallet.Shared
     }
 
     async void Initialize(ICategoriesRepository catsRepo, IAccountsRepository accsRepo) {
+      
       await catsRepo.Add(new Category { Name = "Transfer" });
       await catsRepo.Add(new Category { Name = "Drinks" });
       await catsRepo.Add(new Category { Name = "Weed" });

@@ -5,6 +5,7 @@ using UIKit;
 using Wallet.Shared;
 
 namespace Wallet {
+  
   public partial class AccountTransactionsViewController : WalletBaseViewController {
 
     private Account _account;

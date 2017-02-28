@@ -1,10 +1,10 @@
 ﻿using System;
 using Realms;
 
-namespace Wallet.Shared
-{
+namespace Wallet.Shared {
+  
   public class WalletTransaction : RealmObject {
-    
+
     [PrimaryKey]
     public string Id { get; set; }
 
@@ -18,8 +18,7 @@ namespace Wallet.Shared
 
     public TransferTransaction TransferTransaction { get; set; }
 
-    public WalletTransaction()
-    {
+    public WalletTransaction() {
       Id = Guid.NewGuid().ToString();
     }
   }

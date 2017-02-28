@@ -5,7 +5,7 @@ using System.Linq;
 using GalaSoft.MvvmLight.Views;
 
 namespace Wallet.Shared {
-  
+
   public class AccountTransactionsViewModel : WalletBaseViewModel, IAccountTransactionsViewModel, IDisposable {
 
     private Account _account;

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Realms;
 
-namespace Wallet.Shared
-{
-  public abstract class BaseRepository<T> : IRepository<T> where T : RealmObject
-  {
+namespace Wallet.Shared {
+  
+  public abstract class BaseRepository<T> : IRepository<T> where T : RealmObject {
+    
     private IQueryable<T> _items => _realm.All<T>();
 
     protected readonly Realm _realm;
@@ -19,13 +19,12 @@ namespace Wallet.Shared
     public event EventHandler<int[]> OnItemsInserted = delegate { };
     public event EventHandler<int[]> OnItemsModified = delegate { };
 
-    public BaseRepository()
-    {
+    public BaseRepository() {
+      
       _realm = Realm.GetInstance();
       _items.SubscribeForNotifications((IRealmCollection<T> sender, ChangeSet changes, Exception error) => {
 
-        if (changes != null)
-        {
+        if (changes != null) {
           if (changes.InsertedIndices.Length != 0)
             OnItemsInserted?.Invoke(this, changes.InsertedIndices);
 
@@ -38,26 +37,21 @@ namespace Wallet.Shared
       });
     }
 
-    public async Task Add(T item)
-    {
-      try
-      {
+    public async Task Add(T item) {
+      
+      try {
         await _realm.WriteAsync(r => r.Add(item));
-      }
-      catch (Realms.Exceptions.RealmDuplicatePrimaryKeyValueException e)
-      {
+      } catch (Realms.Exceptions.RealmDuplicatePrimaryKeyValueException e) {
         Debug.WriteLine(e.Message);
         //TODO: Handle duplicates
       }
     }
 
-    public void Delete(T item)
-    {
+    public void Delete(T item) {
       throw new NotImplementedException();
     }
 
-    public void Update(T item)
-    {
+    public void Update(T item) {
       throw new NotImplementedException();
     }
   }

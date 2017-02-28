@@ -4,7 +4,9 @@ using Foundation;
 using UIKit;
 
 namespace Wallet {
+  
   public partial class AccountCollectionViewCell : UICollectionViewCell {
+    
     public static readonly NSString Key = new NSString("AccountCollectionViewCell");
     public static readonly UINib Nib;
 
