@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 
 namespace Wallet.Shared {
@@ -19,6 +20,8 @@ namespace Wallet.Shared {
       }
     }
 
+    public RelayCommand PlusButtonAction { get; private set; }
+
     public ObservableCollection<object> Accounts { get; private set; }
 
     public AccountsSelectionViewModel(INavigationService navigationService,
@@ -30,6 +33,10 @@ namespace Wallet.Shared {
       Accounts = new ObservableCollection<object>(_accountsRepository.Items);
 
       _accountsRepository.OnItemsInserted += ItemsInserted;
+
+      PlusButtonAction = new RelayCommand(() => {
+        _navigationService.NavigateTo(_applicationViewModel.AccountCreationViewControllerKey);
+      }, () => true);
     }
 
     void ItemsInserted(object sender, int[] e) {

@@ -58,8 +58,8 @@ namespace Wallet.Shared {
       await catsRepo.Add(new Category { Name = "Junk food" });
       await catsRepo.Add(new Category { Name = "Salary" });
 
-      await accsRepo.Add(new Account { Name = "Cash" });
-      await accsRepo.Add(new Account { Name = "Credit card" });
+      await accsRepo.Add(new Account { Name = "Cash", Currency = "rub", IsCash = true });
+      await accsRepo.Add(new Account { Name = "Credit card", Currency = "usd", IsCash = false });
     }
 
     void ItemsDeleted(object sender, int[] e) {

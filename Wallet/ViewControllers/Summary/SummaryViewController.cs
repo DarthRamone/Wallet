@@ -38,9 +38,6 @@ namespace Wallet {
 
       AccountCollectionViewHeightConstraint = NSLayoutConstraint.Create(AccountsCollectionView, NSLayoutAttribute.Height, NSLayoutRelation.Equal, 1, 70);
       View.AddConstraint(AccountCollectionViewHeightConstraint);
-
-      var color = UIColor.Red;
-      System.Console.WriteLine(color);
     }
 
     public override void ViewWillAppear(bool animated) {
@@ -74,7 +71,7 @@ namespace Wallet {
     void BindAccountCell(AccountCollectionViewCell cell, object model, NSIndexPath indexPath) {
       var account = model as Account;
       cell.AccountNameLabel.Text = account.Name;
-      cell.AccountBalanceLabel.Text = account.Balance.ToString();
+      cell.AccountBalanceLabel.Text = $"{account.Balance.ToString()}{CurrenciesList.GetCurrency(account.Currency).Symbol}";
     }
 
     void AccountSelected(object account) {

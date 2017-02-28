@@ -49,8 +49,6 @@
     <Compile Include="ViewModels\Base\WalletBaseViewModel.cs" />
     <Compile Include="ViewModels\AddRecord\IAddRecordViewModel.cs" />
     <Compile Include="ViewModels\AddRecord\AddRecordViewModel.cs" />
-    <Compile Include="ViewModels\Accounts\IAccountsSelectionViewModel.cs" />
-    <Compile Include="ViewModels\Accounts\AccountsSelectionViewModel.cs" />
     <Compile Include="ViewModels\Categories\ICategorySelectionViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategorySelectionViewModel.cs" />
     <Compile Include="ViewModels\AccountTransactions\AccountTransactionsViewModel.cs" />
@@ -62,6 +60,12 @@
     <Compile Include="Enums\UICorners.cs" />
     <Compile Include="Stylings\UIStylingsModel.cs" />
     <Compile Include="Models\TransferTransaction.cs" />
+    <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\Currencies.cs" />
+    <Compile Include="ViewModels\Accounts\Selection\AccountsSelectionViewModel.cs" />
+    <Compile Include="ViewModels\Accounts\Selection\IAccountsSelectionViewModel.cs" />
+    <Compile Include="ViewModels\Accounts\Creation\IAccountCreationViewModel.cs" />
+    <Compile Include="ViewModels\Accounts\Creation\AccountCreationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe">
@@ -111,6 +115,8 @@
     <Folder Include="ViewModels\AccountTransactions\" />
     <Folder Include="Enums\" />
     <Folder Include="Stylings\" />
+    <Folder Include="ViewModels\Accounts\Selection\" />
+    <Folder Include="ViewModels\Accounts\Creation\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />

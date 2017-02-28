@@ -31,6 +31,8 @@ namespace Wallet.Shared {
         var targetAccount = realm.Find<Account>(targetAccountId);
         var transferCategory = realm.Find<Category>("Transfer"); //TODO: make category
 
+        //TODO: CURRENCIES
+
         var date = new DateTimeOffset(DateTime.Now);
 
         var sourceTransaction = new WalletTransaction {

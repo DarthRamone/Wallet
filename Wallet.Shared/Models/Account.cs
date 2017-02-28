@@ -10,6 +10,10 @@ namespace Wallet.Shared {
 
     public double Balance { get; set; }
 
+    public string Currency { get; set; }
+
+    public bool IsCash { get; set; }
+
     public IList<WalletTransaction> Transactions { get; }
 
   }

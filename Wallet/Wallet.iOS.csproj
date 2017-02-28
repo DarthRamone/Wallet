@@ -144,19 +144,22 @@
     <Folder Include="Views\Cells\CategoryCell\" />
     <Folder Include="Views\Cells\AccountCollectionViewCell\" />
     <Folder Include="ViewControllers\Transactions\" />
+    <Folder Include="ViewControllers\Accounts\Selection\" />
+    <Folder Include="ViewControllers\Accounts\Creation\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="ViewControllers\AddRecord\AddRecordViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Summary\SummaryViewController.xib" />
-    <InterfaceDefinition Include="ViewControllers\Accounts\AccountSelectionViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Categories\CategoriesSelectionViewController.xib" />
     <InterfaceDefinition Include="Views\Cells\RecordCell\RecordTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\AccountTableViewCell\AccountTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\CategoryCell\CategoryTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\AccountCollectionViewCell\AccountCollectionViewCell.xib" />
     <InterfaceDefinition Include="ViewControllers\Transactions\AccountTransactionsViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\Accounts\Selection\AccountSelectionViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\Accounts\Creation\AccountCreationViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -176,10 +179,6 @@
     <Compile Include="ViewControllers\Summary\SummaryViewController.cs" />
     <Compile Include="ViewControllers\Summary\SummaryViewController.designer.cs">
       <DependentUpon>SummaryViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewControllers\Accounts\AccountSelectionViewController.cs" />
-    <Compile Include="ViewControllers\Accounts\AccountSelectionViewController.designer.cs">
-      <DependentUpon>AccountSelectionViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewControllers\Categories\CategorySelectionViewController.cs" />
     <Compile Include="ViewControllers\Categories\CategorySelectionViewController.designer.cs">
@@ -209,6 +208,14 @@
     </Compile>
     <Compile Include="Extensions\UIColorExtensions.cs" />
     <Compile Include="Extensions\UIViewExtensions.cs" />
+    <Compile Include="ViewControllers\Accounts\Selection\AccountSelectionViewController.cs" />
+    <Compile Include="ViewControllers\Accounts\Selection\AccountSelectionViewController.designer.cs">
+      <DependentUpon>AccountSelectionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Accounts\Creation\AccountCreationViewController.cs" />
+    <Compile Include="ViewControllers\Accounts\Creation\AccountCreationViewController.designer.cs">
+      <DependentUpon>AccountCreationViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wallet.Shared\Wallet.Shared.csproj">
