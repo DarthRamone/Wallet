@@ -4,6 +4,9 @@ namespace Wallet.Shared
 {
   public interface IAddRecordViewModel
   {
+    //HACK
+    bool IsRightButtonTapped { get; set; }
+
     string LeftButtonText { get; set; }
 
     string RightButtonText { get; set; }
@@ -11,6 +14,8 @@ namespace Wallet.Shared
     string AmountLabelText { get; }
 
     string SignText { get; }
+
+    TransactionType TransactionType { get; }
 
     RelayCommand AddRecordAction { get; }
     RelayCommand Button0Action { get; }

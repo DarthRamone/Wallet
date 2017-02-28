@@ -8,11 +8,13 @@ namespace Wallet.Shared {
     [PrimaryKey]
     public string Id { get; set; }
 
+    public double Amount { get; set; }
+
     public WalletTransaction SourceTransaction { get; set; }
 
     public WalletTransaction TargetTransaction { get; set; }
 
-    public double ExchangeRate { get; set; }
+    public double ExchangeRate { get; set; } = 1;
 
     public TransferTransaction ()
     {

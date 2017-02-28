@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 
@@ -16,18 +17,14 @@ namespace Wallet.Shared {
     const string EIGHT = "8";
     const string NINE = "9";
 
+    //HACK
+    public bool IsRightButtonTapped { get; set; }
+
     private CrossPlatformColor _defaultColor;
     private CrossPlatformColor _selectedColor;
 
-    private TransactionType _transactionType = TransactionType.EXPENSES;
-
     private IAccountsRepository _accountsRepository;
     private ITransactionsRepository _transactionsRepository;
-
-    private Account _sourceAccount;
-    private Account _targetAccount;
-
-    private Category _selectedCategory;
 
     private string _amountLabelText = ZERO;
     public string AmountLabelText {
@@ -114,6 +111,8 @@ namespace Wallet.Shared {
       }
     }
 
+    public TransactionType TransactionType { get; private set; } = TransactionType.EXPENSES;
+
     public IUIStylingsModel MainStyling { get; private set; }
 
     public AddRecordViewModel(INavigationService navService,
@@ -144,28 +143,47 @@ namespace Wallet.Shared {
       _transButtonColor = _defaultColor;
     }
 
+    async Task ProcessBasicTransaction() {
+      var transaction = new WalletTransaction();
+      double amount;
+
+      if (double.TryParse(AmountLabelText, out amount)) {
+        
+        if (TransactionType == TransactionType.EXPENSES)
+          transaction.Amount = -amount;
+        else
+          transaction.Amount = amount;
+
+        transaction.Date = new DateTimeOffset(DateTime.Now);
+        await _transactionsRepository.AddTransaction(transaction, _rightButtonText, _leftButtonText);
+      }
+    }
+
+    async Task ProcessTransferTransaction() {
+      var transaction = new TransferTransaction();
+      double amount;
+      if (double.TryParse(AmountLabelText, out amount)) {
+        transaction.Amount = amount;
+        await _transactionsRepository.AddTransferTransaction(transaction, _leftButtonText, _rightButtonText);
+      }
+    }
+
     void SetActions() {
       
       AddRecordAction = new RelayCommand(async () => {
-        var transaction = new WalletTransaction();
-        double amount;
-        if (double.TryParse(AmountLabelText, out amount)) {
-
-          switch (_transactionType) {
+        
+          switch (TransactionType) {
             case TransactionType.EXPENSES:
-              transaction.Amount = -amount;
+            await ProcessBasicTransaction();
               break;
             case TransactionType.INCOME:
-              transaction.Amount = amount;
+              await ProcessBasicTransaction();
               break;
             case TransactionType.TRANSFER:
-              //var sourceTransaction
+            await ProcessTransferTransaction();
               break;
           }
 
-          transaction.Date = new DateTimeOffset(DateTime.Now);
-          await _transactionsRepository.AddTransaction(transaction, _rightButtonText, _leftButtonText);
-        }
         _navigationService.GoBack();
       }, () => true);
 
@@ -256,18 +274,24 @@ namespace Wallet.Shared {
       }, () => true);
 
       LeftButtonAction = new RelayCommand(() => {
+        IsRightButtonTapped = false;
         _navigationService.NavigateTo(_applicationViewModel.AccountSelectionViewControllerKey, this);
       }, () => true);
 
       RightButtonAction = new RelayCommand(() => {
-        _navigationService.NavigateTo(_applicationViewModel.CategorySelectionViewControllerKey, this);
+        IsRightButtonTapped = true;
+        if (TransactionType == TransactionType.TRANSFER) {
+          _navigationService.NavigateTo(_applicationViewModel.AccountSelectionViewControllerKey, this);
+        } else {
+          _navigationService.NavigateTo(_applicationViewModel.CategorySelectionViewControllerKey, this);
+        }
       }, () => true);
 
       ExpensesButtonAction = new RelayCommand(() => {
         IncomeButtonColor = _defaultColor;
         TransButtonColor = _defaultColor;
         ExpensesButtonColor = _selectedColor;
-        _transactionType = TransactionType.EXPENSES;
+        TransactionType = TransactionType.EXPENSES;
         SignText = "-";
       }, () => true);
 
@@ -275,7 +299,7 @@ namespace Wallet.Shared {
         IncomeButtonColor = _selectedColor;
         TransButtonColor = _defaultColor;
         ExpensesButtonColor = _defaultColor;
-        _transactionType = TransactionType.INCOME;
+        TransactionType = TransactionType.INCOME;
         SignText = "+";
       }, () => true);
 
@@ -284,7 +308,7 @@ namespace Wallet.Shared {
         IncomeButtonColor = _defaultColor;
         TransButtonColor = _selectedColor;
         ExpensesButtonColor = _defaultColor;
-        _transactionType = TransactionType.TRANSFER;
+        TransactionType = TransactionType.TRANSFER;
         SignText = string.Empty;
       }, () => true);
     }

@@ -42,8 +42,20 @@ namespace Wallet {
     }
 
     void AccountSelected(object item) {
-      _viewModel.SelectedAccount = item as Account;
-      _addRecordViewModel.LeftButtonText = (item as Account).Name;
+      
+      var account = item as Account;
+
+      _viewModel.SelectedAccount = account;
+
+      if (_addRecordViewModel.TransactionType == TransactionType.TRANSFER) {
+        if (_addRecordViewModel.IsRightButtonTapped)
+          _addRecordViewModel.RightButtonText = account.Name;
+        else
+          _addRecordViewModel.LeftButtonText = account.Name;
+      } else {
+        _addRecordViewModel.LeftButtonText = account.Name;
+      }
+
     }
   }
 }

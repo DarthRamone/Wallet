@@ -21,9 +21,37 @@ namespace Wallet.Shared {
       });
     }
 
-    public async Task AddTransferTransaction(TransferTransaction transaction) {
+    public async Task AddTransferTransaction(TransferTransaction transaction, string sourceAccountId, string targetAccountId) {
       await _realm.WriteAsync(realm => {
+
+        var sourceAccount = realm.Find<Account>(sourceAccountId);
+        var targetAccount = realm.Find<Account>(targetAccountId);
+        var transferCategory = realm.Find<Category>("Перевод"); //TODO: make category
+
+        var date = new DateTimeOffset(DateTime.Now);
+
+        var sourceTransaction = new WalletTransaction {
+          Account = sourceAccount,
+          Category = transferCategory,
+          Amount = -transaction.Amount,
+          Date = date,
+          TransferTransaction = transaction
+        };
+
+        var targetTransaction = new WalletTransaction {
+          Account = targetAccount,
+          Category = transferCategory,
+          Amount = transaction.Amount * transaction.ExchangeRate,
+          Date = date,
+          TransferTransaction = transaction
+        };
+
+        transaction.SourceTransaction = sourceTransaction;
+        transaction.TargetTransaction = targetTransaction;
+
         realm.Add(transaction);
+        realm.Add(sourceTransaction);
+        realm.Add(targetTransaction);
       });
     }
   }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 
@@ -50,7 +51,7 @@ namespace Wallet.Shared
     }
 
     async void Initialize(ICategoriesRepository catsRepo, IAccountsRepository accsRepo) {
-      await catsRepo.Add(new Category { Name = "test category" });
+      await catsRepo.Add(new Category { Name = "Перевод" });
       await accsRepo.Add(new Account { Name = "test account" });
     }
 
@@ -59,8 +60,8 @@ namespace Wallet.Shared
     }
 
     void TransactionItemsInserted(object sender, int[] e) {
-      var index = e[0];
-      Transactions.Insert(0, _transactionsRepository.Items[index]);
+      var items = e.Select(index => _transactionsRepository.Items[index]);
+      foreach (var item in items) Transactions.Insert(0, item);
     }
 
     void AccountItemsInserted(object sender, int[] e) {
