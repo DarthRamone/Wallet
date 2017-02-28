@@ -7,6 +7,8 @@ namespace Wallet.Shared {
   
   public class TransactionsRepository : BaseRepository<WalletTransaction>, ITransactionsRepository {
 
+    public List<WalletTransaction> SortedTransactions => _realm.All<WalletTransaction>().OrderByDescending(t => t.Date).ToList();
+
     public List<TransferTransaction> TransferTransactions => _realm.All<TransferTransaction>().ToList();
 
     public async Task AddTransaction(WalletTransaction transaction, string categoryId, string accountId) {

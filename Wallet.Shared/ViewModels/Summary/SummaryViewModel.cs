@@ -33,7 +33,7 @@ namespace Wallet.Shared
       SetupCommands();
 
       Accounts = new ObservableCollection<object>(_accountsRepository.Items);
-      Transactions = new ObservableCollection<object>(_transactionsRepository.Items);
+      Transactions = new ObservableCollection<object>(_transactionsRepository.SortedTransactions);
 
       _accountsRepository.OnItemsInserted += AccountItemsInserted;
       _transactionsRepository.OnItemsInserted += TransactionItemsInserted;

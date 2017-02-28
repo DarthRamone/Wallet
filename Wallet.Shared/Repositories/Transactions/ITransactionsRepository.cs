@@ -7,6 +7,8 @@ namespace Wallet.Shared
   {
     List<TransferTransaction> TransferTransactions { get; }
 
+    List<WalletTransaction> SortedTransactions { get; }
+
     Task AddTransaction(WalletTransaction transaction, string categoryId, string accountId);
 
     Task AddTransferTransaction(TransferTransaction transaction, string sourceAccountId, string targetAccountId);

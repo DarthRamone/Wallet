@@ -14,7 +14,7 @@ namespace Wallet.Shared {
 
     private List<WalletTransaction> _transactionsForAccount {
       get {
-        return _transactionsRepository.Items.Where(t => t.Account.Name.Equals(_account.Name)).ToList();
+        return _transactionsRepository.SortedTransactions.Where(t => t.Account.Name.Equals(_account.Name)).ToList();
       }
     }
 
@@ -44,7 +44,12 @@ namespace Wallet.Shared {
     }
 
     void ItemsInserted(object sender, int[] e) {
-      Transactions.Add(_transactionsRepository.Items[e[0]]);
+      if (_account == null) return;
+      var items = e.Select(index => _transactionsRepository.Items[index])
+                   .Where(item => item.Account.Name == _account.Name)
+                   .OrderByDescending(item => item.Date)
+                   .ToList();
+      foreach (var item in items) Transactions.Add(item);
     }
   }
 
