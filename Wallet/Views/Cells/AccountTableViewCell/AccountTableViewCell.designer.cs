@@ -7,7 +7,7 @@
 using Foundation;
 
 namespace Wallet {
-  [Register("AccountCell")]
+  [Register("AccountTableViewCell")]
   partial class AccountTableViewCell {
     void ReleaseDesignerOutlets() {
     }

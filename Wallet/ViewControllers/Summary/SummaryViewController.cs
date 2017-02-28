@@ -13,7 +13,7 @@ namespace Wallet {
 
     private ObservableCollectionViewSource<object, AccountCollectionViewCell> _source;
 
-    public SummaryViewController() : base("OverviewViewController") {
+    public SummaryViewController() : base("SummaryViewController") {
       _viewModel = ServiceLocator.Current.GetInstance<ISummaryViewModel>();
     }
 

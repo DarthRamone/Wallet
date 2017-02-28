@@ -57,10 +57,10 @@ namespace Wallet
     UIButton DeleteButton { get; set; }
 
     [Outlet]
-    UIButton AccountSelectionButton { get; set; }
+    UIButton LeftButton { get; set; }
 
     [Outlet]
-    UIButton CategorySelectionButton { get; set; }
+    UIButton RightButton { get; set; }
 
     [Outlet]
     UIButton ExpensesButton { get; set; }

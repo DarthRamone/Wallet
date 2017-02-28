@@ -9,29 +9,19 @@ namespace Wallet
   {
     IAddRecordViewModel _viewModel;
 
-    private Account _selectedAccount;
-    public Account SelectedAccount {
-      get { return _selectedAccount; }
-      set {
-        _selectedAccount = value;
-        AccountSelectionButton.SetTitle(value.Name, UIControlState.Normal);
-      }
+    public string LeftButtonText {
+      get { return LeftButton.Title(UIControlState.Normal); }
+      set { LeftButton.SetTitle(value, UIControlState.Normal); }
     }
 
-    private Category _selectedCategory;
-    public Category SelectedCategory {
-      get { return _selectedCategory; }
-      set {
-        _selectedCategory = value;
-        CategorySelectionButton.SetTitle(value.Name, UIControlState.Normal);
-      }
+    public string RightButtonText {
+      get { return RightButton.Title(UIControlState.Normal); }
+      set { RightButton.SetTitle(value, UIControlState.Normal); }
     }
 
     public AddRecordViewController() : base("AddRecordViewController")
     {
       _viewModel = ServiceLocator.Current.GetInstance<IAddRecordViewModel>();
-      _selectedAccount = _viewModel.SelectedAccount;
-      _selectedCategory = _viewModel.SelectedCategory;
     }
 
     public override void ViewDidLoad()
@@ -50,15 +40,15 @@ namespace Wallet
       Button9.SetCommand(_viewModel.Button9Action);
       //CommaButton.SetCommand(_viewModel.CommaButtonAction);
       DeleteButton.SetCommand(_viewModel.DeleteButtonAction);
-      AccountSelectionButton.SetCommand(_viewModel.AccountSelectionAction);
-      CategorySelectionButton.SetCommand(_viewModel.CategorySelectionAction);
+      LeftButton.SetCommand(_viewModel.LeftButtonAction);
+      RightButton.SetCommand(_viewModel.RightButtonAction);
       IncomeButton.SetCommand(_viewModel.IncomeButtonAction);
       ExpensesButton.SetCommand(_viewModel.ExpensesButtonAction);
       TransferButton.SetCommand(_viewModel.TransferButtonAction);
 
       _bindings.Add(this.SetBinding(() => _viewModel.AmountLabelText, () => AmountLabel.Text));
-      _bindings.Add(this.SetBinding(() => _viewModel.SelectedAccount, () => SelectedAccount));
-      _bindings.Add(this.SetBinding(() => _viewModel.SelectedCategory, () => SelectedCategory));
+      _bindings.Add(this.SetBinding(() => _viewModel.LeftButtonText, () => LeftButtonText));
+      _bindings.Add(this.SetBinding(() => _viewModel.RightButtonText, () => RightButtonText));
       _bindings.Add(this.SetBinding(() => _viewModel.ExpensesButtonColor, () => ExpensesButton.BackgroundColor).ConvertSourceToTarget(x => x.ToNative()));  
       _bindings.Add(this.SetBinding(() => _viewModel.IncomeButtonColor, () => IncomeButton.BackgroundColor).ConvertSourceToTarget(x => x.ToNative()));
       _bindings.Add(this.SetBinding(() => _viewModel.TransButtonColor, () => TransferButton.BackgroundColor).ConvertSourceToTarget(x => x.ToNative()));
@@ -66,8 +56,8 @@ namespace Wallet
 
       HolderView.ApplyStyle(_viewModel.MainStyling);
       TemplatesButton.ApplyStyle(_viewModel.MainStyling);
-      CategorySelectionButton.ApplyStyle(_viewModel.MainStyling);
-      AccountSelectionButton.ApplyStyle(_viewModel.MainStyling);
+      RightButton.ApplyStyle(_viewModel.MainStyling);
+      LeftButton.ApplyStyle(_viewModel.MainStyling);
       MiddleImageView.ApplyStyle(_viewModel.MainStyling);
     }
   }

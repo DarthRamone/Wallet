@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -47,7 +48,7 @@
                     <rect key="frame" x="0.0" y="64" width="375" height="70"/>
                     <color key="backgroundColor" red="0.9636900907" green="0.83780856228329781" blue="0.74091735133871084" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="70" placeholder="YES" id="ufP-MY-a8Z"/>
+                        <constraint firstAttribute="height" constant="70" id="ufP-MY-a8Z"/>
                     </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="r4j-Qx-Dfh">
                         <size key="itemSize" width="50" height="150"/>

@@ -44,7 +44,7 @@ namespace Wallet {
 
     void CategorySelected(object item) {
       _viewModel.SelectedCategory = item as Category;
-      _addRecordViewModel.SelectedCategory = item as Category;
+      _addRecordViewModel.RightButtonText = (item as Category).Name;
     }
   }
 }

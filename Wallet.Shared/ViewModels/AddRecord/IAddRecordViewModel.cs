@@ -4,9 +4,9 @@ namespace Wallet.Shared
 {
   public interface IAddRecordViewModel
   {
-    Account SelectedAccount { get; set; }
+    string LeftButtonText { get; set; }
 
-    Category SelectedCategory { get; set; }
+    string RightButtonText { get; set; }
 
     string AmountLabelText { get; }
 
@@ -25,8 +25,8 @@ namespace Wallet.Shared
     RelayCommand Button9Action { get; }
     RelayCommand CommaButtonAction { get; }
     RelayCommand DeleteButtonAction { get; }
-    RelayCommand AccountSelectionAction { get; }
-    RelayCommand CategorySelectionAction { get; }
+    RelayCommand LeftButtonAction { get; }
+    RelayCommand RightButtonAction { get; }
     RelayCommand IncomeButtonAction { get; }
     RelayCommand ExpensesButtonAction { get; }
     RelayCommand TransferButtonAction { get; }

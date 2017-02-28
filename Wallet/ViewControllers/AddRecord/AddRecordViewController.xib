@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddRecordViewController">
             <connections>
-                <outlet property="AccountSelectionButton" destination="wmm-0f-liC" id="q2e-fw-bRH"/>
                 <outlet property="AddRecordButton" destination="AhF-vk-gpd" id="bFs-Dx-u0s"/>
                 <outlet property="AmountLabel" destination="bHJ-7A-0jA" id="M8h-TZ-4cP"/>
                 <outlet property="Button0" destination="BTD-h3-sAQ" id="oXZ-r2-LZu"/>
@@ -25,13 +24,14 @@
                 <outlet property="Button7" destination="a82-ZE-0US" id="UQH-uW-eHn"/>
                 <outlet property="Button8" destination="UIR-OC-RhW" id="dCh-gW-GZu"/>
                 <outlet property="Button9" destination="0fh-N6-N25" id="RjD-l8-mDZ"/>
-                <outlet property="CategorySelectionButton" destination="EYC-iz-leE" id="XLi-Rr-rLV"/>
                 <outlet property="CommaButton" destination="gKv-ub-Va1" id="pc6-mG-Mmy"/>
                 <outlet property="DeleteButton" destination="1pi-mr-UrN" id="Uzq-f2-WJs"/>
                 <outlet property="ExpensesButton" destination="Hqz-lt-6KV" id="HYE-DB-Flx"/>
                 <outlet property="HolderView" destination="D5D-d2-qJR" id="4bU-j5-jwd"/>
                 <outlet property="IncomeButton" destination="I9T-lb-aP9" id="bAV-SF-M0s"/>
+                <outlet property="LeftButton" destination="wmm-0f-liC" id="dJ2-p5-2Hv"/>
                 <outlet property="MiddleImageView" destination="482-HO-UAW" id="hXO-tR-J1i"/>
+                <outlet property="RightButton" destination="EYC-iz-leE" id="L2f-BE-y7J"/>
                 <outlet property="SignLabel" destination="00t-AR-MHh" id="pDV-L7-XEb"/>
                 <outlet property="TemplatesButton" destination="B0z-0M-krI" id="sLy-hy-XVs"/>
                 <outlet property="TransferButton" destination="Nba-xF-vIl" id="WAz-74-Qvp"/>

@@ -61,6 +61,7 @@
     <Compile Include="Stylings\CrossPlatformFont.cs" />
     <Compile Include="Enums\UICorners.cs" />
     <Compile Include="Stylings\UIStylingsModel.cs" />
+    <Compile Include="Models\TransferTransaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe">

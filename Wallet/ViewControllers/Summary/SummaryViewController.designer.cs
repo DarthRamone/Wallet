@@ -11,7 +11,7 @@ using UIKit;
 
 namespace Wallet
 {
-  [Register("OverviewViewController")]
+  [Register("SummaryViewController")]
   partial class SummaryViewController {
     
     [Outlet]

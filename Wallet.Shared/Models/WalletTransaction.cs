@@ -3,8 +3,8 @@ using Realms;
 
 namespace Wallet.Shared
 {
-  public class WalletTransaction : RealmObject
-  {
+  public class WalletTransaction : RealmObject {
+    
     [PrimaryKey]
     public string Id { get; set; }
 
@@ -15,6 +15,8 @@ namespace Wallet.Shared
     public Account Account { get; set; }
 
     public DateTimeOffset Date { get; set; }
+
+    public TransferTransaction TransferTransaction { get; set; }
 
     public WalletTransaction()
     {

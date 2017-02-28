@@ -43,7 +43,7 @@ namespace Wallet {
 
     void AccountSelected(object item) {
       _viewModel.SelectedAccount = item as Account;
-      _addRecordViewModel.SelectedAccount = item as Account;
+      _addRecordViewModel.LeftButtonText = (item as Account).Name;
     }
   }
 }
