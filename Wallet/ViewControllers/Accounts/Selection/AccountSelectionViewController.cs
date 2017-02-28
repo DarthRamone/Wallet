@@ -1,5 +1,4 @@
-﻿using System;
-using Foundation;
+﻿using Foundation;
 using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using UIKit;
@@ -21,18 +20,6 @@ namespace Wallet {
 
       AccountsTableView.RegisterNibForCellReuse(AccountTableViewCell.Nib, AccountTableViewCell.Key);
       AccountsTableView.Source = _viewModel.Accounts.GetTableViewSource(BindCell, AccountTableViewCell.Key, () => new TableViewSourceExtension<object>(AccountSelected));
-
-      //TODO: move to viewmodel
-      //AddAccountButton.TouchUpInside += (sender, e) => { 
-      //  var popup = UIAlertController.Create("Account creation", "Enter account name", UIAlertControllerStyle.Alert);
-      //  popup.AddTextField((UITextField obj) => { });
-      //  var button = UIAlertAction.Create("Create", UIAlertActionStyle.Cancel, async alertAction => {
-      //    var account = new Account { Name = popup.TextFields[0].Text };
-      //    await _viewModel.AddAccount(account);
-      //  });
-      //  popup.AddAction(button);
-      //  PresentViewController(popup, true, () => { });
-      //};
       AddAccountButton.SetCommand(_viewModel.PlusButtonAction);
     }
 
