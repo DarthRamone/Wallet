@@ -18,9 +18,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SV1-EB-rrC">
-                        <rect key="frame" x="8" y="15" width="134" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SV1-EB-rrC">
+                        <rect key="frame" x="8" y="8" width="134" height="19"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxA-L9-TQs">
+                        <rect key="frame" x="8" y="32" width="134" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="Gqa-r3-Yph"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -28,9 +37,13 @@
             </view>
             <color key="backgroundColor" red="0.9636900907" green="0.39261010054660583" blue="0.37156096799724109" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="VxA-L9-TQs" secondAttribute="bottom" constant="8" id="Mpd-EV-Hoj"/>
+                <constraint firstItem="SV1-EB-rrC" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" constant="8" id="XxD-eK-OSD"/>
                 <constraint firstAttribute="trailing" secondItem="SV1-EB-rrC" secondAttribute="trailing" constant="8" id="Zul-6r-ZlK"/>
                 <constraint firstItem="SV1-EB-rrC" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" constant="8" id="aFa-dA-09f"/>
-                <constraint firstItem="SV1-EB-rrC" firstAttribute="centerY" secondItem="cZE-iV-UFb" secondAttribute="centerY" id="cI7-nt-osE"/>
+                <constraint firstItem="VxA-L9-TQs" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" constant="8" id="egr-Qn-JPx"/>
+                <constraint firstAttribute="trailing" secondItem="VxA-L9-TQs" secondAttribute="trailing" constant="8" id="ma2-L5-ovM"/>
+                <constraint firstItem="VxA-L9-TQs" firstAttribute="top" secondItem="SV1-EB-rrC" secondAttribute="bottom" constant="5" id="z0U-2p-tjM"/>
             </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -38,6 +51,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="AccountBalanceLabel" destination="VxA-L9-TQs" id="ATA-Pf-Odg"/>
                 <outlet property="AccountNameLabel" destination="SV1-EB-rrC" id="PQX-No-OXi"/>
             </connections>
         </collectionViewCell>

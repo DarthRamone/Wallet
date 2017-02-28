@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Specialized;
+using System.Linq;
 using CoreGraphics;
 using Foundation;
 using GalaSoft.MvvmLight.Helpers;
@@ -28,6 +30,7 @@ namespace Wallet {
                                                   factory: () => new CollectionViewSourceExtension<object, AccountCollectionViewCell>(AccountCollectionViewCell.Key, AccountSelected));
       AccountsCollectionView.Source = _source;
       _viewModel.Accounts.CollectionChanged += CollectionChanged;
+      _viewModel.Transactions.CollectionChanged += TransactionsCollectionChanged;
 
       // TableView
       TransactionsTableView.RegisterNibForCellReuse(RecordTableViewCell.Nib, RecordTableViewCell.Key);
@@ -71,6 +74,7 @@ namespace Wallet {
     void BindAccountCell(AccountCollectionViewCell cell, object model, NSIndexPath indexPath) {
       var account = model as Account;
       cell.AccountNameLabel.Text = account.Name;
+      cell.AccountBalanceLabel.Text = account.Balance.ToString();
     }
 
     void AccountSelected(object account) {
@@ -79,6 +83,10 @@ namespace Wallet {
 
     void CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
       SetCollectionViewHeight();
+    }
+
+    void TransactionsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
+      AccountsCollectionView.ReloadData();//TODO: Figure out how to reload certain cells
     }
 
     #endregion

@@ -16,6 +16,7 @@ namespace Wallet.Shared {
         if (acc != null && cat != null) {
           transaction.Account = acc;
           transaction.Category = cat;
+          acc.Balance += transaction.Amount;
           realm.Add(transaction);
         }
       });
@@ -26,7 +27,7 @@ namespace Wallet.Shared {
 
         var sourceAccount = realm.Find<Account>(sourceAccountId);
         var targetAccount = realm.Find<Account>(targetAccountId);
-        var transferCategory = realm.Find<Category>("Перевод"); //TODO: make category
+        var transferCategory = realm.Find<Category>("Transfer"); //TODO: make category
 
         var date = new DateTimeOffset(DateTime.Now);
 
@@ -52,6 +53,9 @@ namespace Wallet.Shared {
         realm.Add(transaction);
         realm.Add(sourceTransaction);
         realm.Add(targetTransaction);
+
+        sourceAccount.Balance -= transaction.Amount;
+        targetAccount.Balance += transaction.Amount;
       });
     }
   }

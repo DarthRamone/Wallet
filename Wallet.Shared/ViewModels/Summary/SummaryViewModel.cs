@@ -51,8 +51,14 @@ namespace Wallet.Shared
     }
 
     async void Initialize(ICategoriesRepository catsRepo, IAccountsRepository accsRepo) {
-      await catsRepo.Add(new Category { Name = "Перевод" });
-      await accsRepo.Add(new Account { Name = "test account" });
+      await catsRepo.Add(new Category { Name = "Transfer" });
+      await catsRepo.Add(new Category { Name = "Drinks" });
+      await catsRepo.Add(new Category { Name = "Weed" });
+      await catsRepo.Add(new Category { Name = "Junk food" });
+      await catsRepo.Add(new Category { Name = "Salary" });
+
+      await accsRepo.Add(new Account { Name = "Cash" });
+      await accsRepo.Add(new Account { Name = "Credit card" });
     }
 
     void ItemsDeleted(object sender, int[] e) {

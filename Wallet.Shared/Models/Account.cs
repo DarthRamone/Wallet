@@ -8,6 +8,8 @@ namespace Wallet.Shared
     [PrimaryKey]
     public string Name { get; set; }
 
+    public double Balance { get; set; }
+
     public IList<WalletTransaction> Transactions { get; }
   }
 }

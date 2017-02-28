@@ -24,6 +24,7 @@ namespace Wallet.Shared {
     private CrossPlatformColor _selectedColor;
 
     private IAccountsRepository _accountsRepository;
+    private ICategoriesRepository _categoriesRepository;
     private ITransactionsRepository _transactionsRepository;
 
     private string _amountLabelText = ZERO;
@@ -123,11 +124,12 @@ namespace Wallet.Shared {
       : base(navService, appViewModel) {
 
       _accountsRepository = accountsRepository;
+      _categoriesRepository = categoriesRepository;
       _transactionsRepository = transactionsRepository;
 
       //HACK
       LeftButtonText = accountsRepository.Items[0].Name;
-      RightButtonText = categoriesRepository.Items[0].Name;
+      RightButtonText = categoriesRepository.Items.Find(cat => cat.Name != "Transfer").Name;
       SetActions();
       SetStylings();
     }
@@ -291,16 +293,25 @@ namespace Wallet.Shared {
         IncomeButtonColor = _defaultColor;
         TransButtonColor = _defaultColor;
         ExpensesButtonColor = _selectedColor;
-        TransactionType = TransactionType.EXPENSES;
         SignText = "-";
+
+        if (TransactionType == TransactionType.TRANSFER)
+          RightButtonText = _categoriesRepository.Items.Find(cat => cat.Name != "Transfer").Name;
+
+        TransactionType = TransactionType.EXPENSES;
       }, () => true);
 
       IncomeButtonAction = new RelayCommand(() => {
         IncomeButtonColor = _selectedColor;
         TransButtonColor = _defaultColor;
         ExpensesButtonColor = _defaultColor;
-        TransactionType = TransactionType.INCOME;
         SignText = "+";
+
+        if (TransactionType == TransactionType.TRANSFER)
+          RightButtonText = _categoriesRepository.Items.Find(cat => cat.Name != "Transfer").Name;
+
+        TransactionType = TransactionType.INCOME;
+
       }, () => true);
 
       TransferButtonAction = new RelayCommand(() => {
@@ -308,8 +319,12 @@ namespace Wallet.Shared {
         IncomeButtonColor = _defaultColor;
         TransButtonColor = _selectedColor;
         ExpensesButtonColor = _defaultColor;
-        TransactionType = TransactionType.TRANSFER;
         SignText = string.Empty;
+
+        if (TransactionType != TransactionType.TRANSFER)
+          RightButtonText = _accountsRepository.Items.Find(acc => acc.Name != _leftButtonText).Name;
+
+        TransactionType = TransactionType.TRANSFER;
       }, () => true);
     }
   }

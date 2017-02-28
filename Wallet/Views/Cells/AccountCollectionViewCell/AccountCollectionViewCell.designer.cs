@@ -14,6 +14,9 @@ namespace Wallet {
     [Outlet]
     public UILabel AccountNameLabel { get; set; }
 
+    [Outlet]
+    public UILabel AccountBalanceLabel { get; set; }
+
     void ReleaseDesignerOutlets() {
     }
   }
