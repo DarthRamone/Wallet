@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 
 namespace Wallet.Shared {
+
   public class AddRecordViewModel : WalletBaseViewModel, IAddRecordViewModel {
 
     const string ZERO = "0";
@@ -23,15 +24,13 @@ namespace Wallet.Shared {
     private CrossPlatformColor _defaultColor;
     private CrossPlatformColor _selectedColor;
 
-    private IAccountsRepository _accountsRepository;
-    private ICategoriesRepository _categoriesRepository;
-    private ITransactionsRepository _transactionsRepository;
+    private readonly IAccountsRepository _accountsRepository;
+    private readonly ICategoriesRepository _categoriesRepository;
+    private readonly ITransactionsRepository _transactionsRepository;
 
     private string _amountLabelText = ZERO;
     public string AmountLabelText {
-      get {
-        return _amountLabelText;
-      }
+      get { return _amountLabelText; }
       set {
         _amountLabelText = value;
         RaisePropertyChanged(() => AmountLabelText);
@@ -65,7 +64,6 @@ namespace Wallet.Shared {
       }
     }
 
-    public RelayCommand AddRecordAction { get; private set; }
     public RelayCommand Button0Action { get; private set; }
     public RelayCommand Button1Action { get; private set; }
     public RelayCommand Button2Action { get; private set; }
@@ -76,11 +74,11 @@ namespace Wallet.Shared {
     public RelayCommand Button7Action { get; private set; }
     public RelayCommand Button8Action { get; private set; }
     public RelayCommand Button9Action { get; private set; }
-    public RelayCommand CommaButtonAction { get; private set; }
-    public RelayCommand DeleteButtonAction { get; private set; }
+    public RelayCommand AddRecordAction { get; private set; }
     public RelayCommand LeftButtonAction { get; private set; }
+    public RelayCommand CommaButtonAction { get; private set; }
     public RelayCommand RightButtonAction { get; private set; }
-
+    public RelayCommand DeleteButtonAction { get; private set; }
     public RelayCommand IncomeButtonAction { get; private set; }
     public RelayCommand ExpensesButtonAction { get; private set; }
     public RelayCommand TransferButtonAction { get; private set; }
@@ -95,7 +93,7 @@ namespace Wallet.Shared {
     }
 
     public CrossPlatformColor _expensesButtonColor;
-    public CrossPlatformColor ExpensesButtonColor { 
+    public CrossPlatformColor ExpensesButtonColor {
       get { return _expensesButtonColor; }
       set {
         _expensesButtonColor = value;
@@ -273,6 +271,9 @@ namespace Wallet.Shared {
           return;
         }
         AmountLabelText = AmountLabelText.Remove(AmountLabelText.Length - 1);
+      }, () => true);
+
+      CommaButtonAction = new RelayCommand(() => {
       }, () => true);
 
       LeftButtonAction = new RelayCommand(() => {
