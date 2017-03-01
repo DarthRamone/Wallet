@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 
 namespace Wallet.Shared {
 
@@ -9,6 +10,7 @@ namespace Wallet.Shared {
 
     ObservableCollection<object> Categories { get; }
 
-    Task AddCategory(Category category);
+    RelayCommand AddCategoryAction { get; }
+
   }
 }

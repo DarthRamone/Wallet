@@ -12,6 +12,8 @@
 
     string AccountTransactionsViewControllerKey { get; }
 
-    string AccountCreationViewControllerKey { get; } 
+    string AccountCreationViewControllerKey { get; }
+
+    string CategoryCreationViewControllerKey { get; }
   }
 }

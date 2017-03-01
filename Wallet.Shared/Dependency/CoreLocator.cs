@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Unity;
+using Wallet.Shared.ViewModels.Categories.Creation;
 
 namespace Wallet.Shared
 {
@@ -14,6 +15,7 @@ namespace Wallet.Shared
       container.RegisterType<IAddRecordViewModel, AddRecordViewModel>();
       container.RegisterType<IApplicationViewModel, ApplicationViewModel>();
       container.RegisterType<IAccountCreationViewModel, AccountCreationViewModel>();
+      container.RegisterType<ICategoryCreationViewModel, CategoryCreationViewModel>();
       container.RegisterType<IAccountsSelectionViewModel, AccountsSelectionViewModel>();
       container.RegisterType<ICategorySelectionViewModel, CategorySelectionViewModel>();
       container.RegisterType<IAccountTransactionsViewModel, AccountTransactionsViewModel>();

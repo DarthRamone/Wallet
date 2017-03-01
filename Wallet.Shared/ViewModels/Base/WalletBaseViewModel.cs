@@ -1,5 +1,4 @@
-﻿using System;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 
 namespace Wallet.Shared

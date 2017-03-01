@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -41,6 +41,10 @@
     <Compile Include="Repositories\Categories\ICategoriesRepository.cs" />
     <Compile Include="Repositories\Accounts\IAccountsRepository.cs" />
     <Compile Include="Dependency\CoreLocator.cs" />
+    <Compile Include="ViewModels\Categories\Creation\CategoryCreationViewModel.cs" />
+    <Compile Include="ViewModels\Categories\Creation\ICategoryCreationViewModel.cs" />
+    <Compile Include="ViewModels\Categories\Selection\CategorySelectionViewModel.cs" />
+    <Compile Include="ViewModels\Categories\Selection\ICategorySelectionViewModel.cs" />
     <Compile Include="ViewModels\Summary\ISummaryViewModel.cs" />
     <Compile Include="ViewModels\Summary\SummaryViewModel.cs" />
     <Compile Include="ViewModels\Application\IApplicationViewModel.cs" />
@@ -49,8 +53,6 @@
     <Compile Include="ViewModels\Base\WalletBaseViewModel.cs" />
     <Compile Include="ViewModels\AddRecord\IAddRecordViewModel.cs" />
     <Compile Include="ViewModels\AddRecord\AddRecordViewModel.cs" />
-    <Compile Include="ViewModels\Categories\ICategorySelectionViewModel.cs" />
-    <Compile Include="ViewModels\Categories\CategorySelectionViewModel.cs" />
     <Compile Include="ViewModels\AccountTransactions\AccountTransactionsViewModel.cs" />
     <Compile Include="ViewModels\AccountTransactions\IAccountTransactionsViewModel.cs" />
     <Compile Include="Enums\TransactionType.cs" />

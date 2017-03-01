@@ -146,13 +146,14 @@
     <Folder Include="ViewControllers\Transactions\" />
     <Folder Include="ViewControllers\Accounts\Selection\" />
     <Folder Include="ViewControllers\Accounts\Creation\" />
+    <Folder Include="ViewControllers\Categories\Selections\" />
+    <Folder Include="ViewControllers\Categories\Creation\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="ViewControllers\AddRecord\AddRecordViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Summary\SummaryViewController.xib" />
-    <InterfaceDefinition Include="ViewControllers\Categories\CategoriesSelectionViewController.xib" />
     <InterfaceDefinition Include="Views\Cells\RecordCell\RecordTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\AccountTableViewCell\AccountTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\CategoryCell\CategoryTableViewCell.xib" />
@@ -160,6 +161,8 @@
     <InterfaceDefinition Include="ViewControllers\Transactions\AccountTransactionsViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Accounts\Selection\AccountSelectionViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Accounts\Creation\AccountCreationViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\Categories\Selections\CategoriesSelectionViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\Categories\Creation\CategoryCreationViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -179,10 +182,6 @@
     <Compile Include="ViewControllers\Summary\SummaryViewController.cs" />
     <Compile Include="ViewControllers\Summary\SummaryViewController.designer.cs">
       <DependentUpon>SummaryViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewControllers\Categories\CategorySelectionViewController.cs" />
-    <Compile Include="ViewControllers\Categories\CategorySelectionViewController.designer.cs">
-      <DependentUpon>CategorySelectionViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Extensions\TableViewSourceExtension.cs" />
@@ -215,6 +214,14 @@
     <Compile Include="ViewControllers\Accounts\Creation\AccountCreationViewController.cs" />
     <Compile Include="ViewControllers\Accounts\Creation\AccountCreationViewController.designer.cs">
       <DependentUpon>AccountCreationViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Categories\Selections\CategorySelectionViewController.cs" />
+    <Compile Include="ViewControllers\Categories\Selections\CategorySelectionViewController.designer.cs">
+      <DependentUpon>CategorySelectionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Categories\Creation\CategoryCreationViewController.cs" />
+    <Compile Include="ViewControllers\Categories\Creation\CategoryCreationViewController.designer.cs">
+      <DependentUpon>CategoryCreationViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
