@@ -23,7 +23,7 @@ namespace Wallet.iOS {
       var credentials = Credentials.UsernamePassword("test@test.com", "test", false);
       var authUri = new Uri("http://localhost:9080");
       var user = await User.LoginAsync(credentials, authUri);
-      var serverUri = new Uri("realm://localhost:9080");
+      var serverUri = new Uri("realm://localhost:9080/~/default");
       var configuration = new SyncConfiguration(user, serverUri);
 
       Locator = new iOSLocator(unityContainer, configuration);

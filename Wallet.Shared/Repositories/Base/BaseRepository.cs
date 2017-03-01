@@ -23,6 +23,7 @@ namespace Wallet.Shared.Repositories {
     public BaseRepository(SyncConfiguration configuration) {
       
       _realm = Realm.GetInstance(configuration);
+
       _items.SubscribeForNotifications((sender, changes, error) => {
 
         if (changes != null) {
