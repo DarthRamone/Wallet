@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 
-namespace Wallet.Shared
+namespace Wallet.Shared.ViewModels
 {
   public class WalletBaseViewModel : ViewModelBase, IWalletBaseViewModel
   {

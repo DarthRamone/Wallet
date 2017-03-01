@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
-using Wallet.Shared;
+using Wallet.Shared.ViewModels;
 
 namespace Wallet {
   public partial class AccountCreationViewController : WalletBaseViewController {

@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
-using Wallet.Shared.ViewModels.Categories.Creation;
+using Wallet.Shared.ViewModels;
 
 namespace Wallet {
 

@@ -2,7 +2,7 @@
 
 using Foundation;
 using UIKit;
-using Wallet.Shared;
+using Wallet.Shared.Models;
 
 namespace Wallet
 {
@@ -25,7 +25,7 @@ namespace Wallet
 
     public void ConfigureFor(WalletTransaction transaction) {
       CategoryNameLabel.Text = transaction.Category.Name;
-      AmountLabel.Text = $"{transaction.Amount.ToString()}{CurrenciesList.GetCurrency(transaction.Account.Currency).Symbol}";
+      AmountLabel.Text = $"{transaction.Amount}{CurrenciesList.GetCurrency(transaction.Account.Currency).Symbol}";
       DateLabel.Text = transaction.Date.Date.ToString("d");
       AccountNameLabel.Text = transaction.Account.Name;
       AmountLabel.TextColor = transaction.Amount < 0 ? UIColor.Red : _green;

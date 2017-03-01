@@ -3,8 +3,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using Wallet.Shared.Models;
+using Wallet.Shared.Repositories;
 
-namespace Wallet.Shared {
+namespace Wallet.Shared.ViewModels {
   public class CategorySelectionViewModel : WalletBaseViewModel, ICategorySelectionViewModel, IDisposable {
 
     private readonly ICategoriesRepository _categoriesRepository;

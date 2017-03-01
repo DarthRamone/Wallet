@@ -1,4 +1,4 @@
-﻿namespace Wallet.Shared {
+﻿namespace Wallet.Shared.Models {
   
   public class Currency {
 

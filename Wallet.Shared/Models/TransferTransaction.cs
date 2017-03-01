@@ -1,7 +1,7 @@
 ﻿using System;
 using Realms;
 
-namespace Wallet.Shared {
+namespace Wallet.Shared.Models {
   
   public class TransferTransaction : RealmObject {
 

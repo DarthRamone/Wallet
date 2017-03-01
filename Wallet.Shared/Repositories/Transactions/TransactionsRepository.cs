@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Wallet.Shared.Models;
 
-namespace Wallet.Shared {
+namespace Wallet.Shared.Repositories {
   
   public class TransactionsRepository : BaseRepository<WalletTransaction>, ITransactionsRepository {
 

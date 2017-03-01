@@ -2,7 +2,8 @@
 using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using UIKit;
-using Wallet.Shared;
+using Wallet.Shared.Models;
+using Wallet.Shared.ViewModels;
 
 namespace Wallet {
   public partial class CategorySelectionViewController : WalletBaseViewController {

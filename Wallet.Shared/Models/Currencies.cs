@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Wallet.Shared {
+namespace Wallet.Shared.Models {
   public static class CurrenciesList {
 
     public static List<Currency> Currencies = new List<Currency> {

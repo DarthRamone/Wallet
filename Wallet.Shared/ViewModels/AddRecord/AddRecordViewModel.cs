@@ -2,8 +2,10 @@
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using Wallet.Shared.Models;
+using Wallet.Shared.Repositories;
 
-namespace Wallet.Shared {
+namespace Wallet.Shared.ViewModels {
 
   public class AddRecordViewModel : WalletBaseViewModel, IAddRecordViewModel {
 
@@ -55,7 +57,7 @@ namespace Wallet.Shared {
       }
     }
 
-    string _signText = "-";
+    private string _signText = "-";
     public string SignText {
       get { return _signText; }
       set {
@@ -83,7 +85,7 @@ namespace Wallet.Shared {
     public RelayCommand ExpensesButtonAction { get; private set; }
     public RelayCommand TransferButtonAction { get; private set; }
 
-    public CrossPlatformColor _incomeButtonColor;
+    private CrossPlatformColor _incomeButtonColor;
     public CrossPlatformColor IncomeButtonColor { 
       get { return _incomeButtonColor; }
       set {
@@ -92,7 +94,7 @@ namespace Wallet.Shared {
       }
     }
 
-    public CrossPlatformColor _expensesButtonColor;
+    private CrossPlatformColor _expensesButtonColor;
     public CrossPlatformColor ExpensesButtonColor {
       get { return _expensesButtonColor; }
       set {
@@ -101,7 +103,7 @@ namespace Wallet.Shared {
       }
     }
 
-    public CrossPlatformColor _transButtonColor;
+    private CrossPlatformColor _transButtonColor;
     public CrossPlatformColor TransButtonColor { 
       get { return _transButtonColor; }
       set {
@@ -132,7 +134,7 @@ namespace Wallet.Shared {
       SetStylings();
     }
 
-    void SetStylings() {
+    private void SetStylings() {
       _defaultColor = new CrossPlatformColor(237, 107, 149);
       _selectedColor = new CrossPlatformColor(237, 107, 149, 200);
 
@@ -143,7 +145,7 @@ namespace Wallet.Shared {
       _transButtonColor = _defaultColor;
     }
 
-    async Task ProcessBasicTransaction() {
+    private async Task ProcessBasicTransaction() {
       var transaction = new WalletTransaction();
       double amount;
 
@@ -159,7 +161,7 @@ namespace Wallet.Shared {
       }
     }
 
-    async Task ProcessTransferTransaction() {
+    private async Task ProcessTransferTransaction() {
       var transaction = new TransferTransaction();
       double amount;
       if (double.TryParse(AmountLabelText, out amount)) {
@@ -168,21 +170,21 @@ namespace Wallet.Shared {
       }
     }
 
-    void SetActions() {
+    private void SetActions() {
       
       AddRecordAction = new RelayCommand(async () => {
         
-          switch (TransactionType) {
-            case TransactionType.EXPENSES:
+        switch (TransactionType) {
+          case TransactionType.EXPENSES:
+          await ProcessBasicTransaction();
+            break;
+          case TransactionType.INCOME:
             await ProcessBasicTransaction();
-              break;
-            case TransactionType.INCOME:
-              await ProcessBasicTransaction();
-              break;
-            case TransactionType.TRANSFER:
+            break;
+          case TransactionType.TRANSFER:
             await ProcessTransferTransaction();
-              break;
-          }
+            break;
+        }
 
         _navigationService.GoBack();
       }, () => true);

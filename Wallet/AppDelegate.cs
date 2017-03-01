@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using UIKit;
-using Wallet.Shared;
+using Wallet.Shared.ViewModels;
 
 namespace Wallet
 {

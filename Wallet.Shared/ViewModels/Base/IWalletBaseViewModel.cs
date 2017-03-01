@@ -1,7 +1,4 @@
-﻿using System;
-namespace Wallet.Shared
-{
-  public interface IWalletBaseViewModel
-  {
+﻿namespace Wallet.Shared.ViewModels {
+  public interface IWalletBaseViewModel {
   }
 }

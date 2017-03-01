@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
-using Wallet.Shared.ViewModels.Categories.Creation;
+using Wallet.Shared.Repositories;
+using Wallet.Shared.ViewModels;
 
 namespace Wallet.Shared
 {

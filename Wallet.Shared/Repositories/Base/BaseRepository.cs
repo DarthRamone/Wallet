@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Realms;
 
-namespace Wallet.Shared {
+namespace Wallet.Shared.Repositories {
   
   public abstract class BaseRepository<T> : IRepository<T> where T : RealmObject {
     
@@ -22,7 +22,7 @@ namespace Wallet.Shared {
     public BaseRepository() {
       
       _realm = Realm.GetInstance();
-      _items.SubscribeForNotifications((IRealmCollection<T> sender, ChangeSet changes, Exception error) => {
+      _items.SubscribeForNotifications((sender, changes, error) => {
 
         if (changes != null) {
           if (changes.InsertedIndices.Length != 0)

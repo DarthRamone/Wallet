@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Wallet.Shared.Models;
 
-namespace Wallet.Shared
-{
-  public interface ICategoriesRepository : IRepository<Category>
-  {
+namespace Wallet.Shared.Repositories {
+  public interface ICategoriesRepository : IRepository<Category> {
   }
 }

@@ -1,7 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using Wallet.Shared.Models;
+using Wallet.Shared.Repositories;
 
-namespace Wallet.Shared.ViewModels.Categories.Creation {
+namespace Wallet.Shared.ViewModels {
 
   public class CategoryCreationViewModel : WalletBaseViewModel, ICategoryCreationViewModel {
 
@@ -21,7 +23,7 @@ namespace Wallet.Shared.ViewModels.Categories.Creation {
       SetCommands();
     }
 
-    void SetCommands() {
+    private void SetCommands() {
       CreateCategoryAction = new RelayCommand(async () => {
         var category = new Category {Name = CateggoryNameText};
         await _categoriesRepository.Add(category);

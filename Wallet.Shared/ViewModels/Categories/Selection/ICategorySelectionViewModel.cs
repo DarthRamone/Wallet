@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
+using Wallet.Shared.Models;
 
-namespace Wallet.Shared {
+namespace Wallet.Shared.ViewModels {
 
   public interface ICategorySelectionViewModel {
 

@@ -1,7 +1,7 @@
-﻿using System;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 
-namespace Wallet.Shared {
+namespace Wallet.Shared.ViewModels {
+
   public interface IAccountCreationViewModel {
 
     string AccountNameText { get; }
@@ -15,4 +15,5 @@ namespace Wallet.Shared {
     RelayCommand CreateButtonAction { get; }
 
   }
+
 }

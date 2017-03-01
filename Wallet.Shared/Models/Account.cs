@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Realms;
 
-namespace Wallet.Shared {
+namespace Wallet.Shared.Models {
   
   public class Account : RealmObject {
     

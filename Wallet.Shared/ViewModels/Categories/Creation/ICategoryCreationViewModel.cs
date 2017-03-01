@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 
-namespace Wallet.Shared.ViewModels.Categories.Creation {
+namespace Wallet.Shared.ViewModels {
 
   public interface ICategoryCreationViewModel {
 

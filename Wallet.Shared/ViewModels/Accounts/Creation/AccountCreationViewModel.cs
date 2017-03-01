@@ -1,12 +1,15 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using Wallet.Shared.Models;
+using Wallet.Shared.Repositories;
 
-namespace Wallet.Shared {
+namespace Wallet.Shared.ViewModels {
+
   public class AccountCreationViewModel : WalletBaseViewModel, IAccountCreationViewModel {
 
-    private IAccountsRepository _accountsRepository;
+    private readonly IAccountsRepository _accountsRepository;
 
-    string _accountNameText;
+    private string _accountNameText;
     public string AccountNameText {
       get { return _accountNameText; }
       set {
@@ -15,7 +18,7 @@ namespace Wallet.Shared {
       }
     }
 
-    string _balanceNameText;
+    private string _balanceNameText;
     public string BalanceText {
       get { return _balanceNameText; }
       set {
@@ -24,7 +27,7 @@ namespace Wallet.Shared {
       }
     }
 
-    string _currencyText;
+    private string _currencyText;
     public string CurrencyText {
       get { return _currencyText; }
       set {
@@ -33,7 +36,7 @@ namespace Wallet.Shared {
       }
     }
 
-    bool _isCash;
+    private bool _isCash;
     public bool IsCash {
       get { return _isCash; }
       set {
@@ -42,20 +45,25 @@ namespace Wallet.Shared {
       }
     }
 
-    public RelayCommand CreateButtonAction { get; private set; }
+    public RelayCommand CreateButtonAction { get; private set;  }
 
     public AccountCreationViewModel(INavigationService navigationService,
                                     IApplicationViewModel applicationViewModel,
-                                    IAccountsRepository accountsRepository) 
+                                    IAccountsRepository accountsRepository)
       : base(navigationService, applicationViewModel) {
 
       _accountsRepository = accountsRepository;
 
+      SetCommands();
+    }
+
+    private void SetCommands() {
+
       CreateButtonAction = new RelayCommand(async () => {
         var currency = (CurrencyText.ToLower() == "rub" || CurrencyText.ToLower() == "usd") ?
           CurrencyText.ToLower() : "rub";
-        
-        await _accountsRepository.Add(new Account { 
+
+        await _accountsRepository.Add(new Account {
           Name = AccountNameText,
           Balance = double.Parse(BalanceText),
           Currency = currency,

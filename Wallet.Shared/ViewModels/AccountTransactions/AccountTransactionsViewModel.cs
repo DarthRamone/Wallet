@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Views;
+using Wallet.Shared.Models;
+using Wallet.Shared.Repositories;
 
-namespace Wallet.Shared {
+namespace Wallet.Shared.ViewModels {
 
   public class AccountTransactionsViewModel : WalletBaseViewModel, IAccountTransactionsViewModel, IDisposable {
 
@@ -12,11 +14,7 @@ namespace Wallet.Shared {
 
     private readonly ITransactionsRepository _transactionsRepository;
 
-    private List<WalletTransaction> _transactionsForAccount {
-      get {
-        return _transactionsRepository.SortedTransactions.Where(t => t.Account.Name.Equals(_account.Name)).ToList();
-      }
-    }
+    private IEnumerable<WalletTransaction> TransactionsForAccount => _transactionsRepository.SortedTransactions.Where(t => t.Account.Name.Equals(_account.Name));
 
     public ObservableCollection<WalletTransaction> Transactions { get; }
 
@@ -33,7 +31,7 @@ namespace Wallet.Shared {
     public void InitializeWithAccount(Account account) {
       if (account != null) {
         _account = account;
-        foreach (var transaction in _transactionsForAccount) {
+        foreach (var transaction in TransactionsForAccount) {
           Transactions.Add(transaction);
         }
       }

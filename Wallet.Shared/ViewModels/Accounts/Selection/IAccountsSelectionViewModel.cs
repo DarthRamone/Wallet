@@ -1,8 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using Wallet.Shared.Models;
 
-namespace Wallet.Shared {
+namespace Wallet.Shared.ViewModels {
   
   public interface IAccountsSelectionViewModel {
 

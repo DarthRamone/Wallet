@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Wallet.Shared.Models;
 
-namespace Wallet.Shared
+namespace Wallet.Shared.Repositories
 {
   public interface ITransactionsRepository : IRepository<WalletTransaction>
   {
