@@ -4,7 +4,7 @@ using Foundation;
 using UIKit;
 using Wallet.Shared.Models;
 
-namespace Wallet
+namespace Wallet.iOS
 {
   public partial class RecordTableViewCell : UITableViewCell
   {

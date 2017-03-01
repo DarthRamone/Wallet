@@ -3,7 +3,7 @@ using Microsoft.Practices.ServiceLocation;
 using UIKit;
 using Wallet.Shared.ViewModels;
 
-namespace Wallet
+namespace Wallet.iOS
 {
   public partial class AddRecordViewController : WalletBaseViewController
   {

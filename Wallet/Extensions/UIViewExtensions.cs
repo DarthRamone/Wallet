@@ -1,7 +1,7 @@
 ﻿using UIKit;
 using Wallet.Shared;
 
-namespace Wallet {
+namespace Wallet.iOS {
 
   public static class UIViewExtensions {
 

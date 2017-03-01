@@ -3,7 +3,7 @@
 using Foundation;
 using UIKit;
 
-namespace Wallet {
+namespace Wallet.iOS {
   public partial class AccountTableViewCell : UITableViewCell {
     public static readonly NSString Key = new NSString("AccountTableViewCell");
     public static readonly UINib Nib;

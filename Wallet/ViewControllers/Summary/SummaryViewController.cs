@@ -8,7 +8,7 @@ using UIKit;
 using Wallet.Shared.Models;
 using Wallet.Shared.ViewModels;
 
-namespace Wallet {
+namespace Wallet.iOS {
   public partial class SummaryViewController : WalletBaseViewController {
 
     private readonly ISummaryViewModel _viewModel;

@@ -7,7 +7,7 @@
 using Foundation;
 using UIKit;
 
-namespace Wallet {
+namespace Wallet.iOS {
   [Register("AccountCollectionViewCell")]
   partial class AccountCollectionViewCell {
 

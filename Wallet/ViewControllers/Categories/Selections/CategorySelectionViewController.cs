@@ -5,7 +5,7 @@ using UIKit;
 using Wallet.Shared.Models;
 using Wallet.Shared.ViewModels;
 
-namespace Wallet {
+namespace Wallet.iOS {
   public partial class CategorySelectionViewController : WalletBaseViewController {
     
     private readonly IAddRecordViewModel _addRecordViewModel;

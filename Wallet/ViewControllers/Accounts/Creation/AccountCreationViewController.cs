@@ -2,7 +2,7 @@
 using Microsoft.Practices.ServiceLocation;
 using Wallet.Shared.ViewModels;
 
-namespace Wallet {
+namespace Wallet.iOS {
   public partial class AccountCreationViewController : WalletBaseViewController {
 
     public IAccountCreationViewModel _viewModel;

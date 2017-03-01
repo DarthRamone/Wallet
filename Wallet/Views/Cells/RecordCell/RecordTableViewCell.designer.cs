@@ -7,7 +7,7 @@
 using Foundation;
 using UIKit;
 
-namespace Wallet
+namespace Wallet.iOS
 {
   [Register("RecordTableViewCell")]
   partial class RecordTableViewCell

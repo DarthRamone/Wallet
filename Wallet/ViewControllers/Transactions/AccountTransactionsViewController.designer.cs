@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Wallet {
+namespace Wallet.iOS {
   [Register("AccountTransactionsViewController")]
   partial class AccountTransactionsViewController {
     

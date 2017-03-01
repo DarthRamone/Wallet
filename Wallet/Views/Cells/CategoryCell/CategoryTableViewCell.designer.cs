@@ -6,7 +6,7 @@
 //
 using Foundation;
 
-namespace Wallet {
+namespace Wallet.iOS {
   [Register("CategoryTableViewCell")]
   partial class CategoryTableViewCell {
     void ReleaseDesignerOutlets() {

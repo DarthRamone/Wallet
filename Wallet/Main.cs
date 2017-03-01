@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace Wallet
+namespace Wallet.iOS
 {
   public class Application
   {

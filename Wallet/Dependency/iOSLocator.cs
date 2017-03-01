@@ -1,7 +1,7 @@
 ﻿using Microsoft.Practices.Unity;
 using Wallet.Shared;
 
-namespace Wallet
+namespace Wallet.iOS
 {
   public class iOSLocator : CoreLocator
   {

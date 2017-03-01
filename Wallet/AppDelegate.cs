@@ -5,7 +5,7 @@ using Microsoft.Practices.Unity;
 using UIKit;
 using Wallet.Shared.ViewModels;
 
-namespace Wallet
+namespace Wallet.iOS
 {
   // The UIApplicationDelegate for the application. This class is responsible for launching the
   // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.

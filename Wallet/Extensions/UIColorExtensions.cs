@@ -1,8 +1,7 @@
-﻿using System;
-using UIKit;
+﻿using UIKit;
 using Wallet.Shared;
 
-namespace Wallet {
+namespace Wallet.iOS {
   
   public static class UIColorExtensions {
 

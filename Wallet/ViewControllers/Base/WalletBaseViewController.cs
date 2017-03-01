@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Foundation;
+﻿using System.Collections.Generic;
 using GalaSoft.MvvmLight.Helpers;
 using UIKit;
 
-namespace Wallet
+namespace Wallet.iOS
 {
   public class WalletBaseViewController : UIViewController
   {

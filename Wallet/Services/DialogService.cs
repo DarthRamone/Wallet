@@ -1,7 +1,5 @@
-﻿using System;
-namespace Wallet {
+﻿namespace Wallet.iOS {
   public class DialogService {
-    public DialogService() {
-    }
+
   }
 }
