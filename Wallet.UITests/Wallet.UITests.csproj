@@ -34,7 +34,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Wallet\Wallet.csproj">
+    <ProjectReference Include="..\Wallet.iOS\Wallet.csproj">
       <Project>{B39A048E-B0AB-4372-B3E3-FD1AD9617212}</Project>
       <Name>Wallet.iOS</Name>
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>

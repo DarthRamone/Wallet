@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.iOS", "Wallet\Wallet.iOS.csproj", "{B39A048E-B0AB-4372-B3E3-FD1AD9617212}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.iOS", "Wallet.iOS\Wallet.iOS.csproj", "{B39A048E-B0AB-4372-B3E3-FD1AD9617212}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.UITests", "Wallet.UITests\Wallet.UITests.csproj", "{C388A35C-AA37-4078-864E-8ACCB7AD3E7A}"
 EndProject
