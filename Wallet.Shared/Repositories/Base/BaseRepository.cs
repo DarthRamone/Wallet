@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Realms;
+using Realms.Sync;
 
 namespace Wallet.Shared.Repositories {
   
@@ -19,9 +20,9 @@ namespace Wallet.Shared.Repositories {
     public event EventHandler<int[]> OnItemsInserted = delegate { };
     public event EventHandler<int[]> OnItemsModified = delegate { };
 
-    public BaseRepository() {
+    public BaseRepository(SyncConfiguration configuration) {
       
-      _realm = Realm.GetInstance();
+      _realm = Realm.GetInstance(configuration);
       _items.SubscribeForNotifications((sender, changes, error) => {
 
         if (changes != null) {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Realms.Sync;
 using Wallet.Shared.Models;
 
 namespace Wallet.Shared.Repositories {
@@ -11,6 +12,9 @@ namespace Wallet.Shared.Repositories {
     public List<WalletTransaction> SortedTransactions => _realm.All<WalletTransaction>().OrderByDescending(t => t.Date).ToList();
 
     public List<TransferTransaction> TransferTransactions => _realm.All<TransferTransaction>().ToList();
+
+    public TransactionsRepository(SyncConfiguration configuration) : base(configuration) {
+    }
 
     public async Task AddTransaction(WalletTransaction transaction, string categoryId, string accountId) {
       await _realm.WriteAsync(realm => {

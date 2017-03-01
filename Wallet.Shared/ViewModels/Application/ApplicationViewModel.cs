@@ -18,5 +18,7 @@ namespace Wallet.Shared.ViewModels
 
     public string CategoryCreationViewControllerKey => "CategoryCreationViewControllerKey";
 
+    public string LoadingViewControllerKey => "LoadingViewControllerKey";
+
   }
 }

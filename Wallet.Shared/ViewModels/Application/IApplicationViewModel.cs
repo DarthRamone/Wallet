@@ -15,5 +15,7 @@
     string AccountCreationViewControllerKey { get; }
 
     string CategoryCreationViewControllerKey { get; }
+
+    string LoadingViewControllerKey { get; }
   }
 }

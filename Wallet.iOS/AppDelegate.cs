@@ -33,23 +33,13 @@ namespace Wallet.iOS
       var navigationService = new NavigationService();
       unityContainer.RegisterInstance<INavigationService>(navigationService);
 
-      Locator = new iOSLocator(unityContainer);
+      var loadingViewController = new LoadingVIewController();
 
-      var applicationViewModel = ServiceLocator.Current.GetInstance<IApplicationViewModel>();
-      var summaryViewController = ServiceLocator.Current.GetInstance<SummaryViewController>();
-
-      var navController = new UINavigationController(summaryViewController);
+      var navController = new UINavigationController(loadingViewController);
 
       Window.RootViewController = navController;
 
       navigationService.Initialize(navController);
-      navigationService.Configure(applicationViewModel.SummaryViewControllerKey, typeof(SummaryViewController));
-      navigationService.Configure(applicationViewModel.AddRecordViewControllerKey, typeof(AddRecordViewController));
-      navigationService.Configure(applicationViewModel.AccountCreationViewControllerKey, typeof(AccountCreationViewController));
-      navigationService.Configure(applicationViewModel.CategoryCreationViewControllerKey, typeof(CategoryCreationViewController));
-      navigationService.Configure(applicationViewModel.AccountSelectionViewControllerKey, typeof(AccountSelectionViewController));
-      navigationService.Configure(applicationViewModel.CategorySelectionViewControllerKey, typeof(CategorySelectionViewController));
-      navigationService.Configure(applicationViewModel.AccountTransactionsViewControllerKey, typeof(AccountTransactionsViewController));
 
       Window.MakeKeyAndVisible();
 

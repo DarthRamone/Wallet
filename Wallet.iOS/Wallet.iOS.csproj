@@ -148,6 +148,7 @@
     <Folder Include="ViewControllers\Accounts\Creation\" />
     <Folder Include="ViewControllers\Categories\Selections\" />
     <Folder Include="ViewControllers\Categories\Creation\" />
+    <Folder Include="ViewControllers\Loading\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -163,6 +164,7 @@
     <InterfaceDefinition Include="ViewControllers\Accounts\Creation\AccountCreationViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Categories\Selections\CategoriesSelectionViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Categories\Creation\CategoryCreationViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\Loading\LoadingVIewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -222,6 +224,10 @@
     <Compile Include="ViewControllers\Categories\Creation\CategoryCreationViewController.cs" />
     <Compile Include="ViewControllers\Categories\Creation\CategoryCreationViewController.designer.cs">
       <DependentUpon>CategoryCreationViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Loading\LoadingVIewController.cs" />
+    <Compile Include="ViewControllers\Loading\LoadingVIewController.designer.cs">
+      <DependentUpon>LoadingVIewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
