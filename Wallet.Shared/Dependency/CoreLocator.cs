@@ -9,11 +9,17 @@ namespace Wallet.Shared
   {
     public CoreLocator(IUnityContainer container, SyncConfiguration configuration)
     {
-      //var accountsRepository
+      var accountsRepository = new AccountsRepository(configuration);
+      var categoriesRepository = new CategoriesRepository(configuration);
+      var transactionsRepository = new TransactionsRepository(configuration);
 
-      container.RegisterType<IAccountsRepository, AccountsRepository>(new ContainerControlledLifetimeManager());
-      container.RegisterType<ICategoriesRepository, CategoriesRepository>(new ContainerControlledLifetimeManager());
-      container.RegisterType<ITransactionsRepository, TransactionsRepository>(new ContainerControlledLifetimeManager());
+      container.RegisterInstance<IAccountsRepository>(accountsRepository);
+      container.RegisterInstance<ICategoriesRepository>(categoriesRepository);
+      container.RegisterInstance<ITransactionsRepository>(transactionsRepository);
+
+      //container.RegisterType<IAccountsRepository, AccountsRepository>(new ContainerControlledLifetimeManager());
+      //container.RegisterType<ICategoriesRepository, CategoriesRepository>(new ContainerControlledLifetimeManager());
+      //container.RegisterType<ITransactionsRepository, TransactionsRepository>(new ContainerControlledLifetimeManager());
 
       container.RegisterType<ISummaryViewModel, SummaryViewModel>();
       container.RegisterType<IAddRecordViewModel, AddRecordViewModel>();
