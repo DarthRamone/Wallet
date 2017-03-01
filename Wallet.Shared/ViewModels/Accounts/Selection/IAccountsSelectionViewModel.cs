@@ -8,7 +8,7 @@ namespace Wallet.Shared {
 
     Account SelectedAccount { get; set; }
 
-    ObservableCollection<object> Accounts { get; }
+    ObservableCollection<Account> Accounts { get; }
 
     Task AddAccount(Account account);
 

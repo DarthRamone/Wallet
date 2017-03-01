@@ -7,7 +7,7 @@ namespace Wallet.Shared {
 
     ObservableCollection<object> Accounts { get; }
 
-    ObservableCollection<object> Transactions { get; }
+    ObservableCollection<WalletTransaction> Transactions { get; }
 
     RelayCommand AddRecordButtonAction { get; }
 

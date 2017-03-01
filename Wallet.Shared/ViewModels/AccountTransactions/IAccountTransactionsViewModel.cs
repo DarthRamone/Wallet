@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace Wallet.Shared {
   
@@ -7,7 +6,7 @@ namespace Wallet.Shared {
     
     void InitializeWithAccount(Account account);
 
-    ObservableCollection<object> Transactions { get; }
+    ObservableCollection<WalletTransaction> Transactions { get; }
 
   }
 

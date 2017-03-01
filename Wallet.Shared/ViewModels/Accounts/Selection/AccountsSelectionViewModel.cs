@@ -8,7 +8,7 @@ namespace Wallet.Shared {
   
   public class AccountsSelectionViewModel : WalletBaseViewModel, IAccountsSelectionViewModel, IDisposable {
 
-    private IAccountsRepository _accountsRepository;
+    private readonly IAccountsRepository _accountsRepository;
 
     private Account _selectedAccount;
     public Account SelectedAccount {
@@ -20,9 +20,9 @@ namespace Wallet.Shared {
       }
     }
 
-    public RelayCommand PlusButtonAction { get; private set; }
+    public RelayCommand PlusButtonAction { get; }
 
-    public ObservableCollection<object> Accounts { get; private set; }
+    public ObservableCollection<Account> Accounts { get; }
 
     public AccountsSelectionViewModel(INavigationService navigationService,
                                       IAccountsRepository accountsRepository,
@@ -30,7 +30,7 @@ namespace Wallet.Shared {
       : base(navigationService, 
              applicationViewModel) {
       _accountsRepository = accountsRepository;
-      Accounts = new ObservableCollection<object>(_accountsRepository.Items);
+      Accounts = new ObservableCollection<Account>(_accountsRepository.Items);
 
       _accountsRepository.OnItemsInserted += ItemsInserted;
 
@@ -39,7 +39,7 @@ namespace Wallet.Shared {
       }, () => true);
     }
 
-    void ItemsInserted(object sender, int[] e) {
+    private void ItemsInserted(object sender, int[] e) {
       Accounts.Add(_accountsRepository.Items[e[0]]);
     }
 

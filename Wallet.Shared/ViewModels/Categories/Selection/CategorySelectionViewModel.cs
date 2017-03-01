@@ -21,7 +21,7 @@ namespace Wallet.Shared {
 
     public RelayCommand AddCategoryAction { get; private set; }
 
-    public ObservableCollection<object> Categories { get; }
+    public ObservableCollection<Category> Categories { get; }
 
     public CategorySelectionViewModel(INavigationService navigationService,
                                       IApplicationViewModel applicationViewModel,
@@ -30,7 +30,7 @@ namespace Wallet.Shared {
 
       _categoriesRepository = categoriesRepository;
 
-      Categories = new ObservableCollection<object>(_categoriesRepository.Items);
+      Categories = new ObservableCollection<Category>(_categoriesRepository.Items);
 
       _categoriesRepository.OnItemsInserted += ItemsInserted;
 

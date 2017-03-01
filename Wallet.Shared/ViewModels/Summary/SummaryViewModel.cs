@@ -8,11 +8,11 @@ namespace Wallet.Shared {
   
   public class SummaryViewModel : WalletBaseViewModel, ISummaryViewModel, IDisposable {
 
-    private IAccountsRepository _accountsRepository;
-    private ITransactionsRepository _transactionsRepository;
+    private readonly IAccountsRepository _accountsRepository;
+    private readonly ITransactionsRepository _transactionsRepository;
 
-    public ObservableCollection<object> Accounts { get; private set; }
-    public ObservableCollection<object> Transactions { get; private set; }
+    public ObservableCollection<object> Accounts { get; }
+    public ObservableCollection<WalletTransaction> Transactions { get; }
 
     public RelayCommand<Account> AccountSelected { get; private set; }
     public RelayCommand AddRecordButtonAction { get; private set; }
@@ -33,13 +33,13 @@ namespace Wallet.Shared {
       SetupCommands();
 
       Accounts = new ObservableCollection<object>(_accountsRepository.Items);
-      Transactions = new ObservableCollection<object>(_transactionsRepository.SortedTransactions);
+      Transactions = new ObservableCollection<WalletTransaction>(_transactionsRepository.SortedTransactions);
 
       _accountsRepository.OnItemsInserted += AccountItemsInserted;
       _transactionsRepository.OnItemsInserted += TransactionItemsInserted;
     }
 
-    void SetupCommands() {
+    private void SetupCommands() {
 
       AddRecordButtonAction = new RelayCommand(() => {
         _navigationService.NavigateTo(_applicationViewModel.AddRecordViewControllerKey);
@@ -50,7 +50,7 @@ namespace Wallet.Shared {
       }, account => true);
     }
 
-    async void Initialize(ICategoriesRepository catsRepo, IAccountsRepository accsRepo) {
+    private async void Initialize(ICategoriesRepository catsRepo, IAccountsRepository accsRepo) {
       
       await catsRepo.Add(new Category { Name = "Transfer" });
       await catsRepo.Add(new Category { Name = "Drinks" });
@@ -62,20 +62,20 @@ namespace Wallet.Shared {
       await accsRepo.Add(new Account { Name = "Credit card", Currency = "usd", IsCash = false });
     }
 
-    void ItemsDeleted(object sender, int[] e) {
+    private void ItemsDeleted(object sender, int[] e) {
       throw new NotImplementedException();
     }
 
-    void TransactionItemsInserted(object sender, int[] e) {
+    private void TransactionItemsInserted(object sender, int[] e) {
       var items = e.Select(index => _transactionsRepository.Items[index]);
       foreach (var item in items) Transactions.Insert(0, item);
     }
 
-    void AccountItemsInserted(object sender, int[] e) {
+    private void AccountItemsInserted(object sender, int[] e) {
       Accounts.Add(_accountsRepository.Items[e[0]]);
     }
 
-    void ItemsModified(object sender, int[] e) {
+    private void ItemsModified(object sender, int[] e) {
       throw new NotImplementedException();
     }
 

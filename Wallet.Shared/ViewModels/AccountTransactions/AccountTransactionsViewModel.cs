@@ -10,7 +10,7 @@ namespace Wallet.Shared {
 
     private Account _account;
 
-    private ITransactionsRepository _transactionsRepository;
+    private readonly ITransactionsRepository _transactionsRepository;
 
     private List<WalletTransaction> _transactionsForAccount {
       get {
@@ -18,7 +18,7 @@ namespace Wallet.Shared {
       }
     }
 
-    public ObservableCollection<object> Transactions { get; private set; }
+    public ObservableCollection<WalletTransaction> Transactions { get; }
 
     public AccountTransactionsViewModel(INavigationService navigationService,
                                         IApplicationViewModel applicationViewModel,
@@ -26,7 +26,7 @@ namespace Wallet.Shared {
       : base(navigationService, applicationViewModel) {
 
       _transactionsRepository = transactionsRepository;
-      Transactions = new ObservableCollection<object>();
+      Transactions = new ObservableCollection<WalletTransaction>();
       _transactionsRepository.OnItemsInserted += ItemsInserted;
     }
 

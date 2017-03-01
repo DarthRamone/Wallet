@@ -21,17 +21,16 @@ namespace Wallet {
       CategoriesTableView.RegisterNibForCellReuse(CategoryTableViewCell.Nib, CategoryTableViewCell.Key);
       CategoriesTableView.Source = _viewModel.Categories.GetTableViewSource(BindCell, 
                                                                             CategoryTableViewCell.Key, 
-                                                                            () => new TableViewSourceExtension<object>(CategorySelected));
+                                                                            () => new TableViewSourceExtension<Category>(CategorySelected));
       AddCategoriesButton.SetCommand(_viewModel.AddCategoryAction);
     }
 
-    void BindCell(UITableViewCell cell, object model, NSIndexPath indexPath) {
+    private void BindCell(UITableViewCell cell, Category category, NSIndexPath indexPath) {
       var categoryCell = cell as CategoryTableViewCell;
-      var category = model as Category;
       categoryCell.TextLabel.Text = category.Name;
     }
 
-    void CategorySelected(object item) {
+    private void CategorySelected(object item) {
       _viewModel.SelectedCategory = item as Category;
       _addRecordViewModel.RightButtonText = (item as Category).Name;
     }

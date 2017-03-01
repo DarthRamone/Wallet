@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.Linq;
 using CoreGraphics;
 using Foundation;
@@ -11,7 +10,7 @@ using Wallet.Shared;
 namespace Wallet {
   public partial class SummaryViewController : WalletBaseViewController {
 
-    private ISummaryViewModel _viewModel;
+    private readonly ISummaryViewModel _viewModel;
 
     private ObservableCollectionViewSource<object, AccountCollectionViewCell> _source;
 
@@ -34,7 +33,7 @@ namespace Wallet {
 
       // TableView
       TransactionsTableView.RegisterNibForCellReuse(RecordTableViewCell.Nib, RecordTableViewCell.Key);
-      TransactionsTableView.Source = _viewModel.Transactions.GetTableViewSource(BindTransactionCell, RecordTableViewCell.Key, () => new TableViewSourceExtension<object>(TransactionSelected));
+      TransactionsTableView.Source = _viewModel.Transactions.GetTableViewSource(BindTransactionCell, RecordTableViewCell.Key, () => new TableViewSourceExtension<WalletTransaction>(TransactionSelected));
 
       AccountCollectionViewHeightConstraint = NSLayoutConstraint.Create(AccountsCollectionView, NSLayoutAttribute.Height, NSLayoutRelation.Equal, 1, 70);
       View.AddConstraint(AccountCollectionViewHeightConstraint);
@@ -50,14 +49,13 @@ namespace Wallet {
 
     #region TableView
 
-    void BindTransactionCell(UITableViewCell cell, object model, NSIndexPath indexPath) {
+    private void BindTransactionCell(UITableViewCell cell, WalletTransaction transaction, NSIndexPath indexPath) {
       var transactionCell = cell as RecordTableViewCell;
-      var transaction = model as WalletTransaction;
       transactionCell.ConfigureFor(transaction);
     }
 
-    void TransactionSelected(object item) {
-      var transactions = _viewModel.Transactions.OfType<WalletTransaction>().ToList();
+    private void TransactionSelected(object item) {
+      var transactions = _viewModel.Transactions.ToList();
       var transaction = transactions.First(t => t.Id.Equals((item as WalletTransaction).Id));
       var index = transactions.IndexOf(transaction);
       var indexPath = NSIndexPath.FromRowSection(index, 0);
@@ -68,27 +66,27 @@ namespace Wallet {
 
     #region CollectionView
 
-    void BindAccountCell(AccountCollectionViewCell cell, object model, NSIndexPath indexPath) {
+    private void BindAccountCell(AccountCollectionViewCell cell, object model, NSIndexPath indexPath) {
       var account = model as Account;
       cell.AccountNameLabel.Text = account.Name;
-      cell.AccountBalanceLabel.Text = $"{account.Balance.ToString()}{CurrenciesList.GetCurrency(account.Currency).Symbol}";
+      cell.AccountBalanceLabel.Text = $"{account.Balance}{CurrenciesList.GetCurrency(account.Currency).Symbol}";
     }
 
-    void AccountSelected(object account) {
+    private void AccountSelected(object account) {
       _viewModel.AccountSelected.Execute(account);
     }
 
-    void CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
+    private void CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
       SetCollectionViewHeight();
     }
 
-    void TransactionsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
+    private void TransactionsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
       AccountsCollectionView.ReloadData();//TODO: Figure out how to reload certain cells
     }
 
     #endregion
 
-    void SetCollectionViewHeight() {
+    private void SetCollectionViewHeight() {
       var count = _viewModel.Accounts.Count;
       var insets = AccountsCollectionViewFlowLayout.SectionInset;
       var cellHeight = AccountsCollectionViewFlowLayout.ItemSize.Height;
