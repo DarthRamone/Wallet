@@ -12,6 +12,9 @@ namespace Wallet.iOS {
   partial class TransactionsWidget {
 
     [Outlet]
+    UILabel TitleLabel { get; set; }
+
+    [Outlet]
     private UITableView TransactionsTableView { get; set; }
 
     void ReleaseDesignerOutlets() {

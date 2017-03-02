@@ -26,6 +26,7 @@ namespace Wallet.iOS {
 
       _viewModel = viewModel;
 
+      TitleLabel.Text = "Transactions";
       TransactionsTableView.RegisterNibForCellReuse(RecordTableViewCell.Nib, RecordTableViewCell.Key);
       TransactionsTableView.Source = _viewModel.Transactions.GetTableViewSource(BindTransactionCell, RecordTableViewCell.Key, () => new TableViewSourceExtension<WalletTransaction>(TransactionSelected));
     }

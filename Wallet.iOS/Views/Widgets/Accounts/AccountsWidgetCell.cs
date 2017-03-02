@@ -27,7 +27,7 @@ namespace Wallet.iOS {
     public void Configure(IAccountsWidgetViewModel viewModel) {
 
       _viewModel = viewModel;
-
+      TitleLabel.Text = "Accounts";
       AccountsCollectionView.RegisterNibForCell(AccountCollectionViewCell.Nib, AccountCollectionViewCell.Key);
       _source = viewModel.Accounts.GetCollectionViewSource(BindAccountCell,
         factory: () => new CollectionViewSourceExtension<object, AccountCollectionViewCell>(AccountCollectionViewCell.Key, AccountSelected));

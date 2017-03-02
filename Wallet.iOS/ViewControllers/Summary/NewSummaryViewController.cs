@@ -70,7 +70,6 @@ namespace Wallet.iOS {
         
         if (indexPath.Row == 0) {
           var _accountWidgetCell = collectionView.DequeueReusableCell(AccountsWidgetCell.Key, indexPath) as AccountsWidgetCell;
-          _accountWidgetCell.BackgroundColor = UIColor.Blue;
           _accountWidgetCell.Configure(_accountsWidgetViewModel);
           return _accountWidgetCell;
         }
@@ -97,11 +96,11 @@ namespace Wallet.iOS {
           case 0: {
             var height = _itemHeight * (_accountsWidgetViewModel.Accounts.Count / 3);
             height += _itemHeight * (_accountsWidgetViewModel.Accounts.Count % 3);
-            height += 30;//TODO: Count height properly
+            height += 60;//TODO: Count height properly
             return new CGSize(collectionView.Frame.Width - 20, height);
           }
           default: {
-            return new CGSize(collectionView.Frame.Width - 20, 360); //TODO: Count height properly
+            return new CGSize(collectionView.Frame.Width - 20, 390); //TODO: Count height properly
           }
         }
       }

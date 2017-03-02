@@ -19,16 +19,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hr5-hd-jDx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+                        <rect key="frame" x="0.0" y="29" width="320" height="271"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tableView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLj-zn-toM">
+                        <rect key="frame" x="8" y="8" width="304" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Hr5-hd-jDx" secondAttribute="bottom" id="4Dx-u8-2SI"/>
                 <constraint firstItem="Hr5-hd-jDx" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" id="LF4-XN-pBA"/>
+                <constraint firstItem="Hr5-hd-jDx" firstAttribute="top" secondItem="PLj-zn-toM" secondAttribute="bottom" id="SF7-bx-dzN"/>
                 <constraint firstAttribute="trailing" secondItem="Hr5-hd-jDx" secondAttribute="trailing" id="Zli-f0-UXo"/>
-                <constraint firstItem="Hr5-hd-jDx" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" id="a9Z-vb-Gib"/>
+                <constraint firstItem="PLj-zn-toM" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" constant="8" id="fMF-bf-Fq6"/>
+                <constraint firstItem="PLj-zn-toM" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" constant="8" id="viP-41-Bva"/>
+                <constraint firstAttribute="trailing" secondItem="PLj-zn-toM" secondAttribute="trailing" constant="8" id="zFR-9W-4NP"/>
             </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -36,6 +46,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="TitleLabel" destination="PLj-zn-toM" id="Flv-hU-Ai7"/>
                 <outlet property="TransactionsTableView" destination="Hr5-hd-jDx" id="cEp-AO-jON"/>
             </connections>
         </collectionViewCell>

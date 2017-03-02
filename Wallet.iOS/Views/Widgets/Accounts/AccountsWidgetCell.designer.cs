@@ -12,6 +12,9 @@ namespace Wallet.iOS {
   partial class AccountsWidgetCell {
 
     [Outlet]
+    UILabel TitleLabel { get; set; }
+
+    [Outlet]
     UICollectionView AccountsCollectionView { get; set; }
 
     [Outlet]

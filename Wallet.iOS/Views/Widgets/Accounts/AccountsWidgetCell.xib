@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Fm3-i9-Gwj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                        <rect key="frame" x="0.0" y="29" width="320" height="121"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h7X-7c-B8b">
                             <size key="itemSize" width="50" height="50"/>
@@ -28,13 +28,23 @@
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                     </collectionView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWj-OY-uy2">
+                        <rect key="frame" x="8" y="8" width="304" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="CWj-OY-uy2" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" constant="8" id="Bzg-Wb-xSB"/>
                 <constraint firstAttribute="trailing" secondItem="Fm3-i9-Gwj" secondAttribute="trailing" id="Gx7-23-EbE"/>
+                <constraint firstAttribute="trailing" secondItem="CWj-OY-uy2" secondAttribute="trailing" constant="8" id="RXC-nC-UrT"/>
+                <constraint firstItem="CWj-OY-uy2" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" constant="8" id="THY-Dc-05d"/>
                 <constraint firstAttribute="bottom" secondItem="Fm3-i9-Gwj" secondAttribute="bottom" id="g6A-F5-vKY"/>
-                <constraint firstItem="Fm3-i9-Gwj" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" id="oDv-Hx-EMC"/>
                 <constraint firstItem="Fm3-i9-Gwj" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" id="rRn-XN-Kd9"/>
+                <constraint firstItem="Fm3-i9-Gwj" firstAttribute="top" secondItem="CWj-OY-uy2" secondAttribute="bottom" id="u79-xl-zT4"/>
             </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -44,6 +54,7 @@
             <connections>
                 <outlet property="AccountsCollectionView" destination="Fm3-i9-Gwj" id="leL-fb-an9"/>
                 <outlet property="AccountsCollectionViewFlowLayout" destination="h7X-7c-B8b" id="6oi-Sq-6fM"/>
+                <outlet property="TitleLabel" destination="CWj-OY-uy2" id="Jit-Wg-O3A"/>
             </connections>
         </collectionViewCell>
     </objects>
