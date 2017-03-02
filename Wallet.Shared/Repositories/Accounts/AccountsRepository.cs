@@ -1,7 +1,7 @@
 ﻿using System;
 using Realms;
-using Realms.Sync;
 using Wallet.Shared.Models;
+using Wallet.Shared.Providers;
 
 namespace Wallet.Shared.Repositories {
   public class AccountsRepository : BaseRepository<Account>, IAccountsRepository {
@@ -10,7 +10,7 @@ namespace Wallet.Shared.Repositories {
     public override event EventHandler<int[]> OnItemsInserted = delegate { };
     public override event EventHandler<int[]> OnItemsModified = delegate { };
 
-    public AccountsRepository(SyncConfiguration configuration) : base(configuration) {
+    public AccountsRepository(ISyncConfigurationsProvider configurationsProvider) : base(configurationsProvider) {
       _items.SubscribeForNotifications((sender, changes, error) => {
 
         if (changes != null) {

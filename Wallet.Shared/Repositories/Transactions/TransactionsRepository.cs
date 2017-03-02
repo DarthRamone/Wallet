@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Realms;
-using Realms.Sync;
 using Wallet.Shared.Models;
+using Wallet.Shared.Providers;
 
 namespace Wallet.Shared.Repositories {
   
@@ -21,7 +21,7 @@ namespace Wallet.Shared.Repositories {
     public override event EventHandler<int[]> OnItemsInserted = delegate { };
     public override event EventHandler<int[]> OnItemsModified = delegate { };
 
-    public TransactionsRepository(SyncConfiguration configuration) : base(configuration) {
+    public TransactionsRepository(ISyncConfigurationsProvider configurationsProvider) : base(configurationsProvider) {
 
       _transactions.SubscribeForNotifications((sender, changes, error) => {
 

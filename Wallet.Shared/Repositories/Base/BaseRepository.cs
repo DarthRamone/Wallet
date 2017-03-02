@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Realms;
 using Realms.Sync;
+using Wallet.Shared.Providers;
 
 namespace Wallet.Shared.Repositories {
   
@@ -20,8 +21,8 @@ namespace Wallet.Shared.Repositories {
     public abstract event EventHandler<int[]> OnItemsInserted;
     public abstract event EventHandler<int[]> OnItemsModified;
 
-    public BaseRepository(SyncConfiguration configuration) {
-      _realm = Realm.GetInstance(configuration);
+    public BaseRepository(ISyncConfigurationsProvider configurationsProvider) {
+      _realm = Realm.GetInstance(configurationsProvider.ActiveConfiguration);
     }
 
     public async Task Add(T item) {

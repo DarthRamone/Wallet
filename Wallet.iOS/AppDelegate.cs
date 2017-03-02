@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using UIKit;
-using Wallet.Shared.ViewModels;
+using Wallet.Shared.Providers;
 
 namespace Wallet.iOS
 {
@@ -32,6 +32,8 @@ namespace Wallet.iOS
 
       var navigationService = new NavigationService();
       unityContainer.RegisterInstance<INavigationService>(navigationService);
+      unityContainer.RegisterType<ISyncConfigurationsProvider, SyncConfigurationsProvider>(
+        new ContainerControlledLifetimeManager());
 
       var loadingViewController = new LoadingVIewController();
 

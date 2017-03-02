@@ -32,6 +32,8 @@
     <Compile Include="Models\WalletTransaction.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Providers\ISyncConfigurationsProvider.cs" />
+    <Compile Include="Providers\SyncConfigurationsProvider.cs" />
     <Compile Include="Repositories\Accounts\AccountsRepository.cs" />
     <Compile Include="Repositories\Categories\CategoriesRepository.cs" />
     <Compile Include="Repositories\Transactions\TransactionsRepository.cs" />

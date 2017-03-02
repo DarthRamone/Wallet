@@ -1,5 +1,4 @@
 ﻿using Microsoft.Practices.Unity;
-using Realms.Sync;
 using Wallet.Shared.Repositories;
 using Wallet.Shared.ViewModels;
 
@@ -7,19 +6,11 @@ namespace Wallet.Shared
 {
   public class CoreLocator
   {
-    public CoreLocator(IUnityContainer container, SyncConfiguration configuration)
+    public CoreLocator(IUnityContainer container)
     {
-      var accountsRepository = new AccountsRepository(configuration);
-      var categoriesRepository = new CategoriesRepository(configuration);
-      var transactionsRepository = new TransactionsRepository(configuration);
-
-      container.RegisterInstance<IAccountsRepository>(accountsRepository);
-      container.RegisterInstance<ICategoriesRepository>(categoriesRepository);
-      container.RegisterInstance<ITransactionsRepository>(transactionsRepository);
-
-      //container.RegisterType<IAccountsRepository, AccountsRepository>(new ContainerControlledLifetimeManager());
-      //container.RegisterType<ICategoriesRepository, CategoriesRepository>(new ContainerControlledLifetimeManager());
-      //container.RegisterType<ITransactionsRepository, TransactionsRepository>(new ContainerControlledLifetimeManager());
+      container.RegisterType<IAccountsRepository, AccountsRepository>(new ContainerControlledLifetimeManager());
+      container.RegisterType<ICategoriesRepository, CategoriesRepository>(new ContainerControlledLifetimeManager());
+      container.RegisterType<ITransactionsRepository, TransactionsRepository>(new ContainerControlledLifetimeManager());
 
       container.RegisterType<ISummaryViewModel, SummaryViewModel>();
       container.RegisterType<IAddRecordViewModel, AddRecordViewModel>();
