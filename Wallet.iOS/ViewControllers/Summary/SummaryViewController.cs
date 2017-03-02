@@ -28,6 +28,7 @@ namespace Wallet.iOS {
       AccountsCollectionView.RegisterNibForCell(AccountCollectionViewCell.Nib, AccountCollectionViewCell.Key);
       _source = _viewModel.Accounts.GetCollectionViewSource(BindAccountCell,
                                                   factory: () => new CollectionViewSourceExtension<object, AccountCollectionViewCell>(AccountCollectionViewCell.Key, AccountSelected));
+
       AccountsCollectionView.Source = _source;
       _viewModel.Accounts.CollectionChanged += CollectionChanged;
       _viewModel.Transactions.CollectionChanged += TransactionsCollectionChanged;

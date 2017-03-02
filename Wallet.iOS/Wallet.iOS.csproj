@@ -149,6 +149,10 @@
     <Folder Include="ViewControllers\Categories\Selections\" />
     <Folder Include="ViewControllers\Categories\Creation\" />
     <Folder Include="ViewControllers\Loading\" />
+    <Folder Include="Views\Widgets\" />
+    <Folder Include="Views\Widgets\Base\" />
+    <Folder Include="Views\Widgets\Accounts\" />
+    <Folder Include="Views\Widgets\Transactions\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -165,6 +169,9 @@
     <InterfaceDefinition Include="ViewControllers\Categories\Selections\CategoriesSelectionViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Categories\Creation\CategoryCreationViewController.xib" />
     <InterfaceDefinition Include="ViewControllers\Loading\LoadingVIewController.xib" />
+    <InterfaceDefinition Include="Views\Widgets\Accounts\AccountsWidgetCell.xib" />
+    <InterfaceDefinition Include="Views\Widgets\Transactions\TransactionsWidget.xib" />
+    <InterfaceDefinition Include="ViewControllers\Summary\NewSummaryViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -228,6 +235,18 @@
     <Compile Include="ViewControllers\Loading\LoadingVIewController.cs" />
     <Compile Include="ViewControllers\Loading\LoadingVIewController.designer.cs">
       <DependentUpon>LoadingVIewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Widgets\Accounts\AccountsWidgetCell.cs" />
+    <Compile Include="Views\Widgets\Accounts\AccountsWidgetCell.designer.cs">
+      <DependentUpon>AccountsWidgetCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Widgets\Transactions\TransactionsWidget.cs" />
+    <Compile Include="Views\Widgets\Transactions\TransactionsWidget.designer.cs">
+      <DependentUpon>TransactionsWidget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Summary\NewSummaryViewController.cs" />
+    <Compile Include="ViewControllers\Summary\NewSummaryViewController.designer.cs">
+      <DependentUpon>NewSummaryViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

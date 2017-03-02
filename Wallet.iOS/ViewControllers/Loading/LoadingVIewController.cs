@@ -51,8 +51,9 @@ namespace Wallet.iOS {
         navigationService?.Configure(Pages.AccountSelectionViewControllerKey, typeof(AccountSelectionViewController));
         navigationService?.Configure(Pages.CategorySelectionViewControllerKey, typeof(CategorySelectionViewController));
         navigationService?.Configure(Pages.AccountTransactionsViewControllerKey, typeof(AccountTransactionsViewController));
+        navigationService?.Configure(Pages.NewSummaryViewControllerKey, typeof(NewSummaryViewController));
 
-        navigationService?.NavigateTo(Pages.SummaryViewControllerKey);
+        navigationService?.NavigateTo(Pages.NewSummaryViewControllerKey);
       }
       else {
         var popup = new UIAlertController { Title = "Some shit happened" };

@@ -18,6 +18,8 @@
 
     public const string LoadingViewControllerKey = "LoadingViewControllerKey";
 
+    public const string NewSummaryViewControllerKey = "NewSummaryViewControllerKey";
+
   }
 
 }

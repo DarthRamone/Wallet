@@ -75,7 +75,7 @@ namespace Wallet.Shared.ViewModels {
     }
 
     private void AccountItemsInserted(object sender, int[] e) {
-      Accounts.Add(_accountsRepository.Items[e[0]]);
+      Accounts.Add(_accountsRepository.Items[e[0]]);//TODO
     }
 
     private void TransactionItemsModified(object sender, int[] e) {

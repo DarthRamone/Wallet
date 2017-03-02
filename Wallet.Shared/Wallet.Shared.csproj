@@ -44,6 +44,8 @@
     <Compile Include="Repositories\Categories\ICategoriesRepository.cs" />
     <Compile Include="Repositories\Accounts\IAccountsRepository.cs" />
     <Compile Include="Dependency\CoreLocator.cs" />
+    <Compile Include="ViewModels\Accounts\Widget\AccountsWidgetViewModel.cs" />
+    <Compile Include="ViewModels\Accounts\Widget\IAccountsWidgetViewModel.cs" />
     <Compile Include="ViewModels\Categories\Creation\CategoryCreationViewModel.cs" />
     <Compile Include="ViewModels\Categories\Creation\ICategoryCreationViewModel.cs" />
     <Compile Include="ViewModels\Categories\Selection\CategorySelectionViewModel.cs" />
