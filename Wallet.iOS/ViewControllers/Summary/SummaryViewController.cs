@@ -70,7 +70,7 @@ namespace Wallet.iOS {
     private void BindAccountCell(AccountCollectionViewCell cell, object model, NSIndexPath indexPath) {
       var account = model as Account;
       cell.AccountNameLabel.Text = account.Name;
-      cell.AccountBalanceLabel.Text = $"{account.Balance}{CurrenciesList.GetCurrency(account.Currency).Symbol}";
+      cell.AccountBalanceLabel.Text = account.Balance.ToString($"0.##{CurrenciesList.GetCurrency(account.Currency).Symbol}");
     }
 
     private void AccountSelected(object account) {

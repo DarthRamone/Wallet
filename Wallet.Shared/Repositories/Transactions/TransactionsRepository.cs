@@ -69,10 +69,12 @@ namespace Wallet.Shared.Repositories {
           TransferTransaction = transaction
         };
 
+        var targetAmount = CurrenciesList.Convert(sourceAccount.Currency, targetAccount.Currency, transaction.Amount);
+
         var targetTransaction = new WalletTransaction {
           Account = targetAccount,
           Category = transferCategory,
-          Amount = transaction.Amount * transaction.ExchangeRate,
+          Amount = targetAmount,
           Date = date,
           TransferTransaction = transaction
         };
@@ -85,7 +87,7 @@ namespace Wallet.Shared.Repositories {
         realm.Add(targetTransaction);
 
         sourceAccount.Balance -= transaction.Amount;
-        targetAccount.Balance += transaction.Amount;
+        targetAccount.Balance += targetAmount;
       });
     }
 
