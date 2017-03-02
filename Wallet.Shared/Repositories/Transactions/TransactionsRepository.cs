@@ -13,9 +13,7 @@ namespace Wallet.Shared.Repositories {
     private IQueryable<WalletTransaction> _transactions => _realm.All<WalletTransaction>()
       .OrderByDescending(t => t.Date);
 
-    public List<WalletTransaction> SortedTransactions => _transactions.ToList();
-
-    public List<TransferTransaction> TransferTransactions => _realm.All<TransferTransaction>().ToList();
+    public List<WalletTransaction> Transactions => _transactions.ToList();
 
     public override event EventHandler<int[]> OnItemsDeleted = delegate { };
     public override event EventHandler<int[]> OnItemsInserted = delegate { };

@@ -14,7 +14,7 @@ namespace Wallet.Shared.ViewModels {
 
     private readonly ITransactionsRepository _transactionsRepository;
 
-    private IEnumerable<WalletTransaction> TransactionsForAccount => _transactionsRepository.SortedTransactions.Where(t => t.Account.Name.Equals(_account.Name));
+    private IEnumerable<WalletTransaction> TransactionsForAccount => _transactionsRepository.Transactions.Where(t => t.Account.Name.Equals(_account.Name));
 
     public ObservableCollection<WalletTransaction> Transactions { get; }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using Wallet.Shared.Models;
@@ -35,7 +34,7 @@ namespace Wallet.Shared.ViewModels {
       SetupCommands();
 
       Accounts = new ObservableCollection<object>(_accountsRepository.Items);
-      Transactions = new ObservableCollection<WalletTransaction>(_transactionsRepository.SortedTransactions);
+      Transactions = new ObservableCollection<WalletTransaction>(_transactionsRepository.Transactions);
 
       _accountsRepository.OnItemsInserted += AccountItemsInserted;
 
@@ -73,7 +72,7 @@ namespace Wallet.Shared.ViewModels {
 
     private void TransactionItemsInserted(object sender, int[] e) {
       foreach (var index in e) {
-        Transactions.Insert(index, _transactionsRepository.SortedTransactions[index]);
+        Transactions.Insert(index, _transactionsRepository.Transactions[index]);
       }
     }
 

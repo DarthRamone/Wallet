@@ -6,9 +6,7 @@ namespace Wallet.Shared.Repositories
 {
   public interface ITransactionsRepository : IRepository<WalletTransaction>
   {
-    List<TransferTransaction> TransferTransactions { get; }
-
-    List<WalletTransaction> SortedTransactions { get; }
+    List<WalletTransaction> Transactions { get; }
 
     Task AddTransaction(WalletTransaction transaction, string categoryId, string accountId);
 
