@@ -12,6 +12,8 @@ namespace Wallet.iOS {
 
     private readonly IAccountsWidgetViewModel _accountsWidgetViewModel;
 
+    private readonly ITransactionsWidgetViewModel _transactionsWidgetViewModel;
+
     public NewSummaryViewController() : base("NewSummaryViewController") {
       _accountsWidgetViewModel = ServiceLocator.Current.GetInstance<IAccountsWidgetViewModel>();
       _accountsWidgetViewModel.Accounts.CollectionChanged += AccountsCollectionChanged;
@@ -21,6 +23,7 @@ namespace Wallet.iOS {
       base.ViewDidLoad();
       WidgetsCollectionView.BackgroundColor = UIColor.Brown;
       WidgetsCollectionView.RegisterNibForCell(AccountsWidgetCell.Nib, AccountsWidgetCell.Key);
+      WidgetsCollectionView.RegisterNibForCell(TransactionsWidget.Nib, TransactionsWidget.Key);
       WidgetsCollectionView.Source = new SummaryCollectionViewSource(_accountsWidgetViewModel);
       WidgetsCollectionView.Delegate = new SummaryCollectionViewLayoutDelegate(_accountsWidgetViewModel);
       WidgetsCollectionView.SetCollectionViewLayout(WidgetsCollectionViewFlowLayout, false);
@@ -34,7 +37,7 @@ namespace Wallet.iOS {
 
     //TODO: Unsubscribe
     private void AccountsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-
+      WidgetsCollectionView.ReloadItems(new[] { NSIndexPath.FromRowSection(0, 0) });
     }
 
 
@@ -48,12 +51,18 @@ namespace Wallet.iOS {
 
       public override nint NumberOfSections(UICollectionView collectionView) => 1;
 
-      public override nint GetItemsCount(UICollectionView collectionView, nint section) => 1;
+      public override nint GetItemsCount(UICollectionView collectionView, nint section) => 2;
 
       public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath) {
-        var cell = collectionView.DequeueReusableCell(AccountsWidgetCell.Key, indexPath) as AccountsWidgetCell;
-        cell.BackgroundColor = UIColor.Blue;
-        cell.Configure(_accountsWidgetViewModel);
+        
+        if (indexPath.Row == 0) {
+          var _accountWidgetCell = collectionView.DequeueReusableCell(AccountsWidgetCell.Key, indexPath) as AccountsWidgetCell;
+          _accountWidgetCell.BackgroundColor = UIColor.Blue;
+          _accountWidgetCell.Configure(_accountsWidgetViewModel);
+          return _accountWidgetCell;
+        }
+
+        var cell = collectionView.DequeueReusableCell(TransactionsWidget.Key, indexPath) as TransactionsWidget;
         return cell;
       }
 

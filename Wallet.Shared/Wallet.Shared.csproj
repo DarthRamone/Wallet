@@ -50,6 +50,7 @@
     <Compile Include="ViewModels\Categories\Creation\ICategoryCreationViewModel.cs" />
     <Compile Include="ViewModels\Categories\Selection\CategorySelectionViewModel.cs" />
     <Compile Include="ViewModels\Categories\Selection\ICategorySelectionViewModel.cs" />
+    <Compile Include="ViewModels\ITransactionsWidgetViewModel.cs" />
     <Compile Include="ViewModels\Summary\ISummaryViewModel.cs" />
     <Compile Include="ViewModels\Summary\SummaryViewModel.cs" />
     <Compile Include="ViewModels\Base\IWalletBaseViewModel.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="ViewModels\Accounts\Selection\IAccountsSelectionViewModel.cs" />
     <Compile Include="ViewModels\Accounts\Creation\IAccountCreationViewModel.cs" />
     <Compile Include="ViewModels\Accounts\Creation\AccountCreationViewModel.cs" />
+    <Compile Include="ViewModels\TransactionsWidgetViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe">
