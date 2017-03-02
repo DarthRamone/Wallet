@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using CoreGraphics;
 using Foundation;
+using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using UIKit;
 using Wallet.Shared.ViewModels;
@@ -10,21 +11,29 @@ namespace Wallet.iOS {
 
   public partial class NewSummaryViewController : WalletBaseViewController {
 
+    private readonly ISummaryViewModel _summaryViewModel;
+
     private readonly IAccountsWidgetViewModel _accountsWidgetViewModel;
 
     private readonly ITransactionsWidgetViewModel _transactionsWidgetViewModel;
 
     public NewSummaryViewController() : base("NewSummaryViewController") {
+      _summaryViewModel = ServiceLocator.Current.GetInstance<ISummaryViewModel>();
       _accountsWidgetViewModel = ServiceLocator.Current.GetInstance<IAccountsWidgetViewModel>();
+      _transactionsWidgetViewModel = ServiceLocator.Current.GetInstance<ITransactionsWidgetViewModel>();
+
       _accountsWidgetViewModel.Accounts.CollectionChanged += AccountsCollectionChanged;
     }
 
     public override void ViewDidLoad() {
       base.ViewDidLoad();
+
+      AddRecordButton.SetCommand(_summaryViewModel.AddRecordButtonAction);
+
       WidgetsCollectionView.BackgroundColor = UIColor.Brown;
       WidgetsCollectionView.RegisterNibForCell(AccountsWidgetCell.Nib, AccountsWidgetCell.Key);
       WidgetsCollectionView.RegisterNibForCell(TransactionsWidget.Nib, TransactionsWidget.Key);
-      WidgetsCollectionView.Source = new SummaryCollectionViewSource(_accountsWidgetViewModel);
+      WidgetsCollectionView.Source = new SummaryCollectionViewSource(_accountsWidgetViewModel, _transactionsWidgetViewModel);
       WidgetsCollectionView.Delegate = new SummaryCollectionViewLayoutDelegate(_accountsWidgetViewModel);
       WidgetsCollectionView.SetCollectionViewLayout(WidgetsCollectionViewFlowLayout, false);
     }
@@ -44,9 +53,13 @@ namespace Wallet.iOS {
     public class SummaryCollectionViewSource : UICollectionViewSource {
 
       private readonly IAccountsWidgetViewModel _accountsWidgetViewModel;
+      private readonly ITransactionsWidgetViewModel _transactionsWidgetViewModel;
 
-      public SummaryCollectionViewSource(IAccountsWidgetViewModel accountsWidgetViewModel) {
+      public SummaryCollectionViewSource(
+        IAccountsWidgetViewModel accountsWidgetViewModel,
+        ITransactionsWidgetViewModel transactionsWidgetViewModel) {
         _accountsWidgetViewModel = accountsWidgetViewModel;
+        _transactionsWidgetViewModel = transactionsWidgetViewModel;
       }
 
       public override nint NumberOfSections(UICollectionView collectionView) => 1;
@@ -63,6 +76,7 @@ namespace Wallet.iOS {
         }
 
         var cell = collectionView.DequeueReusableCell(TransactionsWidget.Key, indexPath) as TransactionsWidget;
+        cell.Configure(_transactionsWidgetViewModel);
         return cell;
       }
 

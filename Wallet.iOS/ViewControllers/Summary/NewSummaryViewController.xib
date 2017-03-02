@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewSummaryViewController">
             <connections>
+                <outlet property="AddRecordButton" destination="sXd-3K-REh" id="j3k-yV-vpc"/>
                 <outlet property="WidgetsCollectionView" destination="Idg-Jf-nv5" id="Etm-Va-aNh"/>
                 <outlet property="WidgetsCollectionViewFlowLayout" destination="XFR-hj-fl2" id="AxT-bK-yhI"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
@@ -31,6 +32,23 @@
                         <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXd-3K-REh">
+                    <rect key="frame" x="305" y="597" width="50" height="50"/>
+                    <color key="backgroundColor" red="0.68619232538059405" green="0.45580592077738619" blue="0.91624365482233505" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="ufh-9b-Pxk"/>
+                        <constraint firstAttribute="height" constant="50" id="uoJ-Kx-2lX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                    <state key="normal" title="+">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -38,6 +56,8 @@
                 <constraint firstItem="Idg-Jf-nv5" firstAttribute="top" secondItem="2" secondAttribute="top" id="JLt-Bb-S1K"/>
                 <constraint firstAttribute="trailing" secondItem="Idg-Jf-nv5" secondAttribute="trailing" id="NWY-vH-vic"/>
                 <constraint firstItem="Idg-Jf-nv5" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="WB0-VP-8T3"/>
+                <constraint firstAttribute="bottom" secondItem="sXd-3K-REh" secondAttribute="bottom" constant="20" id="b6J-o9-AHY"/>
+                <constraint firstAttribute="trailing" secondItem="sXd-3K-REh" secondAttribute="trailing" constant="20" id="cNl-Uc-dzu"/>
             </constraints>
         </view>
     </objects>

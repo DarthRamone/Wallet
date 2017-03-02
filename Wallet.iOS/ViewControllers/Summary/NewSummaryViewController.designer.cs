@@ -20,6 +20,9 @@ namespace Wallet.iOS {
     [Outlet]
     private UICollectionViewFlowLayout WidgetsCollectionViewFlowLayout { get; set; }
 
+    [Outlet]
+    private UIButton AddRecordButton { get; set; }
+
     void ReleaseDesignerOutlets() {
     }
   }

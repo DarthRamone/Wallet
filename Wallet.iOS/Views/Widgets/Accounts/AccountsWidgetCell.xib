@@ -36,6 +36,11 @@
                 <constraint firstItem="Fm3-i9-Gwj" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" id="oDv-Hx-EMC"/>
                 <constraint firstItem="Fm3-i9-Gwj" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" id="rRn-XN-Kd9"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="3"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="AccountsCollectionView" destination="Fm3-i9-Gwj" id="leL-fb-an9"/>
                 <outlet property="AccountsCollectionViewFlowLayout" destination="h7X-7c-B8b" id="6oi-Sq-6fM"/>

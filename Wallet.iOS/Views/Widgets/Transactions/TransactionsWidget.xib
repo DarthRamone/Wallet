@@ -30,6 +30,14 @@
                 <constraint firstAttribute="trailing" secondItem="Hr5-hd-jDx" secondAttribute="trailing" id="Zli-f0-UXo"/>
                 <constraint firstItem="Hr5-hd-jDx" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" id="a9Z-vb-Gib"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="3"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="TransactionsTableView" destination="Hr5-hd-jDx" id="cEp-AO-jON"/>
+            </connections>
         </collectionViewCell>
     </objects>
 </document>

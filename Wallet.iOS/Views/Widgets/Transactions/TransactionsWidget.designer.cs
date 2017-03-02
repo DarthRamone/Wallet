@@ -5,10 +5,15 @@
 // Manual changes to this file will not be maintained.
 //
 using Foundation;
+using UIKit;
 
 namespace Wallet.iOS {
   [Register("TransactionsWidget")]
   partial class TransactionsWidget {
+
+    [Outlet]
+    private UITableView TransactionsTableView { get; set; }
+
     void ReleaseDesignerOutlets() {
     }
   }
