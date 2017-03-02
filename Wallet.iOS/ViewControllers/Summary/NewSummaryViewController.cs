@@ -87,7 +87,7 @@ namespace Wallet.iOS {
             return new CGSize(collectionView.Frame.Width - 20, height);
           }
           default: {
-            return new CGSize(collectionView.Frame.Width - 20, 200);
+            return new CGSize(collectionView.Frame.Width - 20, 500);
           }
         }
       }
