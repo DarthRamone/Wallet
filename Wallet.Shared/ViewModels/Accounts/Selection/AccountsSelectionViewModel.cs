@@ -27,17 +27,15 @@ namespace Wallet.Shared.ViewModels {
     public ObservableCollection<Account> Accounts { get; }
 
     public AccountsSelectionViewModel(INavigationService navigationService,
-                                      IAccountsRepository accountsRepository,
-                                      IApplicationViewModel applicationViewModel)
-      : base(navigationService, 
-             applicationViewModel) {
+                                      IAccountsRepository accountsRepository)
+      : base(navigationService) {
       _accountsRepository = accountsRepository;
       Accounts = new ObservableCollection<Account>(_accountsRepository.Items);
 
       _accountsRepository.OnItemsInserted += ItemsInserted;
 
       PlusButtonAction = new RelayCommand(() => {
-        _navigationService.NavigateTo(_applicationViewModel.AccountCreationViewControllerKey);
+        _navigationService.NavigateTo(Pages.AccountCreationViewControllerKey);
       }, () => true);
     }
 

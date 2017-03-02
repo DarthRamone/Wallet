@@ -14,9 +14,8 @@ namespace Wallet.Shared.ViewModels {
     public RelayCommand CreateCategoryAction { get; private set; }
 
     public CategoryCreationViewModel(INavigationService navigationService,
-      IApplicationViewModel applicationViewModel,
       ICategoriesRepository categoriesRepository)
-      : base(navigationService, applicationViewModel) {
+      : base(navigationService) {
 
       _categoriesRepository = categoriesRepository;
 

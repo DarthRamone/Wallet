@@ -19,9 +19,8 @@ namespace Wallet.Shared.ViewModels {
     public ObservableCollection<WalletTransaction> Transactions { get; }
 
     public AccountTransactionsViewModel(INavigationService navigationService,
-                                        IApplicationViewModel applicationViewModel,
                                         ITransactionsRepository transactionsRepository)
-      : base(navigationService, applicationViewModel) {
+      : base(navigationService) {
 
       _transactionsRepository = transactionsRepository;
       Transactions = new ObservableCollection<WalletTransaction>();

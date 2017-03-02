@@ -48,9 +48,8 @@ namespace Wallet.Shared.ViewModels {
     public RelayCommand CreateButtonAction { get; private set;  }
 
     public AccountCreationViewModel(INavigationService navigationService,
-                                    IApplicationViewModel applicationViewModel,
                                     IAccountsRepository accountsRepository)
-      : base(navigationService, applicationViewModel) {
+      : base(navigationService) {
 
       _accountsRepository = accountsRepository;
 

@@ -26,9 +26,8 @@ namespace Wallet.Shared.ViewModels {
     public ObservableCollection<Category> Categories { get; }
 
     public CategorySelectionViewModel(INavigationService navigationService,
-                                      IApplicationViewModel applicationViewModel,
                                       ICategoriesRepository categoriesRepository) 
-      : base(navigationService, applicationViewModel) {
+      : base(navigationService) {
 
       _categoriesRepository = categoriesRepository;
 
@@ -41,7 +40,7 @@ namespace Wallet.Shared.ViewModels {
 
     private void SetCommands() {
       AddCategoryAction = new RelayCommand(() => {
-        _navigationService.NavigateTo(_applicationViewModel.CategoryCreationViewControllerKey);
+        _navigationService.NavigateTo(Pages.CategoryCreationViewControllerKey);
       }, () => true);
     }
 

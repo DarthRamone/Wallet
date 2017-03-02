@@ -9,16 +9,16 @@ namespace Wallet.Shared.ViewModels {
 
   public class AddRecordViewModel : WalletBaseViewModel, IAddRecordViewModel {
 
-    const string ZERO = "0";
-    const string ONE = "1";
-    const string TWO = "2";
-    const string THREE = "3";
-    const string FOUR = "4";
-    const string FIVE = "5";
-    const string SIX = "6";
-    const string SEVEN = "7";
-    const string EIGHT = "8";
-    const string NINE = "9";
+    private const string Zero = "0";
+    private const string One = "1";
+    private const string Two = "2";
+    private const string Three = "3";
+    private const string Four = "4";
+    private const string Five = "5";
+    private const string Six = "6";
+    private const string Seven = "7";
+    private const string Eight = "8";
+    private const string Nine = "9";
 
     //HACK
     public bool IsRightButtonTapped { get; set; }
@@ -30,7 +30,7 @@ namespace Wallet.Shared.ViewModels {
     private readonly ICategoriesRepository _categoriesRepository;
     private readonly ITransactionsRepository _transactionsRepository;
 
-    private string _amountLabelText = ZERO;
+    private string _amountLabelText = Zero;
     public string AmountLabelText {
       get { return _amountLabelText; }
       set {
@@ -117,11 +117,10 @@ namespace Wallet.Shared.ViewModels {
     public IUIStylingsModel MainStyling { get; private set; }
 
     public AddRecordViewModel(INavigationService navService,
-                              IApplicationViewModel appViewModel,
                               IAccountsRepository accountsRepository,
                               ICategoriesRepository categoriesRepository,
                               ITransactionsRepository transactionsRepository)
-      : base(navService, appViewModel) {
+      : base(navService) {
 
       _accountsRepository = accountsRepository;
       _categoriesRepository = categoriesRepository;
@@ -190,86 +189,86 @@ namespace Wallet.Shared.ViewModels {
       }, () => true);
 
       Button0Action = new RelayCommand(() => {
-        if (AmountLabelText.Equals(ZERO))
+        if (AmountLabelText.Equals(Zero))
           return;
-        AmountLabelText = AmountLabelText + ZERO;
+        AmountLabelText = AmountLabelText + Zero;
       }, () => true);
 
       Button1Action = new RelayCommand(() => {
-        if (AmountLabelText.Equals(ZERO)) {
-          AmountLabelText = ONE;
+        if (AmountLabelText.Equals(Zero)) {
+          AmountLabelText = One;
           return;
         }
-        AmountLabelText = AmountLabelText + ONE;
+        AmountLabelText = AmountLabelText + One;
       }, () => true);
 
       Button2Action = new RelayCommand(() => {
-        if (AmountLabelText.Equals(ZERO)) {
-          AmountLabelText = TWO;
+        if (AmountLabelText.Equals(Zero)) {
+          AmountLabelText = Two;
           return;
         }
-        AmountLabelText = AmountLabelText + TWO;
+        AmountLabelText = AmountLabelText + Two;
       }, () => true);
 
       Button3Action = new RelayCommand(() => {
-        if (AmountLabelText.Equals(ZERO)) {
-          AmountLabelText = THREE;
+        if (AmountLabelText.Equals(Zero)) {
+          AmountLabelText = Three;
           return;
         }
-        AmountLabelText = AmountLabelText + THREE;
+        AmountLabelText = AmountLabelText + Three;
       }, () => true);
 
       Button4Action = new RelayCommand(() => {
-        if (AmountLabelText.Equals(ZERO)) {
-          AmountLabelText = FOUR;
+        if (AmountLabelText.Equals(Zero)) {
+          AmountLabelText = Four;
           return;
         }
-        AmountLabelText = AmountLabelText + FOUR;
+        AmountLabelText = AmountLabelText + Four;
       }, () => true);
 
       Button5Action = new RelayCommand(() => {
-        if (AmountLabelText.Equals(ZERO)) {
-          AmountLabelText = FIVE;
+        if (AmountLabelText.Equals(Zero)) {
+          AmountLabelText = Five;
           return;
         }
-        AmountLabelText = AmountLabelText + FIVE;
+        AmountLabelText = AmountLabelText + Five;
       }, () => true);
 
       Button6Action = new RelayCommand(() => {
-        if (AmountLabelText.Equals(ZERO)) {
-          AmountLabelText = SIX;
+        if (AmountLabelText.Equals(Zero)) {
+          AmountLabelText = Six;
           return;
         }
-        AmountLabelText = AmountLabelText + SIX;
+        AmountLabelText = AmountLabelText + Six;
       }, () => true);
 
       Button7Action = new RelayCommand(() => {
-        if (AmountLabelText.Equals(ZERO)) {
-          AmountLabelText = SEVEN;
+        if (AmountLabelText.Equals(Zero)) {
+          AmountLabelText = Seven;
           return;
         }
-        AmountLabelText = AmountLabelText + SEVEN;
+        AmountLabelText = AmountLabelText + Seven;
       }, () => true);
 
       Button8Action = new RelayCommand(() => {
-        if (AmountLabelText.Equals(ZERO)) {
-          AmountLabelText = EIGHT;
+        if (AmountLabelText.Equals(Zero)) {
+          AmountLabelText = Eight;
           return;
         }
-        AmountLabelText = AmountLabelText + EIGHT;
+        AmountLabelText = AmountLabelText + Eight;
       }, () => true);
 
       Button9Action = new RelayCommand(() => {
-        if (AmountLabelText.Equals(ZERO)) {
-          AmountLabelText = NINE;
+        if (AmountLabelText.Equals(Zero)) {
+          AmountLabelText = Nine;
           return;
         }
-        AmountLabelText = AmountLabelText + NINE;
+        AmountLabelText = AmountLabelText + Nine;
       }, () => true);
 
       DeleteButtonAction = new RelayCommand(() => {
         if (AmountLabelText.Length == 1) {
-          AmountLabelText = ZERO;
+          AmountLabelText = Zero;
           return;
         }
         AmountLabelText = AmountLabelText.Remove(AmountLabelText.Length - 1);
@@ -280,15 +279,15 @@ namespace Wallet.Shared.ViewModels {
 
       LeftButtonAction = new RelayCommand(() => {
         IsRightButtonTapped = false;
-        _navigationService.NavigateTo(_applicationViewModel.AccountSelectionViewControllerKey, this);
+        _navigationService.NavigateTo(Pages.AccountSelectionViewControllerKey, this);
       }, () => true);
 
       RightButtonAction = new RelayCommand(() => {
         IsRightButtonTapped = true;
         if (TransactionType == TransactionType.TRANSFER) {
-          _navigationService.NavigateTo(_applicationViewModel.AccountSelectionViewControllerKey, this);
+          _navigationService.NavigateTo(Pages.AccountSelectionViewControllerKey, this);
         } else {
-          _navigationService.NavigateTo(_applicationViewModel.CategorySelectionViewControllerKey, this);
+          _navigationService.NavigateTo(Pages.CategorySelectionViewControllerKey, this);
         }
       }, () => true);
 

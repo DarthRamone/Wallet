@@ -28,6 +28,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Enums\Pages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\WalletTransaction.cs" />
     <Compile Include="Models\Category.cs" />
@@ -49,8 +50,6 @@
     <Compile Include="ViewModels\Categories\Selection\ICategorySelectionViewModel.cs" />
     <Compile Include="ViewModels\Summary\ISummaryViewModel.cs" />
     <Compile Include="ViewModels\Summary\SummaryViewModel.cs" />
-    <Compile Include="ViewModels\Application\IApplicationViewModel.cs" />
-    <Compile Include="ViewModels\Application\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\Base\IWalletBaseViewModel.cs" />
     <Compile Include="ViewModels\Base\WalletBaseViewModel.cs" />
     <Compile Include="ViewModels\AddRecord\IAddRecordViewModel.cs" />
@@ -111,7 +110,6 @@
     <Folder Include="Dependency\" />
     <Folder Include="ViewModels\" />
     <Folder Include="ViewModels\Summary\" />
-    <Folder Include="ViewModels\Application\" />
     <Folder Include="ViewModels\Base\" />
     <Folder Include="ViewModels\AddRecord\" />
     <Folder Include="ViewModels\Accounts\" />

@@ -19,12 +19,10 @@ namespace Wallet.Shared.ViewModels {
     public RelayCommand AddRecordButtonAction { get; private set; }
 
     public SummaryViewModel(INavigationService navigationService,
-                             IApplicationViewModel applicationViewModel,
                              ITransactionsRepository transactionsRepository,
                              ICategoriesRepository categoriesRepository,
                              IAccountsRepository accountsRepository)
-      : base(navigationService,
-             applicationViewModel) {
+      : base(navigationService) {
 
       _accountsRepository = accountsRepository;
       _transactionsRepository = transactionsRepository;
@@ -46,11 +44,11 @@ namespace Wallet.Shared.ViewModels {
     private void SetupCommands() {
 
       AddRecordButtonAction = new RelayCommand(() => {
-        _navigationService.NavigateTo(_applicationViewModel.AddRecordViewControllerKey);
+        _navigationService.NavigateTo(Pages.AddRecordViewControllerKey);
       }, () => true);
 
       AccountSelected = new RelayCommand<Account>(account => {
-        _navigationService.NavigateTo(_applicationViewModel.AccountTransactionsViewControllerKey, account);
+        _navigationService.NavigateTo(Pages.AccountTransactionsViewControllerKey, account);
       }, account => true);
     }
 

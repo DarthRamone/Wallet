@@ -7,13 +7,9 @@ namespace Wallet.Shared.ViewModels
   {
     protected INavigationService _navigationService;
 
-    protected IApplicationViewModel _applicationViewModel;
-
-    public WalletBaseViewModel(INavigationService navigationService,
-                               IApplicationViewModel applicationViewModel)
+    public WalletBaseViewModel(INavigationService navigationService)
     {
       _navigationService = navigationService;
-      _applicationViewModel = applicationViewModel;
     }
   }
 }

@@ -19,7 +19,6 @@ namespace Wallet.Shared
 
       UnityContainer.RegisterType<ISummaryViewModel, SummaryViewModel>();
       UnityContainer.RegisterType<IAddRecordViewModel, AddRecordViewModel>();
-      UnityContainer.RegisterType<IApplicationViewModel, ApplicationViewModel>();
       UnityContainer.RegisterType<IAccountCreationViewModel, AccountCreationViewModel>();
       UnityContainer.RegisterType<ICategoryCreationViewModel, CategoryCreationViewModel>();
       UnityContainer.RegisterType<IAccountsSelectionViewModel, AccountsSelectionViewModel>();

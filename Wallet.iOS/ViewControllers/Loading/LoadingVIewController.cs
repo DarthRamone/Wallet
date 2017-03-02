@@ -3,8 +3,8 @@ using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using UIKit;
+using Wallet.Shared;
 using Wallet.Shared.Providers;
-using Wallet.Shared.ViewModels;
 
 namespace Wallet.iOS {
   
@@ -43,23 +43,16 @@ namespace Wallet.iOS {
         var locator = new iOSLocator(unityContainer);
         locator.RegisterTypes();
 
-        var applicationViewModel = ServiceLocator.Current.GetInstance<IApplicationViewModel>();
+        navigationService?.Configure(Pages.LoadingViewControllerKey, typeof(LoadingVIewController));
+        navigationService?.Configure(Pages.SummaryViewControllerKey, typeof(SummaryViewController));
+        navigationService?.Configure(Pages.AddRecordViewControllerKey, typeof(AddRecordViewController));
+        navigationService?.Configure(Pages.AccountCreationViewControllerKey, typeof(AccountCreationViewController));
+        navigationService?.Configure(Pages.CategoryCreationViewControllerKey, typeof(CategoryCreationViewController));
+        navigationService?.Configure(Pages.AccountSelectionViewControllerKey, typeof(AccountSelectionViewController));
+        navigationService?.Configure(Pages.CategorySelectionViewControllerKey, typeof(CategorySelectionViewController));
+        navigationService?.Configure(Pages.AccountTransactionsViewControllerKey, typeof(AccountTransactionsViewController));
 
-        navigationService?.Configure(applicationViewModel.LoadingViewControllerKey, typeof(LoadingVIewController));
-        navigationService?.Configure(applicationViewModel.SummaryViewControllerKey, typeof(SummaryViewController));
-        navigationService?.Configure(applicationViewModel.AddRecordViewControllerKey, typeof(AddRecordViewController));
-        navigationService?.Configure(applicationViewModel.AccountCreationViewControllerKey,
-          typeof(AccountCreationViewController));
-        navigationService?.Configure(applicationViewModel.CategoryCreationViewControllerKey,
-          typeof(CategoryCreationViewController));
-        navigationService?.Configure(applicationViewModel.AccountSelectionViewControllerKey,
-          typeof(AccountSelectionViewController));
-        navigationService?.Configure(applicationViewModel.CategorySelectionViewControllerKey,
-          typeof(CategorySelectionViewController));
-        navigationService?.Configure(applicationViewModel.AccountTransactionsViewControllerKey,
-          typeof(AccountTransactionsViewController));
-
-        navigationService?.NavigateTo(applicationViewModel.SummaryViewControllerKey);
+        navigationService?.NavigateTo(Pages.SummaryViewControllerKey);
       }
       else {
         var popup = new UIAlertController { Title = "Some shit happened" };
