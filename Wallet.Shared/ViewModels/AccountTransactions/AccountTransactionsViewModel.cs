@@ -25,30 +25,37 @@ namespace Wallet.Shared.ViewModels {
 
       _transactionsRepository = transactionsRepository;
       Transactions = new ObservableCollection<WalletTransaction>();
-      _transactionsRepository.OnItemsInserted += ItemsInserted;
+      _transactionsRepository.OnItemsDeleted += TransactionItemsDeleted;
+      _transactionsRepository.OnItemsInserted += TransactionItemsInserted;
     }
 
     public void InitializeWithAccount(Account account) {
       if (account != null) {
         _account = account;
+        _transactionsRepository.SetAccountForFiltering(account);
         foreach (var transaction in TransactionsForAccount) {
           Transactions.Add(transaction);
         }
       }
     }
 
-    public void Dispose() {
-      _transactionsRepository.OnItemsInserted -= ItemsInserted;
+    private void TransactionItemsDeleted(object sender, int[] e) {
+      if (_account == null) return;
+      foreach(var index in e) Transactions.RemoveAt(index);
     }
 
-    void ItemsInserted(object sender, int[] e) {
+    private void TransactionItemsInserted(object sender, int[] e) {
       if (_account == null) return;
-      var items = e.Select(index => _transactionsRepository.Items[index])
-                   .Where(item => item.Account.Name == _account.Name)
-                   .OrderByDescending(item => item.Date)
-                   .ToList();
-      foreach (var item in items) Transactions.Add(item);
+      foreach (var index in e) {
+        Transactions.Insert(index, _transactionsRepository.Transactions[index]);
+      }
     }
+
+    public void Dispose() {
+      _transactionsRepository.OnItemsDeleted -= TransactionItemsDeleted;
+      _transactionsRepository.OnItemsInserted -= TransactionItemsInserted;
+    }
+
   }
 
 }

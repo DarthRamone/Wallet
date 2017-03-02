@@ -10,8 +10,18 @@ namespace Wallet.Shared.Repositories {
   
   public class TransactionsRepository : BaseRepository<WalletTransaction>, ITransactionsRepository {
 
-    private IQueryable<WalletTransaction> _transactions => _realm.All<WalletTransaction>()
-      .OrderByDescending(t => t.Date);
+    private Account _account;
+
+    //private IQueryable<WalletTransaction> _transactions => _realm.All<WalletTransaction>()
+      //.OrderByDescending(t => t.Date);
+
+    private IQueryable<WalletTransaction> _transactions {
+      get {
+        return _account == null
+          ? _realm.All<WalletTransaction>().OrderByDescending(t => t.Date)
+          : _realm.All<WalletTransaction>().Where(t => t.Account == _account).OrderByDescending(t => t.Date);
+      }
+    }
 
     public List<WalletTransaction> Transactions => _transactions.ToList();
 
@@ -21,19 +31,7 @@ namespace Wallet.Shared.Repositories {
 
     public TransactionsRepository(ISyncConfigurationsProvider configurationsProvider) : base(configurationsProvider) {
 
-     _notificationsToken = _transactions.SubscribeForNotifications((sender, changes, error) => {
-
-        if (changes != null) {
-          if (changes.InsertedIndices.Length != 0)
-            OnItemsInserted?.Invoke(this, changes.InsertedIndices);
-
-          if (changes.DeletedIndices.Length != 0)
-            OnItemsDeleted?.Invoke(this, changes.DeletedIndices);
-
-          if (changes.ModifiedIndices.Length != 0)
-            OnItemsModified?.Invoke(this, changes.ModifiedIndices);
-        }
-      });
+      _notificationsToken = SubscribeForNotifications();
     }
 
     public async Task AddTransaction(WalletTransaction transaction, string categoryId, string accountId) {
@@ -90,5 +88,30 @@ namespace Wallet.Shared.Repositories {
         targetAccount.Balance += transaction.Amount;
       });
     }
+
+    public void SetAccountForFiltering(Account account) {
+      _account = _realm.Find<Account>(account.Name);
+      _notificationsToken.Dispose();
+      _notificationsToken = SubscribeForNotifications();
+    }
+
+    private IDisposable SubscribeForNotifications() {
+
+      return _transactions.SubscribeForNotifications((sender, changes, error) => {
+
+        if (changes != null) {
+          if (changes.InsertedIndices.Length != 0)
+            OnItemsInserted?.Invoke(this, changes.InsertedIndices);
+
+          if (changes.DeletedIndices.Length != 0)
+            OnItemsDeleted?.Invoke(this, changes.DeletedIndices);
+
+          if (changes.ModifiedIndices.Length != 0)
+            OnItemsModified?.Invoke(this, changes.ModifiedIndices);
+        }
+      });
+
+    }
+
   }
 }

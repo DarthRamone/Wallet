@@ -11,5 +11,8 @@ namespace Wallet.Shared.Repositories
     Task AddTransaction(WalletTransaction transaction, string categoryId, string accountId);
 
     Task AddTransferTransaction(TransferTransaction transaction, string sourceAccountId, string targetAccountId);
+
+    void SetAccountForFiltering(Account account);
+
   }
 }
