@@ -30,12 +30,10 @@ namespace Wallet.Shared.ViewModels {
     }
 
     public void InitializeWithAccount(Account account) {
-      if (account != null) {
-        _account = account;
-        _transactionsRepository.SetAccountForFiltering(account);
-        foreach (var transaction in TransactionsForAccount) {
-          Transactions.Add(transaction);
-        }
+      _account = account;
+      _transactionsRepository.SetAccountForFiltering(account);
+      foreach (var transaction in TransactionsForAccount) {
+        Transactions.Add(transaction);
       }
     }
 
