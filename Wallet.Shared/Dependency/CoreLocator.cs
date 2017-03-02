@@ -4,22 +4,27 @@ using Wallet.Shared.ViewModels;
 
 namespace Wallet.Shared
 {
-  public class CoreLocator
-  {
-    public CoreLocator(IUnityContainer container)
-    {
-      container.RegisterType<IAccountsRepository, AccountsRepository>(new ContainerControlledLifetimeManager());
-      container.RegisterType<ICategoriesRepository, CategoriesRepository>(new ContainerControlledLifetimeManager());
-      container.RegisterType<ITransactionsRepository, TransactionsRepository>(new ContainerControlledLifetimeManager());
+  public class CoreLocator {
 
-      container.RegisterType<ISummaryViewModel, SummaryViewModel>();
-      container.RegisterType<IAddRecordViewModel, AddRecordViewModel>();
-      container.RegisterType<IApplicationViewModel, ApplicationViewModel>();
-      container.RegisterType<IAccountCreationViewModel, AccountCreationViewModel>();
-      container.RegisterType<ICategoryCreationViewModel, CategoryCreationViewModel>();
-      container.RegisterType<IAccountsSelectionViewModel, AccountsSelectionViewModel>();
-      container.RegisterType<ICategorySelectionViewModel, CategorySelectionViewModel>();
-      container.RegisterType<IAccountTransactionsViewModel, AccountTransactionsViewModel>();
+    protected readonly IUnityContainer UnityContainer;
+
+    public CoreLocator(IUnityContainer container) {
+      UnityContainer = container;
+    }
+
+    public void RegisterTypes() {
+      UnityContainer.RegisterType<IAccountsRepository, AccountsRepository>(new ContainerControlledLifetimeManager());
+      UnityContainer.RegisterType<ICategoriesRepository, CategoriesRepository>(new ContainerControlledLifetimeManager());
+      UnityContainer.RegisterType<ITransactionsRepository, TransactionsRepository>(new ContainerControlledLifetimeManager());
+
+      UnityContainer.RegisterType<ISummaryViewModel, SummaryViewModel>();
+      UnityContainer.RegisterType<IAddRecordViewModel, AddRecordViewModel>();
+      UnityContainer.RegisterType<IApplicationViewModel, ApplicationViewModel>();
+      UnityContainer.RegisterType<IAccountCreationViewModel, AccountCreationViewModel>();
+      UnityContainer.RegisterType<ICategoryCreationViewModel, CategoryCreationViewModel>();
+      UnityContainer.RegisterType<IAccountsSelectionViewModel, AccountsSelectionViewModel>();
+      UnityContainer.RegisterType<ICategorySelectionViewModel, CategorySelectionViewModel>();
+      UnityContainer.RegisterType<IAccountTransactionsViewModel, AccountTransactionsViewModel>();
     }
   }
 }

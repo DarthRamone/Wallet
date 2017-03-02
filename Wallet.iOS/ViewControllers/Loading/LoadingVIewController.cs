@@ -10,8 +10,6 @@ namespace Wallet.iOS {
   
   public partial class LoadingVIewController : WalletBaseViewController {
 
-    private iOSLocator Locator;
-
     public LoadingVIewController() : base("LoadingVIewController") {
     }
 
@@ -42,7 +40,8 @@ namespace Wallet.iOS {
       var result = await configurationProvider.DoLogin(login, password, newUser);
 
       if (result) {
-        Locator = new iOSLocator(unityContainer);
+        var locator = new iOSLocator(unityContainer);
+        locator.RegisterTypes();
 
         var applicationViewModel = ServiceLocator.Current.GetInstance<IApplicationViewModel>();
 
@@ -60,12 +59,11 @@ namespace Wallet.iOS {
         navigationService?.Configure(applicationViewModel.AccountTransactionsViewControllerKey,
           typeof(AccountTransactionsViewController));
 
-        navigationService.NavigateTo(applicationViewModel.SummaryViewControllerKey);
+        navigationService?.NavigateTo(applicationViewModel.SummaryViewControllerKey);
       }
       else {
-        var popup = new UIAlertController();
-        popup.Title = "Some shit happened";
-        popup.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Cancel, (obj) => {
+        var popup = new UIAlertController { Title = "Some shit happened" };
+        popup.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Cancel, obj => {
           popup.DismissViewController(true, null);
         }));
         PresentViewController(popup, true, null);
