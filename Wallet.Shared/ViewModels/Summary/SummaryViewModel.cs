@@ -38,7 +38,10 @@ namespace Wallet.Shared.ViewModels {
       Transactions = new ObservableCollection<WalletTransaction>(_transactionsRepository.SortedTransactions);
 
       _accountsRepository.OnItemsInserted += AccountItemsInserted;
+
+      _transactionsRepository.OnItemsDeleted += TransactionItemsDeleted;
       _transactionsRepository.OnItemsInserted += TransactionItemsInserted;
+      _transactionsRepository.OnItemsModified += TransactionItemsModified;
     }
 
     private void SetupCommands() {
@@ -64,26 +67,30 @@ namespace Wallet.Shared.ViewModels {
       await accsRepo.Add(new Account { Name = "Credit card", Currency = "usd", IsCash = false });
     }
 
-    private void ItemsDeleted(object sender, int[] e) {
-      throw new NotImplementedException();
+    private void TransactionItemsDeleted(object sender, int[] e) {
+      foreach(var index in e) Transactions.RemoveAt(index);
     }
 
     private void TransactionItemsInserted(object sender, int[] e) {
-      var items = e.Select(index => _transactionsRepository.Items[index]);
-      foreach (var item in items) Transactions.Insert(0, item);
+      //var items = e.Select(index => _transactionsRepository.Items[index]);
+      //foreach (var item in items) Transactions.Insert(0, item);
+      foreach (var index in e) {
+        Transactions.Insert(index, _transactionsRepository.SortedTransactions[index]);
+      }
     }
 
     private void AccountItemsInserted(object sender, int[] e) {
       Accounts.Add(_accountsRepository.Items[e[0]]);
     }
 
-    private void ItemsModified(object sender, int[] e) {
-      throw new NotImplementedException();
+    private void TransactionItemsModified(object sender, int[] e) {
     }
 
     public void Dispose() {
       _accountsRepository.OnItemsInserted -= AccountItemsInserted;
+      _transactionsRepository.OnItemsDeleted -= TransactionItemsDeleted;
       _transactionsRepository.OnItemsInserted -= TransactionItemsInserted;
+      _transactionsRepository.OnItemsModified -= TransactionItemsModified;
     }
   }
 }

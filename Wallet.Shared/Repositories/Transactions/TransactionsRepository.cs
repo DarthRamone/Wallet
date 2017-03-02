@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Realms;
 using Realms.Sync;
 using Wallet.Shared.Models;
 
@@ -9,11 +10,32 @@ namespace Wallet.Shared.Repositories {
   
   public class TransactionsRepository : BaseRepository<WalletTransaction>, ITransactionsRepository {
 
-    public List<WalletTransaction> SortedTransactions => _realm.All<WalletTransaction>().OrderByDescending(t => t.Date).ToList();
+    private IQueryable<WalletTransaction> _transactions => _realm.All<WalletTransaction>()
+      .OrderByDescending(t => t.Date);
+
+    public List<WalletTransaction> SortedTransactions => _transactions.ToList();
 
     public List<TransferTransaction> TransferTransactions => _realm.All<TransferTransaction>().ToList();
 
+    public override event EventHandler<int[]> OnItemsDeleted = delegate { };
+    public override event EventHandler<int[]> OnItemsInserted = delegate { };
+    public override event EventHandler<int[]> OnItemsModified = delegate { };
+
     public TransactionsRepository(SyncConfiguration configuration) : base(configuration) {
+
+      _transactions.SubscribeForNotifications((sender, changes, error) => {
+
+        if (changes != null) {
+          if (changes.InsertedIndices.Length != 0)
+            OnItemsInserted?.Invoke(this, changes.InsertedIndices);
+
+          if (changes.DeletedIndices.Length != 0)
+            OnItemsDeleted?.Invoke(this, changes.DeletedIndices);
+
+          if (changes.ModifiedIndices.Length != 0)
+            OnItemsModified?.Invoke(this, changes.ModifiedIndices);
+        }
+      });
     }
 
     public async Task AddTransaction(WalletTransaction transaction, string categoryId, string accountId) {
@@ -23,10 +45,13 @@ namespace Wallet.Shared.Repositories {
         if (acc != null && cat != null) {
           transaction.Account = acc;
           transaction.Category = cat;
+          cat.Transactions.Add(transaction);
+          acc.Transactions.Add(transaction);
           acc.Balance += transaction.Amount;
           realm.Add(transaction);
         }
       });
+
     }
 
     public async Task AddTransferTransaction(TransferTransaction transaction, string sourceAccountId, string targetAccountId) {

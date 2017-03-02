@@ -16,27 +16,12 @@ namespace Wallet.Shared.Repositories {
 
     public List<T> Items => _items.ToList();
 
-    public event EventHandler<int[]> OnItemsDeleted = delegate { };
-    public event EventHandler<int[]> OnItemsInserted = delegate { };
-    public event EventHandler<int[]> OnItemsModified = delegate { };
+    public abstract event EventHandler<int[]> OnItemsDeleted;
+    public abstract event EventHandler<int[]> OnItemsInserted;
+    public abstract event EventHandler<int[]> OnItemsModified;
 
     public BaseRepository(SyncConfiguration configuration) {
-      
       _realm = Realm.GetInstance(configuration);
-
-      _items.SubscribeForNotifications((sender, changes, error) => {
-
-        if (changes != null) {
-          if (changes.InsertedIndices.Length != 0)
-            OnItemsInserted?.Invoke(this, changes.InsertedIndices);
-
-          if (changes.DeletedIndices.Length != 0)
-            OnItemsDeleted?.Invoke(this, changes.DeletedIndices);
-
-          if (changes.ModifiedIndices.Length != 0)
-            OnItemsModified?.Invoke(this, changes.ModifiedIndices);
-        }
-      });
     }
 
     public async Task Add(T item) {
