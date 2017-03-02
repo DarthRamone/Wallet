@@ -97,11 +97,11 @@ namespace Wallet.iOS {
           case 0: {
             var height = _itemHeight * (_accountsWidgetViewModel.Accounts.Count / 3);
             height += _itemHeight * (_accountsWidgetViewModel.Accounts.Count % 3);
-            height += 30;//TODO
+            height += 30;//TODO: Count height properly
             return new CGSize(collectionView.Frame.Width - 20, height);
           }
           default: {
-            return new CGSize(collectionView.Frame.Width - 20, 500);
+            return new CGSize(collectionView.Frame.Width - 20, 360); //TODO: Count height properly
           }
         }
       }

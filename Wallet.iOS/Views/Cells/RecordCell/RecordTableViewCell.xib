@@ -22,7 +22,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xc4-zA-dct">
                         <rect key="frame" x="8" y="8" width="53" height="53"/>
-                        <color key="backgroundColor" red="1" green="0.67004186186053849" blue="0.29799268805845247" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="xc4-zA-dct" secondAttribute="height" multiplier="1:1" id="ibP-Lq-GbM"/>
                         </constraints>

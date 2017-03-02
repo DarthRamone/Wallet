@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using GalaSoft.MvvmLight.Views;
 using Wallet.Shared.Models;
 using Wallet.Shared.Repositories;
@@ -7,6 +8,8 @@ using Wallet.Shared.Repositories;
 namespace Wallet.Shared.ViewModels {
 
   public class TransactionsWidgetViewModel : WalletBaseViewModel, ITransactionsWidgetViewModel, IDisposable {
+
+    private const int MAX_ITEMS_COUNT = 6;
 
     private readonly ITransactionsRepository _transactionsRepository;
 
@@ -16,7 +19,7 @@ namespace Wallet.Shared.ViewModels {
                                        ITransactionsRepository transactionsRepository) : base(navigationService) {
 
       _transactionsRepository = transactionsRepository;
-      Transactions = new ObservableCollection<WalletTransaction>(_transactionsRepository.Transactions);
+      Transactions = new ObservableCollection<WalletTransaction>(_transactionsRepository.Transactions.Take(MAX_ITEMS_COUNT));
 
       _transactionsRepository.OnItemsDeleted += TransactionItemsDeleted;
       _transactionsRepository.OnItemsInserted += TransactionItemsInserted;
@@ -30,6 +33,7 @@ namespace Wallet.Shared.ViewModels {
     private void TransactionItemsInserted(object sender, int[] e) {
       foreach (var index in e) {
         Transactions.Insert(index, _transactionsRepository.Transactions[index]);
+        if (Transactions.Count > MAX_ITEMS_COUNT) Transactions.RemoveAt(MAX_ITEMS_COUNT);
       }
     }
 

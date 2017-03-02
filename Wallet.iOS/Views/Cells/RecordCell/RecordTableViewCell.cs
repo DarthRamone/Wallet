@@ -29,6 +29,7 @@ namespace Wallet.iOS
       DateLabel.Text = transaction.Date.Date.ToString("d");
       AccountNameLabel.Text = transaction.Account.Name;
       AmountLabel.TextColor = transaction.Amount < 0 ? UIColor.Red : _green;
+      CategoryImageView.Image = UIImage.FromFile("shopping");
     }
   }
 }

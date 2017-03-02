@@ -153,6 +153,7 @@
     <Folder Include="Views\Widgets\Base\" />
     <Folder Include="Views\Widgets\Accounts\" />
     <Folder Include="Views\Widgets\Transactions\" />
+    <Folder Include="Assets.xcassets\shopping.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -254,6 +255,9 @@
       <Project>{FE6301AB-8208-4751-B4A5-876393564A42}</Project>
       <Name>Wallet.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\shopping%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" />
