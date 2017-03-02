@@ -4,14 +4,17 @@ using Wallet.Shared.Models;
 using Wallet.Shared.Providers;
 
 namespace Wallet.Shared.Repositories {
-  public class CategoriesRepository : BaseRepository<Category>, ICategoriesRepository {
+  public class CategoriesRepository : BaseRepository<Category>, ICategoriesRepository, IDisposable {
+
+    private readonly IDisposable _notificationsToken;
 
     public override event EventHandler<int[]> OnItemsDeleted = delegate { };
     public override event EventHandler<int[]> OnItemsInserted = delegate { };
     public override event EventHandler<int[]> OnItemsModified = delegate { };
 
     public CategoriesRepository(ISyncConfigurationsProvider configurationsProvider) : base(configurationsProvider) {
-      _items.SubscribeForNotifications((sender, changes, error) => {
+
+      _notificationsToken = _items.SubscribeForNotifications((sender, changes, error) => {
 
         if (changes != null) {
           if (changes.InsertedIndices.Length != 0)
@@ -24,6 +27,11 @@ namespace Wallet.Shared.Repositories {
             OnItemsModified?.Invoke(this, changes.ModifiedIndices);
         }
       });
+
+    }
+
+    public void Dispose() {
+      _notificationsToken.Dispose();
     }
 
   }

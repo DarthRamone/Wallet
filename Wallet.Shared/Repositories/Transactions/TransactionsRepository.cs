@@ -8,7 +8,9 @@ using Wallet.Shared.Providers;
 
 namespace Wallet.Shared.Repositories {
   
-  public class TransactionsRepository : BaseRepository<WalletTransaction>, ITransactionsRepository {
+  public class TransactionsRepository : BaseRepository<WalletTransaction>, ITransactionsRepository, IDisposable {
+
+    private readonly IDisposable _notificationsToken;
 
     private IQueryable<WalletTransaction> _transactions => _realm.All<WalletTransaction>()
       .OrderByDescending(t => t.Date);
@@ -23,7 +25,7 @@ namespace Wallet.Shared.Repositories {
 
     public TransactionsRepository(ISyncConfigurationsProvider configurationsProvider) : base(configurationsProvider) {
 
-      _transactions.SubscribeForNotifications((sender, changes, error) => {
+     _notificationsToken = _transactions.SubscribeForNotifications((sender, changes, error) => {
 
         if (changes != null) {
           if (changes.InsertedIndices.Length != 0)
@@ -92,5 +94,12 @@ namespace Wallet.Shared.Repositories {
         targetAccount.Balance += transaction.Amount;
       });
     }
+
+    //private void NotificationsHandler
+
+    public void Dispose() {
+      _notificationsToken.Dispose();
+    }
+
   }
 }
