@@ -10,7 +10,7 @@ namespace Wallet.Shared.Repositories {
   
   public abstract class BaseRepository<T> : IRepository<T> where T : RealmObject {
     
-    private IQueryable<T> _items => _realm.All<T>();
+    protected IQueryable<T> _items => _realm.All<T>();
 
     protected readonly Realm _realm;
 

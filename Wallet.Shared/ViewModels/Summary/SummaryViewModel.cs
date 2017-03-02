@@ -72,8 +72,6 @@ namespace Wallet.Shared.ViewModels {
     }
 
     private void TransactionItemsInserted(object sender, int[] e) {
-      //var items = e.Select(index => _transactionsRepository.Items[index]);
-      //foreach (var item in items) Transactions.Insert(0, item);
       foreach (var index in e) {
         Transactions.Insert(index, _transactionsRepository.SortedTransactions[index]);
       }
