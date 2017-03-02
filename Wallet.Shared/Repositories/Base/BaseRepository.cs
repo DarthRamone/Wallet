@@ -4,13 +4,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Realms;
-using Realms.Sync;
 using Wallet.Shared.Providers;
 
 namespace Wallet.Shared.Repositories {
   
-  public abstract class BaseRepository<T> : IRepository<T> where T : RealmObject {
-    
+  public abstract class BaseRepository<T> : IDisposable, IRepository<T> where T : RealmObject {
+
+    protected IDisposable _notificationsToken;
+
     protected IQueryable<T> _items => _realm.All<T>();
 
     protected readonly Realm _realm;
@@ -42,5 +43,10 @@ namespace Wallet.Shared.Repositories {
     public void Update(T item) {
       throw new NotImplementedException();
     }
+
+    public void Dispose() {
+      _notificationsToken.Dispose();
+    }
+
   }
 }

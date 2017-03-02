@@ -5,9 +5,7 @@ using Wallet.Shared.Providers;
 
 namespace Wallet.Shared.Repositories {
 
-  public class AccountsRepository : BaseRepository<Account>, IAccountsRepository, IDisposable {
-
-    private readonly IDisposable _notificationsToken;
+  public class AccountsRepository : BaseRepository<Account>, IAccountsRepository {
 
     public override event EventHandler<int[]> OnItemsDeleted = delegate { };
     public override event EventHandler<int[]> OnItemsInserted = delegate { };
@@ -29,11 +27,5 @@ namespace Wallet.Shared.Repositories {
         }
       });
     }
-
-
-    public void Dispose() {
-      _notificationsToken.Dispose();
-    }
-
   }
 }

@@ -4,9 +4,7 @@ using Wallet.Shared.Models;
 using Wallet.Shared.Providers;
 
 namespace Wallet.Shared.Repositories {
-  public class CategoriesRepository : BaseRepository<Category>, ICategoriesRepository, IDisposable {
-
-    private readonly IDisposable _notificationsToken;
+  public class CategoriesRepository : BaseRepository<Category>, ICategoriesRepository {
 
     public override event EventHandler<int[]> OnItemsDeleted = delegate { };
     public override event EventHandler<int[]> OnItemsInserted = delegate { };
@@ -29,10 +27,5 @@ namespace Wallet.Shared.Repositories {
       });
 
     }
-
-    public void Dispose() {
-      _notificationsToken.Dispose();
-    }
-
   }
 }
