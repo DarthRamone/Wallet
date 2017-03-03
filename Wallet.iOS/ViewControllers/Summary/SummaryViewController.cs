@@ -105,6 +105,7 @@ namespace Wallet.iOS {
 
       private const float _titleHeight = 28;
       private const float _accountCellHeight = 50;
+      private const float _minimumLineSpacing = 10;
       private const float _transactionCellHeight = 60;
 
       private UIEdgeInsets _sectionEdgeInsets = new UIEdgeInsets(10, 10, 10, 10);
@@ -118,7 +119,10 @@ namespace Wallet.iOS {
 
         _accountsWidgetViewModel = accountsWidgetViewModel;
         _transactionsWidgetViewModel = transactionsWidgetViewModel;
+      }
 
+      public override nfloat GetMinimumLineSpacingForSection(UICollectionView collectionView, UICollectionViewLayout layout, nint section) {
+        return _minimumLineSpacing;
       }
 
       public override UIEdgeInsets GetInsetForSection(UICollectionView collectionView, UICollectionViewLayout layout, nint section) {
@@ -131,9 +135,10 @@ namespace Wallet.iOS {
 
         switch (indexPath.Row) {
           case 0: {
-            // ReSharper disable once PossibleLossOfFraction
-            nfloat height = _accountCellHeight * (_accountsWidgetViewModel.Accounts.Count / 3);
-            height += _accountCellHeight * (_accountsWidgetViewModel.Accounts.Count % 3);
+            var linesCount = _accountsWidgetViewModel.Accounts.Count / 3;
+            linesCount += _accountsWidgetViewModel.Accounts.Count % 3 == 0 ? 0 : 1;
+            nfloat height = _accountCellHeight * linesCount;
+            height += _minimumLineSpacing * (linesCount - 1);
             height += _sectionEdgeInsets.Top + _sectionEdgeInsets.Bottom + _titleHeight;
             return new CGSize(width, height);
           }
