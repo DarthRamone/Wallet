@@ -1,10 +1,9 @@
-﻿using System;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using Wallet.Shared.Models;
 using Wallet.Shared.Repositories;
 
-namespace Wallet.Shared.ViewModels {
+namespace Wallet.Shared.ViewModels.Summary {
   
   public class SummaryViewModel : WalletBaseViewModel, ISummaryViewModel {
 

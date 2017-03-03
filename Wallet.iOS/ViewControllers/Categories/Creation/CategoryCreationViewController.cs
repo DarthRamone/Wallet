@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using Wallet.Shared.ViewModels;
+using Wallet.Shared.ViewModels.CategoryCreation;
 
 namespace Wallet.iOS {
 

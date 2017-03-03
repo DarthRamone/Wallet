@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 
-namespace Wallet.Shared.ViewModels {
+namespace Wallet.Shared.ViewModels.AccountCreation {
 
   public interface IAccountCreationViewModel {
 

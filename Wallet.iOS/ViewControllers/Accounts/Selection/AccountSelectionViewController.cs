@@ -5,6 +5,8 @@ using UIKit;
 using Wallet.Shared;
 using Wallet.Shared.Models;
 using Wallet.Shared.ViewModels;
+using Wallet.Shared.ViewModels.AccountSelection;
+using Wallet.Shared.ViewModels.AddRecord;
 
 namespace Wallet.iOS {
   public partial class AccountSelectionViewController : WalletBaseViewController {

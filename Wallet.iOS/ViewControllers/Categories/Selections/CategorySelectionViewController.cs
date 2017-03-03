@@ -4,6 +4,8 @@ using Microsoft.Practices.ServiceLocation;
 using UIKit;
 using Wallet.Shared.Models;
 using Wallet.Shared.ViewModels;
+using Wallet.Shared.ViewModels.AddRecord;
+using Wallet.Shared.ViewModels.CategorySelection;
 
 namespace Wallet.iOS {
   public partial class CategorySelectionViewController : WalletBaseViewController {

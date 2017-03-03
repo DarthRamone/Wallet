@@ -6,7 +6,7 @@ using GalaSoft.MvvmLight.Views;
 using Wallet.Shared.Models;
 using Wallet.Shared.Repositories;
 
-namespace Wallet.Shared.ViewModels {
+namespace Wallet.Shared.ViewModels.AccountSelection {
   
   public class AccountsSelectionViewModel : WalletBaseViewModel, IAccountsSelectionViewModel, IDisposable {
 

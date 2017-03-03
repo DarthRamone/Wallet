@@ -6,6 +6,9 @@ using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using UIKit;
 using Wallet.Shared.ViewModels;
+using Wallet.Shared.ViewModels.AccountsWidget;
+using Wallet.Shared.ViewModels.Summary;
+using Wallet.Shared.ViewModels.TransactionsWidget;
 
 namespace Wallet.iOS {
 

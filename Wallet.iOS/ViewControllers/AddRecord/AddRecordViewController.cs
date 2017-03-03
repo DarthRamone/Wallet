@@ -2,6 +2,7 @@
 using Microsoft.Practices.ServiceLocation;
 using UIKit;
 using Wallet.Shared.ViewModels;
+using Wallet.Shared.ViewModels.AddRecord;
 
 namespace Wallet.iOS
 {

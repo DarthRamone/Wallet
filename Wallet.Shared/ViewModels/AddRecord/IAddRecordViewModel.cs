@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 
-namespace Wallet.Shared.ViewModels
+namespace Wallet.Shared.ViewModels.AddRecord
 {
   public interface IAddRecordViewModel
   {

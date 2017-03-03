@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using Wallet.Shared.Models;
 
-namespace Wallet.Shared.ViewModels {
+namespace Wallet.Shared.ViewModels.AccountSelection {
   
   public interface IAccountsSelectionViewModel {
 

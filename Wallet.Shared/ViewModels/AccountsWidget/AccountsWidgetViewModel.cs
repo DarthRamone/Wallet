@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight.Views;
 using Wallet.Shared.Models;
 using Wallet.Shared.Repositories;
 
-namespace Wallet.Shared.ViewModels {
+namespace Wallet.Shared.ViewModels.AccountsWidget {
 
   public class AccountsWidgetViewModel : WalletBaseViewModel, IAccountsWidgetViewModel, IDisposable {
 

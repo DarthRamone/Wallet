@@ -46,17 +46,19 @@
     <Compile Include="Repositories\Categories\ICategoriesRepository.cs" />
     <Compile Include="Repositories\Accounts\IAccountsRepository.cs" />
     <Compile Include="Dependency\CoreLocator.cs" />
-    <Compile Include="ViewModels\Accounts\Widget\AccountsWidgetViewModel.cs" />
-    <Compile Include="ViewModels\Accounts\Widget\IAccountsWidgetViewModel.cs" />
-    <Compile Include="ViewModels\Categories\Creation\CategoryCreationViewModel.cs" />
-    <Compile Include="ViewModels\Categories\Creation\ICategoryCreationViewModel.cs" />
-    <Compile Include="ViewModels\Categories\Selection\CategorySelectionViewModel.cs" />
-    <Compile Include="ViewModels\Categories\Selection\ICategorySelectionViewModel.cs" />
-    <Compile Include="ViewModels\ITransactionsWidgetViewModel.cs" />
+    <Compile Include="ViewModels\AccountCreation\AccountCreationViewModel.cs" />
+    <Compile Include="ViewModels\AccountCreation\IAccountCreationViewModel.cs" />
+    <Compile Include="ViewModels\AccountSelection\AccountsSelectionViewModel.cs" />
+    <Compile Include="ViewModels\AccountSelection\IAccountsSelectionViewModel.cs" />
+    <Compile Include="ViewModels\AccountsWidget\AccountsWidgetViewModel.cs" />
+    <Compile Include="ViewModels\AccountsWidget\IAccountsWidgetViewModel.cs" />
+    <Compile Include="ViewModels\CategoryCreation\CategoryCreationViewModel.cs" />
+    <Compile Include="ViewModels\CategoryCreation\ICategoryCreationViewModel.cs" />
+    <Compile Include="ViewModels\CategorySelection\CategorySelectionViewModel.cs" />
+    <Compile Include="ViewModels\CategorySelection\ICategorySelectionViewModel.cs" />
+    <Compile Include="ViewModels\IWalletBaseViewModel.cs" />
     <Compile Include="ViewModels\Summary\ISummaryViewModel.cs" />
     <Compile Include="ViewModels\Summary\SummaryViewModel.cs" />
-    <Compile Include="ViewModels\Base\IWalletBaseViewModel.cs" />
-    <Compile Include="ViewModels\Base\WalletBaseViewModel.cs" />
     <Compile Include="ViewModels\AddRecord\IAddRecordViewModel.cs" />
     <Compile Include="ViewModels\AddRecord\AddRecordViewModel.cs" />
     <Compile Include="ViewModels\AccountTransactions\AccountTransactionsViewModel.cs" />
@@ -70,11 +72,9 @@
     <Compile Include="Models\TransferTransaction.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Currencies.cs" />
-    <Compile Include="ViewModels\Accounts\Selection\AccountsSelectionViewModel.cs" />
-    <Compile Include="ViewModels\Accounts\Selection\IAccountsSelectionViewModel.cs" />
-    <Compile Include="ViewModels\Accounts\Creation\IAccountCreationViewModel.cs" />
-    <Compile Include="ViewModels\Accounts\Creation\AccountCreationViewModel.cs" />
-    <Compile Include="ViewModels\TransactionsWidgetViewModel.cs" />
+    <Compile Include="ViewModels\TransactionsWidget\ITransactionsWidgetViewModel.cs" />
+    <Compile Include="ViewModels\TransactionsWidget\TransactionsWidgetViewModel.cs" />
+    <Compile Include="ViewModels\WalletBaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe">
@@ -117,15 +117,12 @@
     <Folder Include="ViewModels\" />
     <Folder Include="ViewModels\Balance" />
     <Folder Include="ViewModels\Summary\" />
-    <Folder Include="ViewModels\Base\" />
     <Folder Include="ViewModels\AddRecord\" />
-    <Folder Include="ViewModels\Accounts\" />
-    <Folder Include="ViewModels\Categories\" />
+    <Folder Include="ViewModels\AccountCreation\" />
+    <Folder Include="ViewModels\CategoryCreation\" />
     <Folder Include="ViewModels\AccountTransactions\" />
     <Folder Include="Enums\" />
     <Folder Include="Stylings\" />
-    <Folder Include="ViewModels\Accounts\Selection\" />
-    <Folder Include="ViewModels\Accounts\Creation\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
