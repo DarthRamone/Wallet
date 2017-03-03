@@ -1,6 +1,5 @@
 ﻿using UIKit;
 using System;
-using System.Collections.Specialized;
 using CoreGraphics;
 using Foundation;
 using GalaSoft.MvvmLight.Helpers;
@@ -26,7 +25,7 @@ namespace Wallet.iOS {
       _accountsWidgetViewModel = ServiceLocator.Current.GetInstance<IAccountsWidgetViewModel>();
       _transactionsWidgetViewModel = ServiceLocator.Current.GetInstance<ITransactionsWidgetViewModel>();
 
-      _accountsWidgetViewModel.Accounts.CollectionChanged += AccountsCollectionChanged;
+      _accountsWidgetViewModel.OnAccountsChanged += AccountsCollectionChanged;
     }
 
     public override void ViewDidLoad() {
@@ -52,7 +51,7 @@ namespace Wallet.iOS {
     }
 
     //TODO: Unsubscribe
-    private void AccountsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
+    private void AccountsCollectionChanged(object sender, EventArgs e) {
       WidgetsCollectionView.ReloadItems(new[] { NSIndexPath.FromRowSection(0, 0) });
     }
 

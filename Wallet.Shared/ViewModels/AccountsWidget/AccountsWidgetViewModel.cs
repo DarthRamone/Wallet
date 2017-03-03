@@ -13,6 +13,8 @@ namespace Wallet.Shared.ViewModels.AccountsWidget {
 
     public RelayCommand<Account> AccountSelected { get; private set;  }
 
+    public event EventHandler OnAccountsChanged = delegate { };
+
     private readonly IAccountsRepository _accountsRepository;
 
     public AccountsWidgetViewModel(IAccountsRepository accountsRepository,
@@ -20,6 +22,7 @@ namespace Wallet.Shared.ViewModels.AccountsWidget {
       : base(navigationService) {
 
       _accountsRepository = accountsRepository;
+      _accountsRepository.OnItemsDeleted += AccountItemsDeleted;
       _accountsRepository.OnItemsInserted += AccountItemsInserted;
 
       SetupCommands();
@@ -37,9 +40,18 @@ namespace Wallet.Shared.ViewModels.AccountsWidget {
       foreach (var index in e) {
         Accounts.Add(_accountsRepository.Items[index]);
       }
+      OnAccountsChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void AccountItemsDeleted(object sender, int[] e) {
+      foreach (var index in e) {
+        Accounts.RemoveAt(index);
+      }
+      OnAccountsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Dispose() {
+      _accountsRepository.OnItemsDeleted -= AccountItemsDeleted;
       _accountsRepository.OnItemsInserted -= AccountItemsInserted;
     }
 
