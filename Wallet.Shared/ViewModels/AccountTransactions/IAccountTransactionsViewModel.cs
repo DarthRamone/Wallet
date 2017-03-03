@@ -3,7 +3,7 @@ using Wallet.Shared.Models;
 
 namespace Wallet.Shared.ViewModels {
   
-  public interface IAccountTransactionsViewModel {
+  public interface IAccountTransactionsViewModel : IWalletBaseViewModel {
     
     void InitializeWithAccount(Account account);
 

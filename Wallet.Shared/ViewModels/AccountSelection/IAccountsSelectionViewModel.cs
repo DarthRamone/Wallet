@@ -5,7 +5,7 @@ using Wallet.Shared.Models;
 
 namespace Wallet.Shared.ViewModels.AccountSelection {
   
-  public interface IAccountsSelectionViewModel {
+  public interface IAccountsSelectionViewModel : IWalletBaseViewModel {
 
     Account SelectedAccount { get; set; }
 

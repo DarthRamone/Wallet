@@ -2,7 +2,7 @@
 
 namespace Wallet.Shared.ViewModels.AccountCreation {
 
-  public interface IAccountCreationViewModel {
+  public interface IAccountCreationViewModel : IWalletBaseViewModel {
 
     string AccountNameText { get; }
 

@@ -2,7 +2,7 @@
 
 namespace Wallet.Shared.ViewModels.CategoryCreation {
 
-  public interface ICategoryCreationViewModel {
+  public interface ICategoryCreationViewModel : IWalletBaseViewModel {
 
     string CateggoryNameText { get; set; }
 

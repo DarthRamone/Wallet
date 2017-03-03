@@ -4,7 +4,7 @@ using Wallet.Shared.Models;
 
 namespace Wallet.Shared.ViewModels.CategorySelection {
 
-  public interface ICategorySelectionViewModel {
+  public interface ICategorySelectionViewModel : IWalletBaseViewModel {
 
     Category SelectedCategory { get; set; }
 

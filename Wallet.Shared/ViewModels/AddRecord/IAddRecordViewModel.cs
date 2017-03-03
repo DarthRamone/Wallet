@@ -2,7 +2,7 @@
 
 namespace Wallet.Shared.ViewModels.AddRecord
 {
-  public interface IAddRecordViewModel
+  public interface IAddRecordViewModel : IWalletBaseViewModel
   {
     //HACK
     bool IsRightButtonTapped { get; set; }

@@ -3,7 +3,7 @@ using Wallet.Shared.Models;
 
 namespace Wallet.Shared.ViewModels.Summary {
   
-  public interface ISummaryViewModel {
+  public interface ISummaryViewModel : IWalletBaseViewModel {
 
     RelayCommand AddRecordButtonAction { get; }
 

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using UIKit;
+using System;
 using System.Collections.Specialized;
 using CoreGraphics;
 using Foundation;
 using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
-using UIKit;
 using Wallet.Shared.ViewModels.AccountsWidget;
 using Wallet.Shared.ViewModels.BalanceWidget;
 using Wallet.Shared.ViewModels.Summary;

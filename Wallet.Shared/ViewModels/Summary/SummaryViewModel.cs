@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using Wallet.Shared.Models;
-using Wallet.Shared.Repositories;
 using Wallet.Shared.Repositories.Accounts;
 using Wallet.Shared.Repositories.Categories;
 
