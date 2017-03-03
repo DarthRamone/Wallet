@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Command;
 using Wallet.Shared.Models;
 
 namespace Wallet.Shared.ViewModels.TransactionsWidget {
@@ -7,6 +8,7 @@ namespace Wallet.Shared.ViewModels.TransactionsWidget {
 
     ObservableCollection<WalletTransaction> Transactions { get; }
 
+    RelayCommand<string> SelectTransactionAction { get; }
   }
 
 }

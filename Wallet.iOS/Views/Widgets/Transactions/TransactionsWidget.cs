@@ -4,7 +4,6 @@ using Foundation;
 using GalaSoft.MvvmLight.Helpers;
 using UIKit;
 using Wallet.Shared.Models;
-using Wallet.Shared.ViewModels;
 using Wallet.Shared.ViewModels.TransactionsWidget;
 
 namespace Wallet.iOS {
@@ -42,6 +41,7 @@ namespace Wallet.iOS {
       var transaction = transactions.First(t => t.Id.Equals((item as WalletTransaction).Id));
       var index = transactions.IndexOf(transaction);
       var indexPath = NSIndexPath.FromRowSection(index, 0);
+      _viewModel.SelectTransactionAction.Execute(transaction.Id);
       TransactionsTableView.DeselectRow(indexPath, true);
     }
   }

@@ -74,6 +74,8 @@
     <Compile Include="Models\TransferTransaction.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Currencies.cs" />
+    <Compile Include="ViewModels\TransactionDetails\ITransactionDetailsViewModel.cs" />
+    <Compile Include="ViewModels\TransactionDetails\TransactionDetailsViewModel.cs" />
     <Compile Include="ViewModels\TransactionsWidget\ITransactionsWidgetViewModel.cs" />
     <Compile Include="ViewModels\TransactionsWidget\TransactionsWidgetViewModel.cs" />
     <Compile Include="ViewModels\WalletBaseViewModel.cs" />

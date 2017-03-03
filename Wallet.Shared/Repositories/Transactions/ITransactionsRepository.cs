@@ -10,6 +10,8 @@ namespace Wallet.Shared.Repositories.Transactions
 
     Task AddTransaction(WalletTransaction transaction, string categoryId, string accountId);
 
+    Task RemoveTransaction(string transactionId);
+
     Task AddTransferTransaction(TransferTransaction transaction, string sourceAccountId, string targetAccountId);
 
     void SetAccountForFiltering(Account account);

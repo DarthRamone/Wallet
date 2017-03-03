@@ -70,6 +70,7 @@ namespace Wallet.iOS {
       navigationService?.Configure(Pages.CategoryCreationViewControllerKey, typeof(CategoryCreationViewController));
       navigationService?.Configure(Pages.AccountSelectionViewControllerKey, typeof(AccountSelectionViewController));
       navigationService?.Configure(Pages.CategorySelectionViewControllerKey, typeof(CategorySelectionViewController));
+      navigationService?.Configure(Pages.TransactionDetailsViewControllerKey, typeof(TransactionDetailsViewController));
       navigationService?.Configure(Pages.AccountTransactionsViewControllerKey, typeof(AccountTransactionsViewController));
 
       LoadingView.Hidden = true;

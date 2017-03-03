@@ -20,6 +20,8 @@
 
     public const string NewSummaryViewControllerKey = "NewSummaryViewControllerKey";
 
+    public const string TransactionDetailsViewControllerKey = "TransactionDetailsViewControllerKey";
+
   }
 
 }

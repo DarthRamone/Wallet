@@ -155,6 +155,7 @@
     <Folder Include="Views\Widgets\Transactions\" />
     <Folder Include="Assets.xcassets\shopping.imageset\" />
     <Folder Include="Views\Widgets\Balance\" />
+    <Folder Include="ViewControllers\TransactionDetails\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -174,6 +175,7 @@
     <InterfaceDefinition Include="Views\Widgets\Transactions\TransactionsWidget.xib" />
     <InterfaceDefinition Include="ViewControllers\Summary\SummaryViewController.xib" />
     <InterfaceDefinition Include="Views\Widgets\Balance\BalanceWidget.xib" />
+    <InterfaceDefinition Include="ViewControllers\TransactionDetails\TransactionDetailsViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -249,6 +251,10 @@
     <Compile Include="Views\Widgets\Balance\BalanceWidget.cs" />
     <Compile Include="Views\Widgets\Balance\BalanceWidget.designer.cs">
       <DependentUpon>BalanceWidget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\TransactionDetails\TransactionDetailsViewController.cs" />
+    <Compile Include="ViewControllers\TransactionDetails\TransactionDetailsViewController.designer.cs">
+      <DependentUpon>TransactionDetailsViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

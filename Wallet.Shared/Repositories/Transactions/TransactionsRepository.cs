@@ -48,6 +48,28 @@ namespace Wallet.Shared.Repositories.Transactions {
 
     }
 
+    public async Task RemoveTransaction(string transactionId) {
+
+      await _realm.WriteAsync(realm => {
+        var transaction = realm.Find<WalletTransaction>(transactionId);
+        if (transaction.TransferTransaction != null) {
+
+          var transferTransaction = realm.Find<TransferTransaction>(transaction.TransferTransaction.Id);
+
+          transferTransaction.SourceTransaction.Account.Balance += transferTransaction.SourceTransaction.Amount;
+          transferTransaction.TargetTransaction.Account.Balance += transferTransaction.TargetTransaction.Amount;
+
+          realm.Remove(transferTransaction.SourceTransaction);
+          realm.Remove(transferTransaction.TargetTransaction);
+          realm.Remove(transferTransaction);
+
+        } else {
+          transaction.Account.Balance += transaction.Amount;
+          realm.Remove(transaction);
+        }
+      });
+    }
+
     public async Task AddTransferTransaction(TransferTransaction transaction, string sourceAccountId, string targetAccountId) {
       await _realm.WriteAsync(realm => {
 
