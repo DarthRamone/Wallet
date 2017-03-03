@@ -4,7 +4,6 @@ using Foundation;
 using GalaSoft.MvvmLight.Helpers;
 using UIKit;
 using Wallet.Shared.Models;
-using Wallet.Shared.ViewModels;
 using Wallet.Shared.ViewModels.AccountsWidget;
 
 namespace Wallet.iOS {

@@ -2,7 +2,7 @@
 
   public interface IBalanceWidgetViewModel {
 
-
+    string Balance { get;  }
 
   }
 

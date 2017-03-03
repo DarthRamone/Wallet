@@ -1,19 +1,59 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
-	<dependencies>
-		<plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1" />
-	</dependencies>
-	<objects>
-		<placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" />
-		<placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder" />
-		<collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" customClass="BalanceWidget" id="cZE-iV-UFb">
-			<rect key="frame" x="0.0" y="0.0" width="50" height="50" />
-			<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" />
-			<view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-				<rect key="frame" x="0.0" y="0.0" width="50" height="50" />
-				<autoresizingMask key="autoresizingMask" />
-				<color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite" />
-			</view>
-		</collectionViewCell>
-	</objects>
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cZE-iV-UFb" customClass="BalanceWidget">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVb-ts-kxC">
+                        <rect key="frame" x="8" y="8" width="304" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="oij-9p-WY4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cuo-UC-ZoW">
+                        <rect key="frame" x="8" y="37" width="304" height="55"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                        <color key="textColor" red="0.1889028774" green="0.72478141190000001" blue="0.18678298839999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Cuo-UC-ZoW" secondAttribute="trailing" constant="8" id="7fk-Xf-Y0z"/>
+                <constraint firstItem="Cuo-UC-ZoW" firstAttribute="top" secondItem="YVb-ts-kxC" secondAttribute="bottom" constant="8" id="C6G-93-CmH"/>
+                <constraint firstAttribute="bottom" secondItem="Cuo-UC-ZoW" secondAttribute="bottom" constant="8" id="Cdi-Cf-35Y"/>
+                <constraint firstItem="YVb-ts-kxC" firstAttribute="top" secondItem="cZE-iV-UFb" secondAttribute="top" constant="8" id="Jgj-ns-fy3"/>
+                <constraint firstItem="Cuo-UC-ZoW" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" constant="8" id="fKK-bP-AOE"/>
+                <constraint firstItem="YVb-ts-kxC" firstAttribute="leading" secondItem="cZE-iV-UFb" secondAttribute="leading" constant="8" id="kpC-3c-fI2"/>
+                <constraint firstAttribute="trailing" secondItem="YVb-ts-kxC" secondAttribute="trailing" constant="8" id="sUp-4Q-Qfp"/>
+            </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="3"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="BalanceLabel" destination="Cuo-UC-ZoW" id="jfP-i0-nsb"/>
+                <outlet property="TitleLabel" destination="YVb-ts-kxC" id="NLk-TC-rme"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
 </document>
