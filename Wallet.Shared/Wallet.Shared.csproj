@@ -115,6 +115,7 @@
     <Folder Include="Repositories\Base\" />
     <Folder Include="Dependency\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="ViewModels\Balance" />
     <Folder Include="ViewModels\Summary\" />
     <Folder Include="ViewModels\Base\" />
     <Folder Include="ViewModels\AddRecord\" />
