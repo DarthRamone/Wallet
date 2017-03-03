@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using Wallet.Shared.Models;
@@ -7,38 +6,19 @@ using Wallet.Shared.Repositories;
 
 namespace Wallet.Shared.ViewModels {
   
-  public class SummaryViewModel : WalletBaseViewModel, ISummaryViewModel, IDisposable {
-
-    private readonly IAccountsRepository _accountsRepository;
-    private readonly ITransactionsRepository _transactionsRepository;
-
-    public ObservableCollection<object> Accounts { get; }
-    public ObservableCollection<WalletTransaction> Transactions { get; }
+  public class SummaryViewModel : WalletBaseViewModel, ISummaryViewModel {
 
     public RelayCommand<Account> AccountSelected { get; private set; }
     public RelayCommand AddRecordButtonAction { get; private set; }
 
     public SummaryViewModel(INavigationService navigationService,
-                             ITransactionsRepository transactionsRepository,
                              ICategoriesRepository categoriesRepository,
                              IAccountsRepository accountsRepository)
       : base(navigationService) {
 
-      _accountsRepository = accountsRepository;
-      _transactionsRepository = transactionsRepository;
-
       Initialize(categoriesRepository, accountsRepository);//HACK
 
       SetupCommands();
-
-      Accounts = new ObservableCollection<object>(_accountsRepository.Items);
-      Transactions = new ObservableCollection<WalletTransaction>(_transactionsRepository.Transactions);
-
-      _accountsRepository.OnItemsInserted += AccountItemsInserted;
-
-      _transactionsRepository.OnItemsDeleted += TransactionItemsDeleted;
-      _transactionsRepository.OnItemsInserted += TransactionItemsInserted;
-      _transactionsRepository.OnItemsModified += TransactionItemsModified;
     }
 
     private void SetupCommands() {
@@ -62,30 +42,7 @@ namespace Wallet.Shared.ViewModels {
 
       await accsRepo.Add(new Account { Name = "Cash", Currency = "rub", IsCash = true });
       await accsRepo.Add(new Account { Name = "Credit card", Currency = "usd", IsCash = false });
-    }
 
-    private void TransactionItemsDeleted(object sender, int[] e) {
-      foreach(var index in e) Transactions.RemoveAt(index);
-    }
-
-    private void TransactionItemsInserted(object sender, int[] e) {
-      foreach (var index in e) {
-        Transactions.Insert(index, _transactionsRepository.Transactions[index]);
-      }
-    }
-
-    private void AccountItemsInserted(object sender, int[] e) {
-      Accounts.Add(_accountsRepository.Items[e[0]]);//TODO
-    }
-
-    private void TransactionItemsModified(object sender, int[] e) {
-    }
-
-    public void Dispose() {
-      _accountsRepository.OnItemsInserted -= AccountItemsInserted;
-      _transactionsRepository.OnItemsDeleted -= TransactionItemsDeleted;
-      _transactionsRepository.OnItemsInserted -= TransactionItemsInserted;
-      _transactionsRepository.OnItemsModified -= TransactionItemsModified;
     }
   }
 }

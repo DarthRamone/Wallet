@@ -64,14 +64,13 @@ namespace Wallet.iOS {
       locator.RegisterTypes();
 
       navigationService?.Configure(Pages.LoadingViewControllerKey, typeof(LoadingVIewController));
-      navigationService?.Configure(Pages.SummaryViewControllerKey, typeof(SummaryViewController));
       navigationService?.Configure(Pages.AddRecordViewControllerKey, typeof(AddRecordViewController));
+      navigationService?.Configure(Pages.NewSummaryViewControllerKey, typeof(SummaryViewController));
       navigationService?.Configure(Pages.AccountCreationViewControllerKey, typeof(AccountCreationViewController));
       navigationService?.Configure(Pages.CategoryCreationViewControllerKey, typeof(CategoryCreationViewController));
       navigationService?.Configure(Pages.AccountSelectionViewControllerKey, typeof(AccountSelectionViewController));
       navigationService?.Configure(Pages.CategorySelectionViewControllerKey, typeof(CategorySelectionViewController));
       navigationService?.Configure(Pages.AccountTransactionsViewControllerKey, typeof(AccountTransactionsViewController));
-      navigationService?.Configure(Pages.NewSummaryViewControllerKey, typeof(NewSummaryViewController));
 
       LoadingView.Hidden = true;
       LoadingView.StopAnimating();

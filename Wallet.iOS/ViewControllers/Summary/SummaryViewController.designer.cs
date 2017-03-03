@@ -9,28 +9,22 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Wallet.iOS
-{
+namespace Wallet.iOS {
+
   [Register("SummaryViewController")]
   partial class SummaryViewController {
-    
-    [Outlet]
-    UICollectionView AccountsCollectionView { get; set; }
 
     [Outlet]
-    NSLayoutConstraint AccountCollectionViewHeightConstraint { get; set; }
+    private UICollectionView WidgetsCollectionView { get; set; }
 
     [Outlet]
-    UICollectionViewFlowLayout AccountsCollectionViewFlowLayout{ get; set; }
+    private UICollectionViewFlowLayout WidgetsCollectionViewFlowLayout { get; set; }
 
     [Outlet]
-    UITableView TransactionsTableView { get; set; }
+    private UIButton AddRecordButton { get; set; }
 
-    [Outlet]
-    UIButton AddRecordButton { get; set; }
-
-    void ReleaseDesignerOutlets()
-    {
+    void ReleaseDesignerOutlets() {
     }
   }
+
 }

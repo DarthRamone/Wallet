@@ -1,106 +1,109 @@
-﻿using System.Collections.Specialized;
-using System.Linq;
+﻿using System;
+using System.Collections.Specialized;
 using CoreGraphics;
 using Foundation;
 using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using UIKit;
-using Wallet.Shared.Models;
 using Wallet.Shared.ViewModels;
 
 namespace Wallet.iOS {
+
   public partial class SummaryViewController : WalletBaseViewController {
 
-    private readonly ISummaryViewModel _viewModel;
+    private readonly ISummaryViewModel _summaryViewModel;
 
-    private ObservableCollectionViewSource<object, AccountCollectionViewCell> _source;
+    private readonly IAccountsWidgetViewModel _accountsWidgetViewModel;
+
+    private readonly ITransactionsWidgetViewModel _transactionsWidgetViewModel;
 
     public SummaryViewController() : base("SummaryViewController") {
-      _viewModel = ServiceLocator.Current.GetInstance<ISummaryViewModel>();
+      _summaryViewModel = ServiceLocator.Current.GetInstance<ISummaryViewModel>();
+      _accountsWidgetViewModel = ServiceLocator.Current.GetInstance<IAccountsWidgetViewModel>();
+      _transactionsWidgetViewModel = ServiceLocator.Current.GetInstance<ITransactionsWidgetViewModel>();
+
+      _accountsWidgetViewModel.Accounts.CollectionChanged += AccountsCollectionChanged;
     }
 
     public override void ViewDidLoad() {
       base.ViewDidLoad();
 
-      AddRecordButton.SetCommand(_viewModel.AddRecordButtonAction);
+      AddRecordButton.SetCommand(_summaryViewModel.AddRecordButtonAction);
 
-      // CollectionView
-      AccountsCollectionView.RegisterNibForCell(AccountCollectionViewCell.Nib, AccountCollectionViewCell.Key);
-      _source = _viewModel.Accounts.GetCollectionViewSource(BindAccountCell,
-                                                  factory: () => new CollectionViewSourceExtension<object, AccountCollectionViewCell>(AccountCollectionViewCell.Key, AccountSelected));
-
-      AccountsCollectionView.Source = _source;
-      _viewModel.Accounts.CollectionChanged += CollectionChanged;
-      _viewModel.Transactions.CollectionChanged += TransactionsCollectionChanged;
-
-      // TableView
-      TransactionsTableView.RegisterNibForCellReuse(RecordTableViewCell.Nib, RecordTableViewCell.Key);
-      TransactionsTableView.Source = _viewModel.Transactions.GetTableViewSource(BindTransactionCell, RecordTableViewCell.Key, () => new TableViewSourceExtension<WalletTransaction>(TransactionSelected));
-
-      AccountCollectionViewHeightConstraint = NSLayoutConstraint.Create(AccountsCollectionView, NSLayoutAttribute.Height, NSLayoutRelation.Equal, 1, 70);
-      View.AddConstraint(AccountCollectionViewHeightConstraint);
+      WidgetsCollectionView.BackgroundColor = UIColor.Brown;
+      WidgetsCollectionView.RegisterNibForCell(AccountsWidgetCell.Nib, AccountsWidgetCell.Key);
+      WidgetsCollectionView.RegisterNibForCell(TransactionsWidget.Nib, TransactionsWidget.Key);
+      WidgetsCollectionView.Source = new SummaryCollectionViewSource(_accountsWidgetViewModel, _transactionsWidgetViewModel);
+      WidgetsCollectionView.Delegate = new SummaryCollectionViewLayoutDelegate(_accountsWidgetViewModel);
+      WidgetsCollectionView.SetCollectionViewLayout(WidgetsCollectionViewFlowLayout, false);
     }
 
     public override void ViewWillAppear(bool animated) {
       base.ViewWillAppear(animated);
-      var inset = AccountsCollectionViewFlowLayout.SectionInset;
-      var cellSize = new CGSize((View.Frame.Width - inset.Top * 4) / 3, 50);
-      AccountsCollectionViewFlowLayout.ItemSize = cellSize;
-      SetCollectionViewHeight();
+      var hSectionInset = WidgetsCollectionViewFlowLayout.SectionInset.Left;
+      WidgetsCollectionViewFlowLayout.ItemSize = new CGSize(View.Frame.Width - hSectionInset * 8, 200);
     }
 
-    #region TableView
-
-    private void BindTransactionCell(UITableViewCell cell, WalletTransaction transaction, NSIndexPath indexPath) {
-      var transactionCell = cell as RecordTableViewCell;
-      transactionCell.ConfigureFor(transaction);
+    //TODO: Unsubscribe
+    private void AccountsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
+      WidgetsCollectionView.ReloadItems(new[] { NSIndexPath.FromRowSection(0, 0) });
     }
 
-    private void TransactionSelected(object item) {
-      var transactions = _viewModel.Transactions.ToList();
-      var transaction = transactions.First(t => t.Id.Equals((item as WalletTransaction).Id));
-      var index = transactions.IndexOf(transaction);
-      var indexPath = NSIndexPath.FromRowSection(index, 0);
-      TransactionsTableView.DeselectRow(indexPath, true);
+
+    public class SummaryCollectionViewSource : UICollectionViewSource {
+
+      private readonly IAccountsWidgetViewModel _accountsWidgetViewModel;
+      private readonly ITransactionsWidgetViewModel _transactionsWidgetViewModel;
+
+      public SummaryCollectionViewSource(
+        IAccountsWidgetViewModel accountsWidgetViewModel,
+        ITransactionsWidgetViewModel transactionsWidgetViewModel) {
+        _accountsWidgetViewModel = accountsWidgetViewModel;
+        _transactionsWidgetViewModel = transactionsWidgetViewModel;
+      }
+
+      public override nint NumberOfSections(UICollectionView collectionView) => 1;
+
+      public override nint GetItemsCount(UICollectionView collectionView, nint section) => 2;
+
+      public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath) {
+        
+        if (indexPath.Row == 0) {
+          var _accountWidgetCell = collectionView.DequeueReusableCell(AccountsWidgetCell.Key, indexPath) as AccountsWidgetCell;
+          _accountWidgetCell.Configure(_accountsWidgetViewModel);
+          return _accountWidgetCell;
+        }
+
+        var cell = collectionView.DequeueReusableCell(TransactionsWidget.Key, indexPath) as TransactionsWidget;
+        cell.Configure(_transactionsWidgetViewModel);
+        return cell;
+      }
+
     }
 
-    #endregion
+    public class SummaryCollectionViewLayoutDelegate : UICollectionViewDelegateFlowLayout {
 
-    #region CollectionView
+      private const float _itemHeight = 50;
 
-    private void BindAccountCell(AccountCollectionViewCell cell, object model, NSIndexPath indexPath) {
-      var account = model as Account;
-      cell.AccountNameLabel.Text = account.Name;
-      cell.AccountBalanceLabel.Text = account.Balance.ToString($"0.##{CurrenciesList.GetCurrency(account.Currency).Symbol}");
-    }
+      private readonly IAccountsWidgetViewModel _accountsWidgetViewModel;
 
-    private void AccountSelected(object account) {
-      _viewModel.AccountSelected.Execute(account);
-    }
+      public SummaryCollectionViewLayoutDelegate(IAccountsWidgetViewModel accountsWidgetViewModel) {
+        _accountsWidgetViewModel = accountsWidgetViewModel;
+      }
 
-    private void CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-      SetCollectionViewHeight();
-    }
-
-    private void TransactionsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-      AccountsCollectionView.ReloadData();//TODO: Figure out how to reload certain cells
-    }
-
-    #endregion
-
-    private void SetCollectionViewHeight() {
-      var count = _viewModel.Accounts.Count;
-      var insets = AccountsCollectionViewFlowLayout.SectionInset;
-      var cellHeight = AccountsCollectionViewFlowLayout.ItemSize.Height;
-
-      var rowsCount = count / 3;
-      if (count % 3 != 0) rowsCount++;
-
-      var height = (rowsCount * cellHeight) + ((rowsCount + 1) * insets.Top);
-
-      AccountCollectionViewHeightConstraint.Constant = height;
-
-      UIView.Animate(0.2, View.LayoutSubviews);
+      public override CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath) {
+        switch (indexPath.Row) {
+          case 0: {
+            var height = _itemHeight * (_accountsWidgetViewModel.Accounts.Count / 3);
+            height += _itemHeight * (_accountsWidgetViewModel.Accounts.Count % 3);
+            height += 60;//TODO: Count height properly
+            return new CGSize(collectionView.Frame.Width - 20, height);
+          }
+          default: {
+            return new CGSize(collectionView.Frame.Width - 20, 390); //TODO: Count height properly
+          }
+        }
+      }
     }
   }
 }

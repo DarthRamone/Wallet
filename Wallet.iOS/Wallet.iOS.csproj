@@ -159,7 +159,6 @@
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="ViewControllers\AddRecord\AddRecordViewController.xib" />
-    <InterfaceDefinition Include="ViewControllers\Summary\SummaryViewController.xib" />
     <InterfaceDefinition Include="Views\Cells\RecordCell\RecordTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\AccountTableViewCell\AccountTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\CategoryCell\CategoryTableViewCell.xib" />
@@ -172,7 +171,7 @@
     <InterfaceDefinition Include="ViewControllers\Loading\LoadingVIewController.xib" />
     <InterfaceDefinition Include="Views\Widgets\Accounts\AccountsWidgetCell.xib" />
     <InterfaceDefinition Include="Views\Widgets\Transactions\TransactionsWidget.xib" />
-    <InterfaceDefinition Include="ViewControllers\Summary\NewSummaryViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\Summary\SummaryViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -188,10 +187,6 @@
     <Compile Include="ViewControllers\AddRecord\AddRecordViewController.cs" />
     <Compile Include="ViewControllers\AddRecord\AddRecordViewController.designer.cs">
       <DependentUpon>AddRecordViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewControllers\Summary\SummaryViewController.cs" />
-    <Compile Include="ViewControllers\Summary\SummaryViewController.designer.cs">
-      <DependentUpon>SummaryViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Extensions\TableViewSourceExtension.cs" />
@@ -245,9 +240,9 @@
     <Compile Include="Views\Widgets\Transactions\TransactionsWidget.designer.cs">
       <DependentUpon>TransactionsWidget.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\Summary\NewSummaryViewController.cs" />
-    <Compile Include="ViewControllers\Summary\NewSummaryViewController.designer.cs">
-      <DependentUpon>NewSummaryViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\Summary\SummaryViewController.cs" />
+    <Compile Include="ViewControllers\Summary\SummaryViewController.designer.cs">
+      <DependentUpon>SummaryViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
