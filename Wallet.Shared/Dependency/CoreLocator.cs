@@ -1,5 +1,8 @@
 ﻿using Microsoft.Practices.Unity;
 using Wallet.Shared.Repositories;
+using Wallet.Shared.Repositories.Accounts;
+using Wallet.Shared.Repositories.Categories;
+using Wallet.Shared.Repositories.Transactions;
 using Wallet.Shared.ViewModels;
 using Wallet.Shared.ViewModels.AccountCreation;
 using Wallet.Shared.ViewModels.AccountsWidget;

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Realms;
-using Realms.Sync;
 using Wallet.Shared.Models;
 using Wallet.Shared.Providers;
 
-namespace Wallet.Shared.Repositories {
+namespace Wallet.Shared.Repositories.Transactions {
   
   public class TransactionsRepository : BaseRepository<WalletTransaction>, ITransactionsRepository {
 

@@ -3,7 +3,7 @@ using Realms;
 using Wallet.Shared.Models;
 using Wallet.Shared.Providers;
 
-namespace Wallet.Shared.Repositories {
+namespace Wallet.Shared.Repositories.Categories {
   public class CategoriesRepository : BaseRepository<Category>, ICategoriesRepository {
 
     public override event EventHandler<int[]> OnItemsDeleted = delegate { };

@@ -38,10 +38,10 @@
     <Compile Include="Helpers\ISyncConfigurationsProvider.cs" />
     <Compile Include="Helpers\SyncConfigurationsProvider.cs" />
     <Compile Include="Repositories\Accounts\AccountsRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\Categories\CategoriesRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\Transactions\TransactionsRepository.cs" />
-    <Compile Include="Repositories\Base\BaseRepository.cs" />
-    <Compile Include="Repositories\Base\IRepository.cs" />
     <Compile Include="Repositories\Transactions\ITransactionsRepository.cs" />
     <Compile Include="Repositories\Categories\ICategoriesRepository.cs" />
     <Compile Include="Repositories\Accounts\IAccountsRepository.cs" />
@@ -52,6 +52,8 @@
     <Compile Include="ViewModels\AccountSelection\IAccountsSelectionViewModel.cs" />
     <Compile Include="ViewModels\AccountsWidget\AccountsWidgetViewModel.cs" />
     <Compile Include="ViewModels\AccountsWidget\IAccountsWidgetViewModel.cs" />
+    <Compile Include="ViewModels\BalanceWidget\BalanceWidgetViewModel.cs" />
+    <Compile Include="ViewModels\BalanceWidget\IBalanceWidgetViewModel.cs" />
     <Compile Include="ViewModels\CategoryCreation\CategoryCreationViewModel.cs" />
     <Compile Include="ViewModels\CategoryCreation\ICategoryCreationViewModel.cs" />
     <Compile Include="ViewModels\CategorySelection\CategorySelectionViewModel.cs" />
@@ -112,10 +114,8 @@
     <Folder Include="Repositories\Accounts\" />
     <Folder Include="Repositories\Categories\" />
     <Folder Include="Repositories\Transactions\" />
-    <Folder Include="Repositories\Base\" />
     <Folder Include="Dependency\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="ViewModels\Balance" />
     <Folder Include="ViewModels\Summary\" />
     <Folder Include="ViewModels\AddRecord\" />
     <Folder Include="ViewModels\AccountCreation\" />

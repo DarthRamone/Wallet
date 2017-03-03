@@ -3,7 +3,7 @@ using Realms;
 using Wallet.Shared.Models;
 using Wallet.Shared.Providers;
 
-namespace Wallet.Shared.Repositories {
+namespace Wallet.Shared.Repositories.Accounts {
 
   public class AccountsRepository : BaseRepository<Account>, IAccountsRepository {
 

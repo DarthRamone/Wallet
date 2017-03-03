@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Wallet.Shared.Models;
 
-namespace Wallet.Shared.Repositories
+namespace Wallet.Shared.Repositories.Transactions
 {
   public interface ITransactionsRepository : IRepository<WalletTransaction>
   {
