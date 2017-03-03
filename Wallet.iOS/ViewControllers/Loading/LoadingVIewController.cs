@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
@@ -7,7 +8,7 @@ using Wallet.Shared;
 using Wallet.Shared.Providers;
 
 namespace Wallet.iOS {
-  
+
   public partial class LoadingVIewController : WalletBaseViewController {
 
     public LoadingVIewController() : base("LoadingVIewController") {
@@ -22,7 +23,7 @@ namespace Wallet.iOS {
         await Login(LoginTextField.Text, PasswordTextField.Text, true);
       };
       LoginButton.TouchUpInside += async (sender, args) => {
-        await Login(LoginTextField.Text, PasswordTextField.Text,false);
+        await Login(LoginTextField.Text, PasswordTextField.Text, false);
       };
     }
 
@@ -34,37 +35,48 @@ namespace Wallet.iOS {
       View.BringSubviewToFront(LoadingView);
       LoadingView.StartAnimating();
 
-      var unityContainer = ServiceLocator.Current.GetInstance<IUnityContainer>();
-      var navigationService = ServiceLocator.Current.GetInstance<INavigationService>() as NavigationService;
+
       var configurationProvider = ServiceLocator.Current.GetInstance<ISyncConfigurationsProvider>();
       var result = await configurationProvider.DoLogin(login, password, newUser);
 
       if (result) {
-        var locator = new iOSLocator(unityContainer);
-        locator.RegisterTypes();
-
-        navigationService?.Configure(Pages.LoadingViewControllerKey, typeof(LoadingVIewController));
-        navigationService?.Configure(Pages.SummaryViewControllerKey, typeof(SummaryViewController));
-        navigationService?.Configure(Pages.AddRecordViewControllerKey, typeof(AddRecordViewController));
-        navigationService?.Configure(Pages.AccountCreationViewControllerKey, typeof(AccountCreationViewController));
-        navigationService?.Configure(Pages.CategoryCreationViewControllerKey, typeof(CategoryCreationViewController));
-        navigationService?.Configure(Pages.AccountSelectionViewControllerKey, typeof(AccountSelectionViewController));
-        navigationService?.Configure(Pages.CategorySelectionViewControllerKey, typeof(CategorySelectionViewController));
-        navigationService?.Configure(Pages.AccountTransactionsViewControllerKey, typeof(AccountTransactionsViewController));
-        navigationService?.Configure(Pages.NewSummaryViewControllerKey, typeof(NewSummaryViewController));
-
-        navigationService?.NavigateTo(Pages.NewSummaryViewControllerKey);
-      }
-      else {
+        var syncingManager = ServiceLocator.Current.GetInstance<ISyncingManager>();
+        await syncingManager.Sync();
+        SyncCompleted();
+      } else {
         var popup = new UIAlertController { Title = "Some shit happened" };
         popup.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Cancel, obj => {
           popup.DismissViewController(true, null);
         }));
         PresentViewController(popup, true, null);
+
+        LoadingView.Hidden = true;
+        LoadingView.StopAnimating();
       }
+    }
+
+    void SyncCompleted() {
+
+      var unityContainer = ServiceLocator.Current.GetInstance<IUnityContainer>();
+      var navigationService = ServiceLocator.Current.GetInstance<INavigationService>() as NavigationService;
+
+      var locator = new iOSLocator(unityContainer);
+      locator.RegisterTypes();
+
+      navigationService?.Configure(Pages.LoadingViewControllerKey, typeof(LoadingVIewController));
+      navigationService?.Configure(Pages.SummaryViewControllerKey, typeof(SummaryViewController));
+      navigationService?.Configure(Pages.AddRecordViewControllerKey, typeof(AddRecordViewController));
+      navigationService?.Configure(Pages.AccountCreationViewControllerKey, typeof(AccountCreationViewController));
+      navigationService?.Configure(Pages.CategoryCreationViewControllerKey, typeof(CategoryCreationViewController));
+      navigationService?.Configure(Pages.AccountSelectionViewControllerKey, typeof(AccountSelectionViewController));
+      navigationService?.Configure(Pages.CategorySelectionViewControllerKey, typeof(CategorySelectionViewController));
+      navigationService?.Configure(Pages.AccountTransactionsViewControllerKey, typeof(AccountTransactionsViewController));
+      navigationService?.Configure(Pages.NewSummaryViewControllerKey, typeof(NewSummaryViewController));
 
       LoadingView.Hidden = true;
       LoadingView.StopAnimating();
+
+      navigationService?.NavigateTo(Pages.NewSummaryViewControllerKey);
     }
   }
 }

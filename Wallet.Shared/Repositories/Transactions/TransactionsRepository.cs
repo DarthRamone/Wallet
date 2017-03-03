@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Realms;
+using Realms.Sync;
 using Wallet.Shared.Models;
 using Wallet.Shared.Providers;
 
@@ -11,9 +12,6 @@ namespace Wallet.Shared.Repositories {
   public class TransactionsRepository : BaseRepository<WalletTransaction>, ITransactionsRepository {
 
     private Account _account;
-
-    //private IQueryable<WalletTransaction> _transactions => _realm.All<WalletTransaction>()
-      //.OrderByDescending(t => t.Date);
 
     private IQueryable<WalletTransaction> _transactions {
       get {
@@ -35,6 +33,7 @@ namespace Wallet.Shared.Repositories {
     }
 
     public async Task AddTransaction(WalletTransaction transaction, string categoryId, string accountId) {
+
       await _realm.WriteAsync(realm => {
         var acc = realm.Find<Account>(accountId);
         var cat = realm.Find<Category>(categoryId);

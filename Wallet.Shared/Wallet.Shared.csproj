@@ -29,12 +29,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Enums\Pages.cs" />
+    <Compile Include="Helpers\ISyncingManager.cs" />
+    <Compile Include="Helpers\SyncingManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\WalletTransaction.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Providers\ISyncConfigurationsProvider.cs" />
-    <Compile Include="Providers\SyncConfigurationsProvider.cs" />
+    <Compile Include="Helpers\ISyncConfigurationsProvider.cs" />
+    <Compile Include="Helpers\SyncConfigurationsProvider.cs" />
     <Compile Include="Repositories\Accounts\AccountsRepository.cs" />
     <Compile Include="Repositories\Categories\CategoriesRepository.cs" />
     <Compile Include="Repositories\Transactions\TransactionsRepository.cs" />

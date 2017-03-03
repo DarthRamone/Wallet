@@ -34,6 +34,7 @@ namespace Wallet.iOS
       unityContainer.RegisterInstance<INavigationService>(navigationService);
       unityContainer.RegisterType<ISyncConfigurationsProvider, SyncConfigurationsProvider>(
         new ContainerControlledLifetimeManager());
+      unityContainer.RegisterType<ISyncingManager, SyncingManager>();
 
       var loadingViewController = new LoadingVIewController();
 
