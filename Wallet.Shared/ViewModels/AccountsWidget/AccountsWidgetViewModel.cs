@@ -24,6 +24,7 @@ namespace Wallet.Shared.ViewModels.AccountsWidget {
       _accountsRepository = accountsRepository;
       _accountsRepository.OnItemsDeleted += AccountItemsDeleted;
       _accountsRepository.OnItemsInserted += AccountItemsInserted;
+      _accountsRepository.OnItemsModified += AccountItemsModified;
 
       SetupCommands();
 
@@ -43,6 +44,12 @@ namespace Wallet.Shared.ViewModels.AccountsWidget {
       OnAccountsChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    private void AccountItemsModified(object sender, int[] e) {
+      foreach (var index in e) {
+        Accounts[index] = _accountsRepository.Items[index];
+      }
+    }
+
     private void AccountItemsDeleted(object sender, int[] e) {
       foreach (var index in e) {
         Accounts.RemoveAt(index);
@@ -53,6 +60,7 @@ namespace Wallet.Shared.ViewModels.AccountsWidget {
     public void Dispose() {
       _accountsRepository.OnItemsDeleted -= AccountItemsDeleted;
       _accountsRepository.OnItemsInserted -= AccountItemsInserted;
+      _accountsRepository.OnItemsModified -= AccountItemsModified;
     }
 
   }
