@@ -25,8 +25,8 @@ namespace Wallet.iOS {
 
     public void Configure(IBalanceWidgetViewModel viewModel) {
       _balanceBinding?.Detach();
-      _balanceBinding = this.SetBinding(() => _viewModel.Balance, () => BalanceLabel.Text);
       _viewModel = viewModel;
+      _balanceBinding = this.SetBinding(() => _viewModel.Balance, () => BalanceLabel.Text);
     }
 
   }

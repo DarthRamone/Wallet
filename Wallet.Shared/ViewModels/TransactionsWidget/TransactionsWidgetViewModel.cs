@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Views;
 using Wallet.Shared.Models;
-using Wallet.Shared.Repositories;
 using Wallet.Shared.Repositories.Transactions;
 
 namespace Wallet.Shared.ViewModels.TransactionsWidget {

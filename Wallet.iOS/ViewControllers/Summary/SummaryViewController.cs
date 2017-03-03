@@ -59,7 +59,7 @@ namespace Wallet.iOS {
 
     public class SummaryCollectionViewSource : UICollectionViewSource {
 
-      private IBalanceWidgetViewModel _balanceWidgetViewModel;
+      private readonly IBalanceWidgetViewModel _balanceWidgetViewModel;
       private readonly IAccountsWidgetViewModel _accountsWidgetViewModel;
       private readonly ITransactionsWidgetViewModel _transactionsWidgetViewModel;
 
@@ -86,15 +86,15 @@ namespace Wallet.iOS {
             return accountWidget;
           }
           case 1: {
+            var balanceWidget = collectionView.DequeueReusableCell(BalanceWidget.Key, indexPath) as BalanceWidget;
+            balanceWidget?.Configure(_balanceWidgetViewModel);
+            return balanceWidget;
+          }
+          default: {
             var transactionsWidget =
               collectionView.DequeueReusableCell(TransactionsWidget.Key, indexPath) as TransactionsWidget;
             transactionsWidget?.Configure(_transactionsWidgetViewModel);
             return transactionsWidget;
-          }
-          default: {
-            var balanceWidget = collectionView.DequeueReusableCell(BalanceWidget.Key, indexPath) as BalanceWidget;
-            balanceWidget?.Configure(_balanceWidgetViewModel);
-            return balanceWidget;
           }
         }
       }
@@ -120,10 +120,10 @@ namespace Wallet.iOS {
             return new CGSize(collectionView.Frame.Width - 20, height);
           }
           case 1: {
-            return new CGSize(collectionView.Frame.Width - 20, 390); //TODO: Count height properly
+            return new CGSize(collectionView.Frame.Width - 20, 100);
           }
           default: {
-            return new CGSize(collectionView.Frame.Width - 20, 100);
+            return new CGSize(collectionView.Frame.Width - 20, 390); //TODO: Count height properly
           }
         }
       }
