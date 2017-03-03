@@ -41,7 +41,7 @@ namespace Wallet.iOS {
       WidgetsCollectionView.RegisterNibForCell(TransactionsWidget.Nib, TransactionsWidget.Key);
 
       WidgetsCollectionView.Source = new SummaryCollectionViewSource(_balanceWidgetViewModel, _accountsWidgetViewModel, _transactionsWidgetViewModel);
-      WidgetsCollectionView.Delegate = new SummaryCollectionViewLayoutDelegate(_accountsWidgetViewModel);
+      WidgetsCollectionView.Delegate = new SummaryCollectionViewLayoutDelegate(_accountsWidgetViewModel, _transactionsWidgetViewModel);
       WidgetsCollectionView.SetCollectionViewLayout(WidgetsCollectionViewFlowLayout, false);
     }
 
@@ -103,27 +103,46 @@ namespace Wallet.iOS {
 
     public class SummaryCollectionViewLayoutDelegate : UICollectionViewDelegateFlowLayout {
 
-      private const float _itemHeight = 50;
+      private const float _titleHeight = 28;
+      private const float _accountCellHeight = 50;
+      private const float _transactionCellHeight = 60;
+
+      private UIEdgeInsets _sectionEdgeInsets = new UIEdgeInsets(10, 10, 10, 10);
 
       private readonly IAccountsWidgetViewModel _accountsWidgetViewModel;
+      private readonly ITransactionsWidgetViewModel _transactionsWidgetViewModel;
 
-      public SummaryCollectionViewLayoutDelegate(IAccountsWidgetViewModel accountsWidgetViewModel) {
+      public SummaryCollectionViewLayoutDelegate(
+        IAccountsWidgetViewModel accountsWidgetViewModel,
+        ITransactionsWidgetViewModel transactionsWidgetViewModel) {
+
         _accountsWidgetViewModel = accountsWidgetViewModel;
+        _transactionsWidgetViewModel = transactionsWidgetViewModel;
+
+      }
+
+      public override UIEdgeInsets GetInsetForSection(UICollectionView collectionView, UICollectionViewLayout layout, nint section) {
+        return _sectionEdgeInsets;
       }
 
       public override CGSize GetSizeForItem(UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath) {
+        
+        var width = collectionView.Frame.Width - _sectionEdgeInsets.Left - _sectionEdgeInsets.Right;
+
         switch (indexPath.Row) {
           case 0: {
-            var height = _itemHeight * (_accountsWidgetViewModel.Accounts.Count / 3);
-            height += _itemHeight * (_accountsWidgetViewModel.Accounts.Count % 3);
-            height += 60; //TODO: Count height properly
-            return new CGSize(collectionView.Frame.Width - 20, height);
+            // ReSharper disable once PossibleLossOfFraction
+            nfloat height = _accountCellHeight * (_accountsWidgetViewModel.Accounts.Count / 3);
+            height += _accountCellHeight * (_accountsWidgetViewModel.Accounts.Count % 3);
+            height += _sectionEdgeInsets.Top + _sectionEdgeInsets.Bottom + _titleHeight;
+            return new CGSize(width, height);
           }
           case 1: {
-            return new CGSize(collectionView.Frame.Width - 20, 100);
+            return new CGSize(width, 100);
           }
           default: {
-            return new CGSize(collectionView.Frame.Width - 20, 390); //TODO: Count height properly
+            var height = _transactionCellHeight * _transactionsWidgetViewModel.Transactions.Count;
+            return new CGSize(width, height + _titleHeight);
           }
         }
       }
