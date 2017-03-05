@@ -41,6 +41,7 @@ namespace Wallet.Shared.ViewModels.TransactionsWidget {
     private void TransactionItemsDeleted(object sender, int[] e) {
       //TODO: figure out how to handle deletions 
       for (int i = 0; i < e.Length; i++) {
+        if (e[i] >= MAX_ITEMS_COUNT - 1) continue;
         Transactions.RemoveAt(i == 0 ? e[i] : e[i] - i);
         if (_transactionsRepository.Transactions.Count >= MAX_ITEMS_COUNT) {
           Transactions.Add(_transactionsRepository.Transactions[MAX_ITEMS_COUNT - 1]);
