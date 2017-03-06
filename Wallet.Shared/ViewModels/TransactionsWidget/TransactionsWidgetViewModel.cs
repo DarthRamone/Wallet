@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -45,9 +46,9 @@ namespace Wallet.Shared.ViewModels.TransactionsWidget {
 
     private void TransactionItemsDeleted(object sender, int[] e) {
       var indicies = e.Where(i => i < MAX_ITEMS_COUNT).OrderByDescending(i => i);
-
       foreach (var index in indicies) {
         Transactions.RemoveAt(index);
+        Debug.WriteLine($"[TransactionsWidgetViewModel] Transaction at {index} deleted from widget");
       }
 
       var currentTransactionsCount = Transactions.Count;
@@ -55,6 +56,7 @@ namespace Wallet.Shared.ViewModels.TransactionsWidget {
         for (int i = currentTransactionsCount; i < MAX_ITEMS_COUNT; i++) {
           if (_transactionsRepository.Transactions.Count - 1 > i) {
             Transactions.Add(_transactionsRepository.Transactions[i]);
+            Debug.WriteLine($"[TransactionsWidgetViewModel] Transaction added to widget. Root transactions index: {i}");
           }
         }
       }
@@ -72,6 +74,7 @@ namespace Wallet.Shared.ViewModels.TransactionsWidget {
     }
 
     public void Dispose() {
+      Debug.WriteLine("[TransactionsWidgetViewModel] Disposing");
       _transactionsRepository.OnItemsDeleted -= TransactionItemsDeleted;
       _transactionsRepository.OnItemsInserted -= TransactionItemsInserted;
       _transactionsRepository.OnItemsModified -= TransactionItemsModified;

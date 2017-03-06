@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -10,7 +11,7 @@ namespace Wallet.Shared.ViewModels.Transactions {
 
   public class TransactionsViewModel : WalletBaseViewModel, ITransactionsViewModel, IDisposable {
 
-    private ITransactionsRepository _transactionsRepository;
+    private readonly ITransactionsRepository _transactionsRepository;
 
     public ObservableCollection<WalletTransaction> Transactions { get; }
 
@@ -24,6 +25,8 @@ namespace Wallet.Shared.ViewModels.Transactions {
       _transactionsRepository.OnItemsDeleted += TransactionsDeleted;
       _transactionsRepository.OnItemsInserted += TransactionsInserted;
       _transactionsRepository.OnItemsModified += TransactionsModified;
+
+      SetCommands();
     }
 
     public void SetCommands() {
@@ -35,6 +38,7 @@ namespace Wallet.Shared.ViewModels.Transactions {
     private void TransactionsInserted(object sender, int[] e) {
       var items = e.Select(index => _transactionsRepository.Transactions[index]);
       foreach (var item in items) {
+        Debug.WriteLine($"[TransactionsViewModel] Transaction inserted");
         Transactions.Add(item);
       }
     }
@@ -42,17 +46,22 @@ namespace Wallet.Shared.ViewModels.Transactions {
     private void TransactionsDeleted(object sender, int[] e) {
       var indicies = e.OrderByDescending(i => i);
       foreach (var i in  indicies) {
+        Debug.WriteLine($"[TransactionsViewModel] Delete transaction at {i}, transactions count: {Transactions.Count}");
         Transactions.RemoveAt(i);
       }
     }
 
     private void TransactionsModified(object sender, int[] e) {
       foreach (var index in e) {
-        Transactions[index] = _transactionsRepository.Transactions[index];
+        Debug.WriteLine($"[TransactionsViewModel] Transaction at {index} modified");
+        if (index < Transactions.Count && index < _transactionsRepository.Transactions.Count) {
+          Transactions[index] = _transactionsRepository.Transactions[index];
+        }
       }
     }
 
     public void Dispose() {
+      Debug.WriteLine("[TransactionsViewModel] Disposing");
       _transactionsRepository.OnItemsDeleted -= TransactionsDeleted;
       _transactionsRepository.OnItemsInserted -= TransactionsInserted;
       _transactionsRepository.OnItemsModified -= TransactionsModified;
