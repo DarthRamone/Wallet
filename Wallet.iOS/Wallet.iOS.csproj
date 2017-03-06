@@ -132,51 +132,44 @@
     <Folder Include="Views\" />
     <Folder Include="Views\Cells\" />
     <Folder Include="Dependency\" />
-    <Folder Include="ViewControllers\Base\" />
-    <Folder Include="ViewControllers\Summary\" />
-    <Folder Include="ViewControllers\AddRecord\" />
-    <Folder Include="ViewControllers\Accounts\" />
-    <Folder Include="ViewControllers\Categories\" />
+    <Folder Include="ViewControllers\SummaryViewController\" />
+    <Folder Include="ViewControllers\AddRecordViewController\" />
     <Folder Include="Services\" />
     <Folder Include="Extensions\" />
     <Folder Include="Views\Cells\RecordCell\" />
     <Folder Include="Views\Cells\AccountTableViewCell\" />
     <Folder Include="Views\Cells\CategoryCell\" />
     <Folder Include="Views\Cells\AccountCollectionViewCell\" />
-    <Folder Include="ViewControllers\Transactions\" />
-    <Folder Include="ViewControllers\Accounts\Selection\" />
-    <Folder Include="ViewControllers\Accounts\Creation\" />
-    <Folder Include="ViewControllers\Categories\Selections\" />
-    <Folder Include="ViewControllers\Categories\Creation\" />
-    <Folder Include="ViewControllers\Loading\" />
+    <Folder Include="ViewControllers\TransactionsViewController\" />
+    <Folder Include="ViewControllers\LoadingViewController\" />
     <Folder Include="Views\Widgets\" />
     <Folder Include="Views\Widgets\Base\" />
     <Folder Include="Views\Widgets\Accounts\" />
     <Folder Include="Views\Widgets\Transactions\" />
     <Folder Include="Assets.xcassets\shopping.imageset\" />
     <Folder Include="Views\Widgets\Balance\" />
-    <Folder Include="ViewControllers\TransactionDetails\" />
+    <Folder Include="ViewControllers\TransactionDetailsViewController\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="ViewControllers\AddRecord\AddRecordViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\AccountCreationViewController\AccountCreationViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\AccountSelectionViewController\AccountSelectionViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\AccountTransactionsViewController\AccountTransactionsViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\AddRecordViewController\AddRecordViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\CategoryCreationViewController\CategoryCreationViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\CategorySelectionViewController\CategoriesSelectionViewController.xib" />
     <InterfaceDefinition Include="Views\Cells\RecordCell\RecordTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\AccountTableViewCell\AccountTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\CategoryCell\CategoryTableViewCell.xib" />
     <InterfaceDefinition Include="Views\Cells\AccountCollectionViewCell\AccountCollectionViewCell.xib" />
-    <InterfaceDefinition Include="ViewControllers\Transactions\AccountTransactionsViewController.xib" />
-    <InterfaceDefinition Include="ViewControllers\Accounts\Selection\AccountSelectionViewController.xib" />
-    <InterfaceDefinition Include="ViewControllers\Accounts\Creation\AccountCreationViewController.xib" />
-    <InterfaceDefinition Include="ViewControllers\Categories\Selections\CategoriesSelectionViewController.xib" />
-    <InterfaceDefinition Include="ViewControllers\Categories\Creation\CategoryCreationViewController.xib" />
-    <InterfaceDefinition Include="ViewControllers\Loading\LoadingVIewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\LoadingViewController\LoadingVIewController.xib" />
     <InterfaceDefinition Include="Views\Widgets\Accounts\AccountsWidgetCell.xib" />
     <InterfaceDefinition Include="Views\Widgets\Transactions\TransactionsWidget.xib" />
-    <InterfaceDefinition Include="ViewControllers\Summary\SummaryViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\SummaryViewController\SummaryViewController.xib" />
     <InterfaceDefinition Include="Views\Widgets\Balance\BalanceWidget.xib" />
-    <InterfaceDefinition Include="ViewControllers\TransactionDetails\TransactionDetailsViewController.xib" />
-    <InterfaceDefinition Include="ViewControllers\Transactions\TransactionsViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\TransactionDetailsViewController\TransactionDetailsViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\TransactionsViewController\TransactionsViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -188,13 +181,33 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Dependency\iOSLocator.cs" />
-    <Compile Include="ViewControllers\Base\WalletBaseViewController.cs" />
-    <Compile Include="ViewControllers\AddRecord\AddRecordViewController.cs" />
-    <Compile Include="ViewControllers\AddRecord\AddRecordViewController.designer.cs">
+    <Compile Include="ViewControllers\AccountCreationViewController\AccountCreationViewController.cs" />
+    <Compile Include="ViewControllers\AccountCreationViewController\AccountCreationViewController.designer.cs">
+      <DependentUpon>AccountCreationViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\AccountSelectionViewController\AccountSelectionViewController.cs" />
+    <Compile Include="ViewControllers\AccountSelectionViewController\AccountSelectionViewController.designer.cs">
+      <DependentUpon>AccountSelectionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\AccountTransactionsViewController\AccountTransactionsViewController.cs" />
+    <Compile Include="ViewControllers\AccountTransactionsViewController\AccountTransactionsViewController.designer.cs">
+      <DependentUpon>AccountTransactionsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\AddRecordViewController\AddRecordViewController.cs" />
+    <Compile Include="ViewControllers\AddRecordViewController\AddRecordViewController.designer.cs">
       <DependentUpon>AddRecordViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Extensions\TableViewSourceExtension.cs" />
+    <Compile Include="ViewControllers\CategoryCreationViewController\CategoryCreationViewController.cs" />
+    <Compile Include="ViewControllers\CategoryCreationViewController\CategoryCreationViewController.designer.cs">
+      <DependentUpon>CategoryCreationViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\CategorySelectionViewController\CategorySelectionViewController.cs" />
+    <Compile Include="ViewControllers\CategorySelectionViewController\CategorySelectionViewController.designer.cs">
+      <DependentUpon>CategorySelectionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\WalletBaseViewController.cs" />
     <Compile Include="Views\Cells\RecordCell\RecordTableViewCell.cs" />
     <Compile Include="Views\Cells\RecordCell\RecordTableViewCell.designer.cs">
       <DependentUpon>RecordTableViewCell.cs</DependentUpon>
@@ -211,30 +224,10 @@
     <Compile Include="Views\Cells\AccountCollectionViewCell\AccountCollectionViewCell.designer.cs">
       <DependentUpon>AccountCollectionViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\Transactions\AccountTransactionsViewController.cs" />
-    <Compile Include="ViewControllers\Transactions\AccountTransactionsViewController.designer.cs">
-      <DependentUpon>AccountTransactionsViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Extensions\UIColorExtensions.cs" />
     <Compile Include="Extensions\UIViewExtensions.cs" />
-    <Compile Include="ViewControllers\Accounts\Selection\AccountSelectionViewController.cs" />
-    <Compile Include="ViewControllers\Accounts\Selection\AccountSelectionViewController.designer.cs">
-      <DependentUpon>AccountSelectionViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewControllers\Accounts\Creation\AccountCreationViewController.cs" />
-    <Compile Include="ViewControllers\Accounts\Creation\AccountCreationViewController.designer.cs">
-      <DependentUpon>AccountCreationViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewControllers\Categories\Selections\CategorySelectionViewController.cs" />
-    <Compile Include="ViewControllers\Categories\Selections\CategorySelectionViewController.designer.cs">
-      <DependentUpon>CategorySelectionViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewControllers\Categories\Creation\CategoryCreationViewController.cs" />
-    <Compile Include="ViewControllers\Categories\Creation\CategoryCreationViewController.designer.cs">
-      <DependentUpon>CategoryCreationViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewControllers\Loading\LoadingVIewController.cs" />
-    <Compile Include="ViewControllers\Loading\LoadingVIewController.designer.cs">
+    <Compile Include="ViewControllers\LoadingViewController\LoadingVIewController.cs" />
+    <Compile Include="ViewControllers\LoadingViewController\LoadingVIewController.designer.cs">
       <DependentUpon>LoadingVIewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Widgets\Accounts\AccountsWidgetCell.cs" />
@@ -245,20 +238,20 @@
     <Compile Include="Views\Widgets\Transactions\TransactionsWidget.designer.cs">
       <DependentUpon>TransactionsWidget.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\Summary\SummaryViewController.cs" />
-    <Compile Include="ViewControllers\Summary\SummaryViewController.designer.cs">
+    <Compile Include="ViewControllers\SummaryViewController\SummaryViewController.cs" />
+    <Compile Include="ViewControllers\SummaryViewController\SummaryViewController.designer.cs">
       <DependentUpon>SummaryViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Widgets\Balance\BalanceWidget.cs" />
     <Compile Include="Views\Widgets\Balance\BalanceWidget.designer.cs">
       <DependentUpon>BalanceWidget.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\TransactionDetails\TransactionDetailsViewController.cs" />
-    <Compile Include="ViewControllers\TransactionDetails\TransactionDetailsViewController.designer.cs">
+    <Compile Include="ViewControllers\TransactionDetailsViewController\TransactionDetailsViewController.cs" />
+    <Compile Include="ViewControllers\TransactionDetailsViewController\TransactionDetailsViewController.designer.cs">
       <DependentUpon>TransactionDetailsViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\Transactions\TransactionsViewController.cs" />
-    <Compile Include="ViewControllers\Transactions\TransactionsViewController.designer.cs">
+    <Compile Include="ViewControllers\TransactionsViewController\TransactionsViewController.cs" />
+    <Compile Include="ViewControllers\TransactionsViewController\TransactionsViewController.designer.cs">
       <DependentUpon>TransactionsViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
