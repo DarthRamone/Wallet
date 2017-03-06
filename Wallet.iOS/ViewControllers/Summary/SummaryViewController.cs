@@ -146,7 +146,7 @@ namespace Wallet.iOS {
           }
           default: {
             var height = _transactionCellHeight * _transactionsWidgetViewModel.Transactions.Count;
-            return new CGSize(width, height + _titleHeight);
+            return new CGSize(width, height + _titleHeight + 64);
           }
         }
       }

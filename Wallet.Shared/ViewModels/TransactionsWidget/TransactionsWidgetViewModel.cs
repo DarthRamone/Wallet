@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -56,7 +55,8 @@ namespace Wallet.Shared.ViewModels.TransactionsWidget {
     }
 
     private void TransactionItemsInserted(object sender, int[] e) {
-      foreach (var index in e) {
+      var indicies = e.Where(i => i < MAX_ITEMS_COUNT);
+      foreach (var index in indicies) {
         Transactions.Insert(index, _transactionsRepository.Transactions[index]);
         if (Transactions.Count > MAX_ITEMS_COUNT) Transactions.RemoveAt(MAX_ITEMS_COUNT);
       }

@@ -17,6 +17,9 @@ namespace Wallet.iOS {
     [Outlet]
     private UITableView TransactionsTableView { get; set; }
 
+    [Outlet]
+    private UIButton MoreButton { get; set; }
+
     void ReleaseDesignerOutlets() {
     }
   }
