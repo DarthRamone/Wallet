@@ -22,6 +22,8 @@
 
     public const string TransactionDetailsViewControllerKey = "TransactionDetailsViewControllerKey";
 
+    public const string TransactionsViewControllerKey = "TransactionsViewControllerKey";
+
   }
 
 }

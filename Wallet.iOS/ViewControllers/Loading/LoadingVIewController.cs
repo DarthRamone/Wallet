@@ -64,8 +64,9 @@ namespace Wallet.iOS {
       locator.RegisterTypes();
 
       navigationService?.Configure(Pages.LoadingViewControllerKey, typeof(LoadingVIewController));
-      navigationService?.Configure(Pages.AddRecordViewControllerKey, typeof(AddRecordViewController));
       navigationService?.Configure(Pages.NewSummaryViewControllerKey, typeof(SummaryViewController));
+      navigationService?.Configure(Pages.AddRecordViewControllerKey, typeof(AddRecordViewController));
+      navigationService?.Configure(Pages.TransactionsViewControllerKey, typeof(TransactionsViewController));
       navigationService?.Configure(Pages.AccountCreationViewControllerKey, typeof(AccountCreationViewController));
       navigationService?.Configure(Pages.CategoryCreationViewControllerKey, typeof(CategoryCreationViewController));
       navigationService?.Configure(Pages.AccountSelectionViewControllerKey, typeof(AccountSelectionViewController));

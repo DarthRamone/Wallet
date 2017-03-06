@@ -13,6 +13,7 @@ using Wallet.Shared.ViewModels.CategorySelection;
 using Wallet.Shared.ViewModels.Summary;
 using Wallet.Shared.ViewModels.TransactionsWidget;
 using Wallet.Shared.ViewModels.TransactionDetails;
+using Wallet.Shared.ViewModels.Transactions;
 
 namespace Wallet.Shared
 {
@@ -31,6 +32,7 @@ namespace Wallet.Shared
 
       UnityContainer.RegisterType<ISummaryViewModel, SummaryViewModel>();
       UnityContainer.RegisterType<IAddRecordViewModel, AddRecordViewModel>();
+      UnityContainer.RegisterType<ITransactionsViewModel, TransactionsViewModel>();
       UnityContainer.RegisterType<IBalanceWidgetViewModel, BalanceWidgetViewModel>();
       UnityContainer.RegisterType<IAccountsWidgetViewModel, AccountsWidgetViewModel>();
       UnityContainer.RegisterType<IAccountCreationViewModel, AccountCreationViewModel>();

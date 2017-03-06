@@ -176,6 +176,7 @@
     <InterfaceDefinition Include="ViewControllers\Summary\SummaryViewController.xib" />
     <InterfaceDefinition Include="Views\Widgets\Balance\BalanceWidget.xib" />
     <InterfaceDefinition Include="ViewControllers\TransactionDetails\TransactionDetailsViewController.xib" />
+    <InterfaceDefinition Include="ViewControllers\Transactions\TransactionsViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -255,6 +256,10 @@
     <Compile Include="ViewControllers\TransactionDetails\TransactionDetailsViewController.cs" />
     <Compile Include="ViewControllers\TransactionDetails\TransactionDetailsViewController.designer.cs">
       <DependentUpon>TransactionDetailsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Transactions\TransactionsViewController.cs" />
+    <Compile Include="ViewControllers\Transactions\TransactionsViewController.designer.cs">
+      <DependentUpon>TransactionsViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

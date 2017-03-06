@@ -2,15 +2,14 @@
 using GalaSoft.MvvmLight.Command;
 using Wallet.Shared.Models;
 
-namespace Wallet.Shared.ViewModels.TransactionsWidget {
+namespace Wallet.Shared.ViewModels.Transactions {
 
-  public interface ITransactionsWidgetViewModel : IWalletBaseViewModel {
+  public interface ITransactionsViewModel : IWalletBaseViewModel {
 
     ObservableCollection<WalletTransaction> Transactions { get; }
 
     RelayCommand<string> SelectTransactionAction { get; }
 
-    RelayCommand MoreButtonAction { get;  }
   }
 
 }

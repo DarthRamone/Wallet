@@ -9,11 +9,13 @@ using Wallet.Shared.ViewModels.TransactionsWidget;
 namespace Wallet.iOS {
   public partial class TransactionsWidget : UICollectionViewCell {
 
+    private bool _configured;
+
     private ITransactionsWidgetViewModel _viewModel;
 
     public static readonly NSString Key = new NSString("TransactionsWidget");
     public static readonly UINib Nib;
-    
+
     static TransactionsWidget() {
       Nib = UINib.FromName("TransactionsWidget", NSBundle.MainBundle);
     }
@@ -23,12 +25,16 @@ namespace Wallet.iOS {
     }
 
     public void Configure(ITransactionsWidgetViewModel viewModel) {
+      if (!_configured) {
+        _viewModel = viewModel;
 
-      _viewModel = viewModel;
+        TitleLabel.Text = "Transactions";
+        TransactionsTableView.RegisterNibForCellReuse(RecordTableViewCell.Nib, RecordTableViewCell.Key);
+        TransactionsTableView.Source = _viewModel.Transactions.GetTableViewSource(BindTransactionCell, RecordTableViewCell.Key, () => new TableViewSourceExtension<WalletTransaction>(TransactionSelected));
 
-      TitleLabel.Text = "Transactions";
-      TransactionsTableView.RegisterNibForCellReuse(RecordTableViewCell.Nib, RecordTableViewCell.Key);
-      TransactionsTableView.Source = _viewModel.Transactions.GetTableViewSource(BindTransactionCell, RecordTableViewCell.Key, () => new TableViewSourceExtension<WalletTransaction>(TransactionSelected));
+        MoreButton.SetCommand(_viewModel.MoreButtonAction);
+        _configured = true;
+      }
     }
 
     private void BindTransactionCell(UITableViewCell cell, WalletTransaction transaction, NSIndexPath indexPath) {

@@ -18,6 +18,8 @@ namespace Wallet.Shared.ViewModels.TransactionsWidget {
 
     public RelayCommand<string> SelectTransactionAction { get; private set; }
 
+    public RelayCommand MoreButtonAction { get; private set; }
+
     public TransactionsWidgetViewModel(INavigationService navigationService,
                                        ITransactionsRepository transactionsRepository) : base(navigationService) {
 
@@ -35,6 +37,10 @@ namespace Wallet.Shared.ViewModels.TransactionsWidget {
       SelectTransactionAction = new RelayCommand<string>(id => {
         _navigationService.NavigateTo(Pages.TransactionDetailsViewControllerKey, id);
       }, id => true);
+
+      MoreButtonAction = new RelayCommand(() => {
+        _navigationService.NavigateTo(Pages.TransactionsViewControllerKey);
+      }, () => true);
     }
 
     private void TransactionItemsDeleted(object sender, int[] e) {
