@@ -39,12 +39,18 @@ namespace Wallet.Shared.ViewModels.TransactionsWidget {
     }
 
     private void TransactionItemsDeleted(object sender, int[] e) {
-      //TODO: figure out how to handle deletions 
-      for (int i = 0; i < e.Length; i++) {
-        if (e[i] >= MAX_ITEMS_COUNT - 1) continue;
-        Transactions.RemoveAt(i == 0 ? e[i] : e[i] - i);
-        if (_transactionsRepository.Transactions.Count >= MAX_ITEMS_COUNT) {
-          Transactions.Add(_transactionsRepository.Transactions[MAX_ITEMS_COUNT - 1]);
+      var indicies = e.Where(i => i < MAX_ITEMS_COUNT).OrderByDescending(i => i);
+
+      foreach (var index in indicies) {
+        Transactions.RemoveAt(index);
+      }
+
+      var currentTransactionsCount = Transactions.Count;
+      if (currentTransactionsCount < _transactionsRepository.Transactions.Count) {
+        for (int i = currentTransactionsCount; i < MAX_ITEMS_COUNT; i++) {
+          if (_transactionsRepository.Transactions.Count - 1 > i) {
+            Transactions.Add(_transactionsRepository.Transactions[i]);
+          }
         }
       }
     }
