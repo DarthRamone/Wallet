@@ -9,6 +9,8 @@
     public double ExchangeRate { get; set; }
 
     public string Name { get; set; }
+
+    public string GetFormattedValue(double amount) => $"{amount:N}{Symbol}".Replace(".00", string.Empty);
   }
 
 }

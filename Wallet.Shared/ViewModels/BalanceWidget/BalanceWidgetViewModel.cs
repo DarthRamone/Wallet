@@ -29,9 +29,11 @@ namespace Wallet.Shared.ViewModels.BalanceWidget {
     }
 
     private void SetBalance() {
-      Balance = _accountsRepository.Items
-        .Sum(account => CurrenciesList.Convert(account.Currency, CurrenciesList.ReferenceCurrency.Code, account.Balance))
-        .ToString($"0.##{CurrenciesList.ReferenceCurrency.Symbol}");
+      var balance = _accountsRepository.Items
+        .Sum(
+          account => CurrenciesList.Convert(account.Currency, CurrenciesList.ReferenceCurrency.Code, account.Balance));
+
+      Balance = CurrenciesList.ReferenceCurrency.GetFormattedValue(balance);
     }
 
     private void AccountsChanged(object sender, int[] e) {
