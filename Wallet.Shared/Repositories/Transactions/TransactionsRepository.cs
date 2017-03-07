@@ -70,7 +70,7 @@ namespace Wallet.Shared.Repositories.Transactions {
       });
     }
 
-    public async Task AddTransferTransaction(TransferTransaction transaction, string sourceAccountId, string targetAccountId) {
+    public async Task AddTransferTransaction(TransferTransaction transaction, string sourceAccountId, string targetAccountId, double amount) {
       await _realm.WriteAsync(realm => {
 
         var sourceAccount = realm.Find<Account>(sourceAccountId);
@@ -84,12 +84,12 @@ namespace Wallet.Shared.Repositories.Transactions {
         var sourceTransaction = new WalletTransaction {
           Account = sourceAccount,
           Category = transferCategory,
-          Amount = -transaction.Amount,
+          Amount = -amount,
           Date = date,
           TransferTransaction = transaction
         };
 
-        var targetAmount = CurrenciesList.Convert(sourceAccount.Currency, targetAccount.Currency, transaction.Amount);
+        var targetAmount = CurrenciesList.Convert(sourceAccount.Currency, targetAccount.Currency, amount);
 
         var targetTransaction = new WalletTransaction {
           Account = targetAccount,
@@ -106,7 +106,7 @@ namespace Wallet.Shared.Repositories.Transactions {
         realm.Add(sourceTransaction);
         realm.Add(targetTransaction);
 
-        sourceAccount.Balance -= transaction.Amount;
+        sourceAccount.Balance -= amount;
         targetAccount.Balance += targetAmount;
       });
     }

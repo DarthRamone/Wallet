@@ -8,8 +8,6 @@ namespace Wallet.Shared.Models {
     [PrimaryKey]
     public string Id { get; set; }
 
-    public double Amount { get; set; }
-
     public WalletTransaction SourceTransaction { get; set; }
 
     public WalletTransaction TargetTransaction { get; set; }

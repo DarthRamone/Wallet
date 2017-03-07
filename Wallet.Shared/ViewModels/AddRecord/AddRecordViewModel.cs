@@ -166,8 +166,7 @@ namespace Wallet.Shared.ViewModels.AddRecord {
       var transaction = new TransferTransaction();
       double amount;
       if (double.TryParse(AmountLabelText, out amount)) {
-        transaction.Amount = amount;
-        await _transactionsRepository.AddTransferTransaction(transaction, _leftButtonText, _rightButtonText);
+        await _transactionsRepository.AddTransferTransaction(transaction, _leftButtonText, _rightButtonText, amount);
       }
     }
 

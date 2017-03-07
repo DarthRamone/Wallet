@@ -12,7 +12,7 @@ namespace Wallet.Shared.Repositories.Transactions
 
     Task RemoveTransaction(string transactionId);
 
-    Task AddTransferTransaction(TransferTransaction transaction, string sourceAccountId, string targetAccountId);
+    Task AddTransferTransaction(TransferTransaction transaction, string sourceAccountId, string targetAccountId, double amount);
 
     void SetAccountForFiltering(Account account);
 
