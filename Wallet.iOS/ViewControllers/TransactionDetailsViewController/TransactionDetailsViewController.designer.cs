@@ -16,6 +16,21 @@ namespace Wallet.iOS {
     [Outlet]
     private UIButton DeleteButton { get; set; }
 
+    [Outlet]
+    private UIButton FirstItemButton { get; set; }
+
+    [Outlet]
+    private UIButton SecondButtonItem { get; set; }
+
+    [Outlet]
+    private UITextField AmountTextField { get; set; }
+
+    [Outlet]
+    private UILabel FirstItemLabel { get; set; }
+
+    [Outlet]
+    private UILabel SecondItemLabel { get; set; }
+
     void ReleaseDesignerOutlets() {
     }
   }
