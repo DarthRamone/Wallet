@@ -17,6 +17,8 @@ namespace Wallet.Shared.ViewModels.TransactionsWidget {
 
     public ObservableCollection<WalletTransaction> Transactions { get; }
 
+    public event EventHandler OnTransactionsChanged = delegate { };
+
     public RelayCommand<string> SelectTransactionAction { get; private set; }
 
     public RelayCommand MoreButtonAction { get; private set; }
@@ -60,14 +62,20 @@ namespace Wallet.Shared.ViewModels.TransactionsWidget {
           }
         }
       }
+
+      OnTransactionsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void TransactionItemsInserted(object sender, int[] e) {
       var indicies = e.Where(i => i < MAX_ITEMS_COUNT);
       foreach (var index in indicies) {
         Transactions.Insert(index, _transactionsRepository.Transactions[index]);
-        if (Transactions.Count > MAX_ITEMS_COUNT) Transactions.RemoveAt(MAX_ITEMS_COUNT);
+        if (Transactions.Count > MAX_ITEMS_COUNT) {
+          Transactions.RemoveAt(MAX_ITEMS_COUNT);
+        }
       }
+
+      OnTransactionsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void TransactionItemsModified(object sender, int[] e) {

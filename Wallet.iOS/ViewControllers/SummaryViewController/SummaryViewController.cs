@@ -26,6 +26,7 @@ namespace Wallet.iOS {
       _transactionsWidgetViewModel = ServiceLocator.Current.GetInstance<ITransactionsWidgetViewModel>();
 
       _accountsWidgetViewModel.OnAccountsChanged += AccountsCollectionChanged;
+      _transactionsWidgetViewModel.OnTransactionsChanged += TransactionsChanged;
     }
 
     public override void ViewDidLoad() {
@@ -55,6 +56,10 @@ namespace Wallet.iOS {
       WidgetsCollectionView.ReloadItems(new[] { NSIndexPath.FromRowSection(0, 0) });
     }
 
+    //TODO: Unsubscribe
+    private void TransactionsChanged(object sender, EventArgs e) {
+      WidgetsCollectionView.ReloadItems(new[] { NSIndexPath.FromRowSection(1, 0) });
+    }
 
     public class SummaryCollectionViewSource : UICollectionViewSource {
 
